@@ -15,7 +15,7 @@ import words from "../../../public/reels/habits-over-40/captions.words.json";
 
 export const t = timing(words);
 export const AUDIO = "reels/habits-over-40/vo.wav";
-export const durationInFrames = t.duration(); // This will be calculated by the timing function based on words.json
+export const durationInFrames = 1525;
 
 // Scene cuts on spoken words: [start frame, end frame]. Aim for a new scene every 4-8 s.
 // Estimated timings based on script length (approx 95 words for 28-30s)
