@@ -38,7 +38,7 @@ export const Reel: React.FC<ReelProps> = ({ brand = myBrand, avatar = "flat", de
       {/* Hook Scene */}
       <SceneBlock name="hook" from={S.hook[0]} to={S.hook[1]}>
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 40, width: SAFE_BOX.width }}>
-          <Title text="3 Simple Habits" highlight="For Women Over 40" at={t.at(0)} size={118} />
+          <Title text="3 Simple Habits" highlight="For Women Over 40" at={t.at(0)} size={118} />@wellnessreset
         </div>
       </SceneBlock>
 
