@@ -3,9 +3,9 @@ import { Composition, Sequence } from 'remotion';
 import React from 'react';
 
 // Assuming these components are available in the project's src/components/ directory
-import { SceneBlock } from '../../components/SceneBlock';
-import { Title } from '../../components/Title';
-import { Card } from '../../components/Card';
+import { SceneBlock } from '../../components';
+import { Title } from '../../components';
+import { Card } from '../../components';
 // import { SAFE_BOX } from '../src/layout'; // Assuming SceneBlock handles layout, or SAFE_BOX is applied within SceneBlock
 // import { brand } from '../src/brand'; // Assuming brand might be used for styling, but not explicitly required by the prompt
 
