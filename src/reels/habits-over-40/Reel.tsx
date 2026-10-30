@@ -9,9 +9,7 @@ import {
   interpolate,
   spring,
 } from 'remotion';
-import { SceneBlock } from '../../components/SceneBlock';
-import { Title } from '../../components/Title';
-
+import { SceneBlock, Title } from '../../components';
 const SCENES = [
   { text: '3 Simple Habits for Women Over 40', start: 0, dur: 305 },
   { text: 'Habit 1: Strength Training', start: 305, dur: 305 },
