@@ -1,4 +1,4 @@
-// Every reel the studio and the renderer know about. `npm run new -- <id>` adds a line here.
+// Every reel the studio and the render know about. `npm run new -- <id>` adds a line here.
 import type React from "react";
 import type { ReelProps } from "../components";
 import type { Word } from "../timing";
@@ -27,7 +27,11 @@ export const REELS: ReelEntry[] = [
       { suffix: "SoftPastel", props: { brand: PRESETS.softPastel } },
     ],
   },
-  { id: "habits-over-40", Component: r_habits_over_40.Reel, durationInFrames: 1525 },
+  { 
+    id: "habits-over-40", 
+    Component: r_habits_over_40.HabitsOver40Reel, 
+    durationInFrames: 1525 
+  },
   // <new-reel-entries>
 ];
 
