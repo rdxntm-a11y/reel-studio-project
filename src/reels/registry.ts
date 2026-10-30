@@ -4,11 +4,11 @@ import type { ReelProps } from "../components";
 import type { Word } from "../timing";
 import { PRESETS } from "../presets";
 import * as demo from "./demo/Reel";
+import HabitsReel from "./habits-over-40/Reel"; // Yahan default import kiya hai
 
 export type ReelEntry = {
   id: string;
-  Component?: React.FC<ReelProps>;
-  lazyComponent?: () => Promise<React.FC<ReelProps>>;
+  Component: React.FC<ReelProps>;
   durationInFrames: number;
   variants?: { suffix: string; props: ReelProps }[];
 };
@@ -27,7 +27,7 @@ export const REELS: ReelEntry[] = [
   },
   { 
     id: "habits-over-40", 
-    lazyComponent: () => import("./habits-over-40/Reel").then((mod) => mod.default || mod.Reel || mod.HabitsOver40Reel),
+    Component: HabitsReel, // Ab ye bilkul sahi load hoga
     durationInFrames: 1525 
   },
 ];
