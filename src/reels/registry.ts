@@ -1,17 +1,15 @@
-// Every reel the studio and the render know about. `npm run new -- <id>` adds a line here.
+// Every reel the studio and the render know about.
 import type React from "react";
 import type { ReelProps } from "../components";
 import type { Word } from "../timing";
 import { PRESETS } from "../presets";
 import * as demo from "./demo/Reel";
 import * as r_habits_over_40 from "./habits-over-40/Reel";
-// <new-reel-imports>
 
 export type ReelEntry = {
   id: string;
   Component: React.FC<ReelProps>;
   durationInFrames: number;
-  /** Extra compositions of the same reel with other props, e.g. another avatar style or brand preset. */
   variants?: { suffix: string; props: ReelProps }[];
 };
 
@@ -29,10 +27,9 @@ export const REELS: ReelEntry[] = [
   },
   { 
     id: "habits-over-40", 
-    Component: r_habits_over_40.HabitsOver40Reel, 
+    Component: r_habits_over_40.HabitsOver40Reel, // Yahan HabitsOver40Reel likha hai
     durationInFrames: 1525 
   },
-  // <new-reel-entries>
 ];
 
 export type { Word };
