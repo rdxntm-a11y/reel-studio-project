@@ -1,4 +1,3 @@
-// Every reel the studio and the render know about.
 import React from "react";
 import { ReelProps } from "../components";
 import { Word } from "../timing";
