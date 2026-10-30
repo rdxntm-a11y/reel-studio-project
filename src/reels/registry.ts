@@ -1,9 +1,10 @@
+// Every reel the studio and the render know about.
 import React from "react";
 import { ReelProps } from "../components";
 import { Word } from "../timing";
 import { PRESETS } from "../presets";
 import * as demo from "./demo/Reel";
-import HabitsOver40Reel from "./habits-over-40/Reel";
+import * as r_habits_over_40 from "./habits-over-40/Reel";
 
 export type ReelEntry = {
   id: string;
@@ -26,7 +27,7 @@ export const REELS: ReelEntry[] = [
   },
   { 
     id: "habits-over-40", 
-    Component: HabitsOver40Reel,
+    Component: r_habits_over_40.Reel, 
     durationInFrames: 1525 
   },
 ];
