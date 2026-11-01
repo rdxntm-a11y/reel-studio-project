@@ -1,1 +1,497 @@
-[]
+[
+  {
+    "word": "Stop",
+    "start": 0.0,
+    "end": 0.4
+  },
+  {
+    "word": "doing",
+    "start": 0.4,
+    "end": 0.7
+  },
+  {
+    "word": "cardio!",
+    "start": 0.7,
+    "end": 1.12
+  },
+  {
+    "word": "Women",
+    "start": 2.26,
+    "end": 2.54
+  },
+  {
+    "word": "over",
+    "start": 2.54,
+    "end": 2.78
+  },
+  {
+    "word": "40",
+    "start": 2.78,
+    "end": 3.12
+  },
+  {
+    "word": "need",
+    "start": 3.12,
+    "end": 3.36
+  },
+  {
+    "word": "these",
+    "start": 3.36,
+    "end": 3.577
+  },
+  {
+    "word": "3",
+    "start": 3.577,
+    "end": 3.62
+  },
+  {
+    "word": "habits",
+    "start": 3.62,
+    "end": 4.18
+  },
+  {
+    "word": "instead.",
+    "start": 4.18,
+    "end": 4.6
+  },
+  {
+    "word": "First,",
+    "start": 5.44,
+    "end": 6.08
+  },
+  {
+    "word": "prioritize",
+    "start": 6.46,
+    "end": 6.8
+  },
+  {
+    "word": "sleep.",
+    "start": 6.8,
+    "end": 7.28
+  },
+  {
+    "word": "Aim",
+    "start": 8.3,
+    "end": 8.52
+  },
+  {
+    "word": "for",
+    "start": 8.52,
+    "end": 8.68
+  },
+  {
+    "word": "7",
+    "start": 8.68,
+    "end": 9.0
+  },
+  {
+    "word": "to",
+    "start": 9.0,
+    "end": 9.18
+  },
+  {
+    "word": "9",
+    "start": 9.18,
+    "end": 9.4
+  },
+  {
+    "word": "hours",
+    "start": 9.4,
+    "end": 9.62
+  },
+  {
+    "word": "of",
+    "start": 9.62,
+    "end": 9.8
+  },
+  {
+    "word": "quality",
+    "start": 9.8,
+    "end": 10.12
+  },
+  {
+    "word": "sleep.",
+    "start": 10.12,
+    "end": 10.48
+  },
+  {
+    "word": "It's",
+    "start": 11.46,
+    "end": 11.78
+  },
+  {
+    "word": "crucial",
+    "start": 11.78,
+    "end": 12.04
+  },
+  {
+    "word": "for",
+    "start": 12.04,
+    "end": 12.26
+  },
+  {
+    "word": "energy,",
+    "start": 12.26,
+    "end": 12.64
+  },
+  {
+    "word": "mood,",
+    "start": 13.08,
+    "end": 13.26
+  },
+  {
+    "word": "and",
+    "start": 13.6,
+    "end": 13.72
+  },
+  {
+    "word": "recovery.",
+    "start": 13.72,
+    "end": 14.06
+  },
+  {
+    "word": "Next,",
+    "start": 15.0,
+    "end": 15.64
+  },
+  {
+    "word": "mindful",
+    "start": 15.96,
+    "end": 16.22
+  },
+  {
+    "word": "movement.",
+    "start": 16.22,
+    "end": 16.6
+  },
+  {
+    "word": "Incorporate",
+    "start": 17.72,
+    "end": 18.36
+  },
+  {
+    "word": "30",
+    "start": 18.36,
+    "end": 18.58
+  },
+  {
+    "word": "minutes",
+    "start": 18.58,
+    "end": 18.88
+  },
+  {
+    "word": "of",
+    "start": 18.88,
+    "end": 19.12
+  },
+  {
+    "word": "daily",
+    "start": 19.12,
+    "end": 19.34
+  },
+  {
+    "word": "activity.",
+    "start": 19.34,
+    "end": 19.92
+  },
+  {
+    "word": "This",
+    "start": 21.0,
+    "end": 21.26
+  },
+  {
+    "word": "could",
+    "start": 21.26,
+    "end": 21.4
+  },
+  {
+    "word": "be",
+    "start": 21.4,
+    "end": 21.64
+  },
+  {
+    "word": "a",
+    "start": 21.64,
+    "end": 21.687
+  },
+  {
+    "word": "brisk",
+    "start": 21.687,
+    "end": 21.92
+  },
+  {
+    "word": "walk,",
+    "start": 21.92,
+    "end": 22.2
+  },
+  {
+    "word": "yoga,",
+    "start": 22.56,
+    "end": 22.88
+  },
+  {
+    "word": "or",
+    "start": 23.18,
+    "end": 23.3
+  },
+  {
+    "word": "dancing.",
+    "start": 23.3,
+    "end": 23.68
+  },
+  {
+    "word": "It",
+    "start": 24.84,
+    "end": 25.0
+  },
+  {
+    "word": "boosts",
+    "start": 25.0,
+    "end": 25.4
+  },
+  {
+    "word": "mood",
+    "start": 25.4,
+    "end": 25.58
+  },
+  {
+    "word": "and",
+    "start": 25.58,
+    "end": 25.78
+  },
+  {
+    "word": "metabolism.",
+    "start": 25.78,
+    "end": 26.18
+  },
+  {
+    "word": "Finally,",
+    "start": 27.28,
+    "end": 27.92
+  },
+  {
+    "word": "hydration",
+    "start": 28.36,
+    "end": 28.72
+  },
+  {
+    "word": "and",
+    "start": 28.72,
+    "end": 29.04
+  },
+  {
+    "word": "nutrition.",
+    "start": 29.04,
+    "end": 29.38
+  },
+  {
+    "word": "Drink",
+    "start": 30.2,
+    "end": 30.84
+  },
+  {
+    "word": "plenty",
+    "start": 30.84,
+    "end": 31.16
+  },
+  {
+    "word": "of",
+    "start": 31.16,
+    "end": 31.32
+  },
+  {
+    "word": "water",
+    "start": 31.32,
+    "end": 31.58
+  },
+  {
+    "word": "throughout",
+    "start": 31.58,
+    "end": 31.88
+  },
+  {
+    "word": "the",
+    "start": 31.88,
+    "end": 32.12
+  },
+  {
+    "word": "day",
+    "start": 32.12,
+    "end": 32.36
+  },
+  {
+    "word": "and",
+    "start": 32.36,
+    "end": 32.6
+  },
+  {
+    "word": "focus",
+    "start": 32.6,
+    "end": 32.86
+  },
+  {
+    "word": "on",
+    "start": 32.86,
+    "end": 33.12
+  },
+  {
+    "word": "whole",
+    "start": 33.12,
+    "end": 33.3
+  },
+  {
+    "word": "foods.",
+    "start": 33.3,
+    "end": 33.76
+  },
+  {
+    "word": "Proper",
+    "start": 34.56,
+    "end": 35.04
+  },
+  {
+    "word": "hydration",
+    "start": 35.04,
+    "end": 35.6
+  },
+  {
+    "word": "and",
+    "start": 35.6,
+    "end": 35.86
+  },
+  {
+    "word": "nutrition",
+    "start": 35.86,
+    "end": 36.22
+  },
+  {
+    "word": "are",
+    "start": 36.22,
+    "end": 36.6
+  },
+  {
+    "word": "key",
+    "start": 36.6,
+    "end": 36.84
+  },
+  {
+    "word": "for",
+    "start": 36.84,
+    "end": 37.04
+  },
+  {
+    "word": "sustained",
+    "start": 37.04,
+    "end": 37.4
+  },
+  {
+    "word": "energy.",
+    "start": 37.4,
+    "end": 37.88
+  },
+  {
+    "word": "The",
+    "start": 38.98,
+    "end": 39.12
+  },
+  {
+    "word": "biggest",
+    "start": 39.12,
+    "end": 39.32
+  },
+  {
+    "word": "impact",
+    "start": 39.32,
+    "end": 39.82
+  },
+  {
+    "word": "often",
+    "start": 39.82,
+    "end": 40.24
+  },
+  {
+    "word": "comes",
+    "start": 40.24,
+    "end": 40.56
+  },
+  {
+    "word": "from",
+    "start": 40.56,
+    "end": 40.76
+  },
+  {
+    "word": "the",
+    "start": 40.76,
+    "end": 40.88
+  },
+  {
+    "word": "simplest,",
+    "start": 40.88,
+    "end": 41.24
+  },
+  {
+    "word": "most",
+    "start": 41.66,
+    "end": 41.78
+  },
+  {
+    "word": "consistent",
+    "start": 41.78,
+    "end": 42.36
+  },
+  {
+    "word": "daily",
+    "start": 42.36,
+    "end": 42.66
+  },
+  {
+    "word": "actions.",
+    "start": 42.66,
+    "end": 43.24
+  },
+  {
+    "word": "Comment",
+    "start": 44.16,
+    "end": 44.7
+  },
+  {
+    "word": "'HABITS'",
+    "start": 44.7,
+    "end": 45.08
+  },
+  {
+    "word": "and",
+    "start": 45.08,
+    "end": 45.44
+  },
+  {
+    "word": "I'll",
+    "start": 45.44,
+    "end": 45.6
+  },
+  {
+    "word": "send",
+    "start": 45.6,
+    "end": 45.76
+  },
+  {
+    "word": "you",
+    "start": 45.76,
+    "end": 46.02
+  },
+  {
+    "word": "a",
+    "start": 46.02,
+    "end": 46.053
+  },
+  {
+    "word": "detailed",
+    "start": 46.053,
+    "end": 46.32
+  },
+  {
+    "word": "breakdown!",
+    "start": 46.32,
+    "end": 46.76
+  }
+]
