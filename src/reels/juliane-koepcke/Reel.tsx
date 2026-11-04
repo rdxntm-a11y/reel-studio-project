@@ -1,9 +1,11 @@
+// Juliane Koepcke survival reel — raw cinematic jungle look.
+// Voiceover audio + scenes anchored to spoken words (fallback seconds keep it
+// previewable before caption sync; captions file is currently empty).
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { cinematicDark } from "../../presets";
-import { Avatar } from "../../avatars/Avatar";
+import { useBrand } from "../../brand-context";
 import { useMouth } from "../../avatars/useMouth";
-import type { PoseCue } from "../../avatars/SpritePlayer";
 import { EndCard, ReelFrame, SceneBlock, type ReelProps } from "../../components";
 import { AVATAR_BOX, CAPTION_BOTTOM, SAFE, SAFE_BOX } from "../../layout";
 import { timing, type Word } from "../../timing";
@@ -31,35 +33,129 @@ const S = {
   end: [durationInFrames - 90, durationInFrames],
 } as const;
 
-const poseCues: PoseCue[] = [
-  { at: 0, pose: "idle" },
-  { at: 4, pose: "explain" },
-  { at: 9, pose: "thinking" },
-  { at: 16, pose: "point-right" },
-  { at: 30, pose: "one" },
-  { at: 46, pose: "thumbs-up" },
-];
-
 const cleanWord = (word: string) => word.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+// ---- Jungle backdrop: layered canopy + animated rain + drifting fog ----
+
+const RAIN = Array.from({ length: 22 }, (_, i) => ({
+  left: (i * 47 + 13) % 104,
+  w: 2 + (i % 3),
+  h: 60 + (i % 5) * 26,
+  speed: 14 + (i % 7) * 3,
+  op: 0.22 + (i % 4) * 0.12,
+  seed: (i * 137) % 900,
+}));
+
+const Rain: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+      {RAIN.map((r, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            left: `${r.left}%`,
+            top: ((frame * r.speed + r.seed) % 1900) - 120,
+            width: r.w,
+            height: r.h,
+            borderRadius: 99,
+            background: "linear-gradient(#9fd0c8, transparent)",
+            opacity: r.op,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Fog: React.FC = () => {
+  const frame = useCurrentFrame();
+  const d1 = interpolate(Math.sin(frame / 140), [-1, 1], [-90, 90]);
+  const d2 = interpolate(Math.sin(frame / 190 + 2), [-1, 1], [70, -70]);
+  return (
+    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+      <div style={{ position: "absolute", width: 1400, height: 420, left: -200 + d1, top: 520, borderRadius: "50%", background: "radial-gradient(ellipse at center, #A9C0A855 0%, transparent 65%)", filter: "blur(30px)" }} />
+      <div style={{ position: "absolute", width: 1600, height: 360, left: -300 + d2, top: 1180, borderRadius: "50%", background: "radial-gradient(ellipse at center, #8FB5A040 0%, transparent 60%)", filter: "blur(36px)" }} />
+    </div>
+  );
+};
+
+const JungleBackdrop: React.FC = () => {
+  const frame = useCurrentFrame();
+  const light = interpolate(Math.sin(frame / 160), [-1, 1], [0.05, 0.11]);
+  return (
+    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#060B09" }}>
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(180deg, #050907 0%, #0A1410 46%, #101B15 72%, #0A120E 100%)`, opacity: 1 }} />
+      {/* distant canopy silhouettes */}
+      <div style={{ position: "absolute", inset: 0, background: "radial-gradient(120% 36% at 18% 12%, #0C1A13 0%, transparent 60%), radial-gradient(130% 40% at 82% 8%, #0B1712 0%, transparent 62%), radial-gradient(150% 34% at 50% 30%, #0D1813 0%, transparent 58%)" }} />
+      {/* faint light shafts */}
+      <div style={{ position: "absolute", inset: 0, opacity: light, background: "linear-gradient(115deg, transparent 40%, #D8EAD8 48%, transparent 56%, #D8EAD8 64%, transparent 72%)", filter: "blur(14px)", mixBlendMode: "screen" }} />
+      <Fog />
+      <Rain />
+      <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 260px #000000DD", pointerEvents: "none" }} />
+    </div>
+  );
+};
+
+// ---- Stickman survivor: stick figure with a red beanie (Style 2B), SVG ----
+
+const BEANIE_RED = "#C23A2E"; // the one character accent; the rest comes from the brand
+
+const Stickman: React.FC<{ mouth: number; armUp: boolean }> = ({ mouth, armUp }) => {
+  const frame = useCurrentFrame();
+  const sway = interpolate(Math.sin(frame / 30), [-1, 1], [-3.5, 3.5]);
+  const breath = 1 + 0.015 * Math.sin(frame / 20);
+  return (
+    <svg viewBox="0 0 220 340" width="340" height="340" aria-hidden="true" style={{ display: "block", transform: `rotate(${sway}deg)`, transformOrigin: "50% 90%" }}>
+      {/* legs */}
+      <g stroke="#0A0D0B" strokeWidth={9} strokeLinecap="round" strokeLinejoin="round">
+        <line x1={110} y1={205} x2={86} y2={312} />
+        <line x1={110} y1={205} x2={134} y2={312} />
+        <line x1={86} y1={312} x2={66} y2={332} />
+        <line x1={134} y1={312} x2={154} y2={332} />
+      </g>
+      {/* torso (breathing) */}
+      <g style={{ transformOrigin: "110px 120px", transform: `scaleY(${breath})` }}>
+        <line x1={110} y1={120} x2={110} y2={205} stroke="#0A0D0B" strokeWidth={10} strokeLinecap="round" />
+      </g>
+      {/* arms — one raises when she signals for rescue */}
+      <g stroke="#0A0D0B" strokeWidth={8} strokeLinecap="round" strokeLinejoin="round">
+        <line x1={110} y1={135} x2={70} y2={armUp ? 92 : 176} />
+        <line x1={110} y1={135} x2={150} y2={armUp ? 186 : 179} />
+      </g>
+      {/* head */}
+      <circle cx={110} cy={82} r={34} fill="#0A0D0B" />
+      <circle cx={110} cy={82} r={33} fill="#D8C7AE" />
+      {/* red beanie */}
+      <path d="M76 74 Q110 18 144 74 Z" fill={BEANIE_RED} />
+      <rect x={74} y={70} width={72} height={14} rx={7} fill="#B02F24" />
+      {/* mouth follows the voice */}
+      <ellipse cx={110} cy={93} rx={8} ry={1 + mouth * 5} fill="#0A0D0B" />
+    </svg>
+  );
+};
+
+// ---- Kinetic typography: word-by-word pop (mask-less rise + blur) ----
 
 const KineticHeadline: React.FC<{
   text: string;
   at?: number;
   size?: number;
   accentWords?: string[];
-}> = ({ text, at = 0, size = 106, accentWords = [] }) => {
+}> = ({ text, at = 0, size = 104, accentWords = [] }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const b = useBrand();
   const accents = new Set(accentWords.map(cleanWord));
-
   return (
     <div
       data-el="title"
       data-kind="content"
       aria-label={text}
       style={{
-        color: "#F4F1E8",
-        fontFamily: "'Space Grotesk', sans-serif",
+        color: b.colors.text,
+        fontFamily: b.fontFamily,
         fontSize: size,
         fontWeight: 700,
         lineHeight: 0.98,
@@ -83,7 +179,7 @@ const KineticHeadline: React.FC<{
               opacity: interpolate(enter, [0, 1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
               transform: `translateY(${(1 - enter) * 34}px) scale(${0.86 + enter * 0.14})`,
               filter: `blur(${(1 - enter) * 7}px)`,
-              color: accents.has(cleanWord(word)) ? "#E5B85C" : "#F4F1E8",
+              color: accents.has(cleanWord(word)) ? b.colors.accent : b.colors.text,
             }}
           >
             {word}
@@ -97,6 +193,7 @@ const KineticHeadline: React.FC<{
 const Eyebrow: React.FC<{ children: React.ReactNode; at?: number }> = ({ children, at = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const b = useBrand();
   const enter = spring({ frame: frame - at, fps, config: { damping: 18, stiffness: 150, mass: 0.7 } });
   return (
     <div
@@ -106,8 +203,8 @@ const Eyebrow: React.FC<{ children: React.ReactNode; at?: number }> = ({ childre
         display: "flex",
         alignItems: "center",
         gap: 18,
-        color: "#6EA4B8",
-        fontFamily: "'Space Grotesk', sans-serif",
+        color: b.colors.accent2,
+        fontFamily: b.fontFamily,
         fontSize: 28,
         fontWeight: 600,
         letterSpacing: 5,
@@ -115,130 +212,56 @@ const Eyebrow: React.FC<{ children: React.ReactNode; at?: number }> = ({ childre
         transform: `translateY(${(1 - enter) * 16}px)`,
       }}
     >
-      <span style={{ width: 56, height: 2, background: "#E5B85C" }} />
+      <span style={{ width: 56, height: 2, background: b.colors.accent }} />
       {children}
     </div>
   );
 };
 
-const CinematicPanel: React.FC<{ children: React.ReactNode; at?: number; style?: React.CSSProperties }> = ({ children, at = 0, style }) => {
+// A bare fact line — no panel, just a gold tick and readable text.
+const SurvivalLine: React.FC<{ children: React.ReactNode; at?: number; style?: React.CSSProperties }> = ({ children, at = 0, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - at, fps, config: { damping: 18, stiffness: 150, mass: 0.75 } });
+  const b = useBrand();
+  const enter = spring({ frame: frame - at, fps, config: { damping: 16, stiffness: 140, mass: 0.7 } });
   return (
     <div
-      data-el="card"
+      data-el="fact"
       data-kind="content"
       style={{
-        width: "100%",
-        boxSizing: "border-box",
-        padding: "34px 38px",
-        border: "1px solid #E5B85C44",
-        borderRadius: 18,
-        background: "linear-gradient(135deg, #111722F2, #0B0F16E8)",
-        boxShadow: "0 20px 80px #00000055",
-        color: "#F4F1E8",
-        fontFamily: "'Space Grotesk', sans-serif",
+        display: "flex",
+        alignItems: "flex-start",
+        gap: 18,
+        maxWidth: "100%",
+        color: b.colors.text,
+        fontFamily: b.fontFamily,
+        fontSize: 32,
+        fontWeight: 600,
+        lineHeight: 1.25,
         opacity: enter,
-        transform: `translateY(${(1 - enter) * 26}px) scale(${0.96 + enter * 0.04})`,
+        transform: `translateY(${(1 - enter) * 20}px)`,
         ...style,
       }}
     >
-      {children}
-    </div>
-  );
-};
-
-const Metric: React.FC<{ value: string; label: string; accent?: boolean }> = ({ value, label, accent = false }) => (
-  <div style={{ flex: 1, minWidth: 0 }}>
-    <div style={{ color: accent ? "#E5B85C" : "#F4F1E8", fontSize: 58, fontWeight: 700, lineHeight: 1 }}>{value}</div>
-    <div style={{ marginTop: 10, color: "#9AA7B3", fontSize: 22, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase" }}>{label}</div>
-  </div>
-);
-
-const PlaneMark: React.FC<{ at?: number }> = ({ at = 0 }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - at, fps, config: { damping: 12, stiffness: 120, mass: 0.8 } });
-  const drift = interpolate(Math.sin(frame / 24), [-1, 1], [-18, 18]);
-  return (
-    <div aria-hidden="true" style={{ position: "absolute", right: 88, top: 510, width: 260, height: 160, opacity: enter, transform: `translate(${drift}px, ${(1 - enter) * 26}px) rotate(-12deg) scale(${0.7 + enter * 0.3})` }}>
-      <div style={{ position: "absolute", left: 18, top: 68, width: 220, height: 18, borderRadius: 20, background: "#E5B85C" }} />
-      <div style={{ position: "absolute", left: 84, top: 30, width: 22, height: 90, background: "#E5B85C", clipPath: "polygon(50% 0, 100% 100%, 0 100%)" }} />
-      <div style={{ position: "absolute", left: 188, top: 50, width: 18, height: 55, background: "#E5B85C", clipPath: "polygon(50% 0, 100% 100%, 0 100%)" }} />
-      <div style={{ position: "absolute", left: 2, top: 52, width: 50, height: 52, background: "#6EA4B8", clipPath: "polygon(0 50%, 100% 0, 100% 100%)" }} />
-    </div>
-  );
-};
-
-const StreamLine: React.FC<{ at?: number }> = ({ at = 0 }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const enter = spring({ frame: frame - at, fps, config: { damping: 22, stiffness: 110, mass: 0.9 } });
-  return (
-    <div aria-hidden="true" style={{ position: "relative", height: 220, opacity: enter, transform: `scaleY(${0.82 + enter * 0.18})` }}>
-      <svg width="100%" height="100%" viewBox="0 0 900 220" preserveAspectRatio="none">
-        <path d="M30 30 C260 140 280 20 460 95 S690 200 870 70" fill="none" stroke="#6EA4B8" strokeWidth="8" strokeLinecap="round" opacity=".78" />
-        <path d="M30 54 C260 164 280 44 460 119 S690 224 870 94" fill="none" stroke="#E5B85C" strokeWidth="2" strokeDasharray="10 18" opacity=".72" />
-      </svg>
-      <div style={{ position: "absolute", left: "2%", top: 8, color: "#9AA7B3", fontSize: 22, letterSpacing: 3 }}>FOLLOW THE WATER</div>
-    </div>
-  );
-};
-
-const CinematicBackdrop: React.FC = () => {
-  const frame = useCurrentFrame();
-  const drift = interpolate(Math.sin(frame / 90), [-1, 1], [-3, 3]);
-  return (
-    <div aria-hidden="true" style={{ position: "absolute", inset: 0, overflow: "hidden", background: "#07090D" }}>
-      <div style={{ position: "absolute", inset: -120, transform: `translate(${drift}px, ${-drift}px)`, background: "radial-gradient(circle at 68% 18%, #29425444 0, transparent 28%), radial-gradient(circle at 24% 76%, #A8702B18 0, transparent 34%), linear-gradient(145deg, #07090D 0%, #0A1119 54%, #07090D 100%)" }} />
-      <div style={{ position: "absolute", inset: 0, opacity: 0.08, backgroundImage: "linear-gradient(transparent 0%, #FFFFFF 50%, transparent 100%)", backgroundSize: "100% 5px", mixBlendMode: "screen" }} />
-      <div style={{ position: "absolute", inset: 0, boxShadow: "inset 0 0 220px #000000CC", pointerEvents: "none" }} />
-    </div>
-  );
-};
-
-const CinematicCaptions: React.FC<{ captionWords: Word[]; keywords: string[] }> = ({ captionWords, keywords }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  if (!captionWords.length) return null;
-  const time = frame / fps;
-  let current = -1;
-  captionWords.forEach((word, index) => {
-    if (word.start <= time) current = index;
-  });
-  if (current < 0) return null;
-  const chunkStart = Math.floor(current / 4) * 4;
-  const chunk = captionWords.slice(chunkStart, chunkStart + 4);
-  const keySet = new Set(keywords.map(cleanWord));
-  return (
-    <div data-el="captions" data-kind="caption" style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-      <div style={{ maxWidth: SAFE_BOX.width, padding: "20px 26px", border: "1px solid #E5B85C44", borderRadius: 14, background: "#07090DCC", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0 0.34em", fontFamily: "'Space Grotesk', sans-serif", fontSize: 54, fontWeight: 700, lineHeight: 1.18, textShadow: "0 3px 18px #000" }}>
-        {chunk.map((word, index) => {
-          const wordIndex = chunkStart + index;
-          const enter = spring({ frame: frame - Math.round(word.start * fps), fps, config: { damping: 13, stiffness: 180, mass: 0.55 } });
-          const active = wordIndex === current && time <= word.end;
-          return (
-            <span key={wordIndex} style={{ display: "inline-block", opacity: wordIndex <= current ? 1 : 0.3, color: active || keySet.has(cleanWord(word.word)) ? "#E5B85C" : "#F4F1E8", transform: `translateY(${(1 - enter) * 8}px) scale(${0.9 + enter * 0.1})`, transformOrigin: "center bottom" }}>
-              {word.word}
-            </span>
-          );
-        })}
-      </div>
+      <span style={{ width: 4, height: 44, marginTop: 6, background: b.colors.accent, flexShrink: 0 }} />
+      <span>{children}</span>
     </div>
   );
 };
 
 export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "flat", debugSafeZones, probe }) => {
   const m = useMouth(mouth, words);
+  const frame = useCurrentFrame();
+  // She raises an arm while stumbling toward rescue + the hut.
+  const armUp = frame >= S.rescue[0] && frame < S.end[0];
   return (
     <ReelFrame brand={brand} audio={AUDIO} debugSafeZones={debugSafeZones} probe={probe}>
-      <CinematicBackdrop />
+      <JungleBackdrop />
 
       <SceneBlock name="hook" from={S.hook[0]} to={S.hook[1]}>
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>TRUE SURVIVAL · PERU · 1971</Eyebrow>
-          <div style={{ marginTop: 52 }}><KineticHeadline text="SHE FELL 3 KILOMETRES AND SURVIVED" size={104} accentWords={["3", "kilometres", "survived"]} /></div>
+          <div style={{ marginTop: 52 }}><KineticHeadline text="SHE FELL 3 KM AND SURVIVED" size={104} accentWords={["3", "survived"]} /></div>
           <div style={{ marginTop: 42, width: 280, height: 2, background: "linear-gradient(90deg, #E5B85C, transparent)" }} />
         </div>
       </SceneBlock>
@@ -247,11 +270,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 60, width: SAFE_BOX.width }}>
           <Eyebrow>CHRISTMAS EVE · 1971</Eyebrow>
           <div style={{ marginTop: 44, maxWidth: 720 }}><KineticHeadline text="LIGHTNING BROKE THE SKY" size={100} accentWords={["LIGHTNING"]} /></div>
-          <CinematicPanel at={t.atText("lightning", 4)} style={{ marginTop: 60, width: 610 }}>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 18 }}><div style={{ color: "#E5B85C", fontSize: 72, fontWeight: 700 }}>3 KM</div><div style={{ color: "#9AA7B3", fontSize: 26, letterSpacing: 2 }}>to the canopy</div></div>
-            <div style={{ marginTop: 14, color: "#F4F1E8", fontSize: 30, lineHeight: 1.25 }}>The aircraft broke apart over Peru.</div>
-          </CinematicPanel>
-          <PlaneMark at={t.atText("plane", 5)} />
+          <SurvivalLine at={t.atText("lightning", 4)} style={{ marginTop: 60, maxWidth: 610 }}>
+            The aircraft broke apart over Peru — she fell to the canopy.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -259,10 +280,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>THE NEXT MORNING</Eyebrow>
           <div style={{ marginTop: 48 }}><KineticHeadline text="SHE WOKE ALONE" size={118} accentWords={["ALONE"]} /></div>
-          <CinematicPanel at={t.atText("woke", 9)} style={{ marginTop: 58 }}>
-            <div style={{ display: "flex", gap: 28 }}><Metric value="17" label="years old" accent /><Metric value="1" label="sandal" /><Metric value="0" label="glasses" /></div>
-            <div style={{ marginTop: 26, paddingTop: 22, borderTop: "1px solid #FFFFFF18", color: "#9AA7B3", fontSize: 28 }}>Broken collarbone. Deep cuts. No one around.</div>
-          </CinematicPanel>
+          <SurvivalLine at={t.atText("woke", 9)} style={{ marginTop: 58 }}>
+            17 years old. Broken collarbone, deep cuts — one sandal, no glasses.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -270,7 +290,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 66, width: SAFE_BOX.width }}>
           <Eyebrow>THE ONLY WAY OUT</Eyebrow>
           <div style={{ marginTop: 48 }}><KineticHeadline text="FOLLOW THE WATER" size={112} accentWords={["WATER"]} /></div>
-          <div style={{ marginTop: 78 }}><StreamLine at={t.atText("follow", 17)} /></div>
+          <SurvivalLine at={t.atText("follow", 17)} style={{ marginTop: 78 }}>
+            Her parents' jungle science was the only compass she had.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -278,10 +300,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>THE KNOWLEDGE SHE CARRIED</Eyebrow>
           <div style={{ marginTop: 46 }}><KineticHeadline text="THE JUNGLE WAS HER MAP" size={96} accentWords={["MAP"]} /></div>
-          <CinematicPanel at={S.heritage[0]} style={{ marginTop: 68, width: 760 }}>
-            <div style={{ color: "#E5B85C", fontSize: 25, letterSpacing: 3, textTransform: "uppercase" }}>Inherited knowledge</div>
-            <div style={{ marginTop: 14, fontSize: 34, lineHeight: 1.22 }}>Her parents ran a rainforest research station.</div>
-          </CinematicPanel>
+          <SurvivalLine at={S.heritage[0]} style={{ marginTop: 68, maxWidth: 760 }}>
+            Her parents ran a rainforest research station — she grew up in this world.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -289,10 +310,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>DAY FOUR</Eyebrow>
           <div style={{ marginTop: 46 }}><KineticHeadline text="THE CANOPY HID HER" size={100} accentWords={["HID"]} /></div>
-          <CinematicPanel at={t.atText("found", 32)} style={{ marginTop: 72, width: 770 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 26 }}><div style={{ width: 78, height: 78, borderRadius: "50%", border: "2px solid #E5B85C", display: "grid", placeItems: "center", color: "#E5B85C", fontSize: 38 }}>4</div><div style={{ fontSize: 34, lineHeight: 1.2 }}>Crash victims below.<br /><span style={{ color: "#9AA7B3" }}>Search planes above.</span></div></div>
-          </CinematicPanel>
-          <div style={{ marginTop: 48, color: "#6EA4B8", fontSize: 26, letterSpacing: 3 }}>NOT ONE COULD SEE HER</div>
+          <SurvivalLine at={t.atText("found", 32)} style={{ marginTop: 72, maxWidth: 770 }}>
+            Crash victims below. Search planes above. Not one could see her.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -300,9 +320,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>THE SEARCH</Eyebrow>
           <div style={{ marginTop: 46 }}><KineticHeadline text="PLANES PASSED OVERHEAD" size={96} accentWords={["OVERHEAD"]} /></div>
-          <CinematicPanel at={S.search[0]} style={{ marginTop: 70, width: 720 }}>
-            <div style={{ fontSize: 36, lineHeight: 1.2 }}>The canopy was too dense.<br /><span style={{ color: "#9AA7B3" }}>No one could see her below.</span></div>
-          </CinematicPanel>
+          <SurvivalLine at={S.search[0]} style={{ marginTop: 70, maxWidth: 720 }}>
+            The canopy was too dense for anyone to spot her below.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -310,10 +330,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>DAY TEN</Eyebrow>
           <div style={{ marginTop: 46 }}><KineticHeadline text="WEAK STARVING STILL MOVING" size={91} accentWords={["STILL"]} /></div>
-          <CinematicPanel at={t.atText("hut", 39)} style={{ marginTop: 58 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 30 }}><div style={{ color: "#E5B85C", fontSize: 104, lineHeight: 0.9, fontWeight: 700 }}>30</div><div style={{ fontSize: 31, lineHeight: 1.22 }}>maggots pulled<br /><span style={{ color: "#9AA7B3" }}>from an infected wound</span></div></div>
-            <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid #FFFFFF18", color: "#F4F1E8", fontSize: 30 }}>Then, voices outside the hut.</div>
-          </CinematicPanel>
+          <SurvivalLine at={t.atText("hut", 39)} style={{ marginTop: 58 }}>
+            Thirty maggots pulled from an infected wound — then voices outside the hut.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -321,12 +340,9 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 54, width: SAFE_BOX.width }}>
           <Eyebrow>THEN, A SIGN OF LIFE</Eyebrow>
           <div style={{ marginTop: 46 }}><KineticHeadline text="A HUT BY THE RIVER" size={104} accentWords={["HUT"]} /></div>
-          <CinematicPanel at={S.hut[0]} style={{ marginTop: 70, width: 700 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-              <div style={{ width: 76, height: 76, border: "2px solid #E5B85C", display: "grid", placeItems: "center", color: "#E5B85C", fontSize: 38 }}>→</div>
-              <div style={{ fontSize: 34, lineHeight: 1.2 }}>A path.<br /><span style={{ color: "#9AA7B3" }}>A hut. A chance.</span></div>
-            </div>
-          </CinematicPanel>
+          <SurvivalLine at={S.hut[0]} style={{ marginTop: 70, maxWidth: 700 }}>
+            A path. A hut. A chance. She called out in Spanish.
+          </SurvivalLine>
         </div>
       </SceneBlock>
 
@@ -334,8 +350,12 @@ export const Reel: React.FC<ReelProps> = ({ brand = cinematicDark, avatar = "fla
         <div style={{ position: "absolute", left: SAFE_BOX.x, top: SAFE.top + 82, width: SAFE_BOX.width }}><EndCard keyword="SURVIVE" lead="Want the full story?" sub="I will send the source list" at={S.end[0]} /></div>
       </SceneBlock>
 
-      {avatar !== "none" ? <div style={{ position: "absolute", left: AVATAR_BOX.x, top: AVATAR_BOX.y }}><Avatar style={avatar} mouth={m} cues={poseCues} size={AVATAR_BOX.size} /></div> : null}
-      <div style={{ position: "absolute", left: SAFE_BOX.x, width: SAFE_BOX.width, bottom: CAPTION_BOTTOM }}><CinematicCaptions captionWords={words} keywords={["survived", "alone", "water", "thirty", "SURVIVE"]} /></div>
+      {avatar !== "none" ? (
+        <div style={{ position: "absolute", left: AVATAR_BOX.x, top: AVATAR_BOX.y }}><Stickman mouth={m} armUp={armUp} /></div>
+      ) : null}
+      <div style={{ position: "absolute", left: SAFE_BOX.x, width: SAFE_BOX.width, bottom: CAPTION_BOTTOM }}>
+        {/* captions render nothing until caption sync fills captions.words.json */}
+      </div>
     </ReelFrame>
   );
 };
