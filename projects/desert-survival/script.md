@@ -2,18 +2,22 @@
 
 ## Hook
 
-"He ran the Sahara—then vanished."
+"I ran the Sahara, and it swallowed me."
 
 ## Beats
 
-1. **What is said:** In 1994, Mauro Prosperi was running the Marathon des Sables, a 250-kilometre race across Morocco. **What is shown:** A lone runner under a blazing sun, endless dunes.
-2. **What is said:** On day four, an eight-hour sandstorm wiped out the route. He kept moving, and got lost with half a bottle of water. **What is shown:** A wall of sand swallowing the trail; the runner disappears into it.
-3. **What is said:** He drank his own urine to survive. **What is shown:** A single water bottle and a survival inventory.
-4. **What is said:** Two days later, he drank bats' blood in a desert shrine. **What is shown:** A ruined shrine, bats in the rafters, a knife.
-5. **What is said:** A rescue helicopter missed him. **What is shown:** A helicopter silhouette passing over the dunes; a flare ignored.
-6. **What is said:** He cut his wrists—but dehydration had thickened his blood. It wouldn't drain. **What is shown:** A note, a knife, and a still figure; non-graphic.
-7. **What is said:** He woke alive, and kept going. On day eight, he found an oasis. **What is shown:** Dawn light, a small pool, water cupped in hands.
-8. **What is said:** The next day, a shepherd girl led him to a nomad camp in Algeria. He was 291 kilometres off course and 16 kilograms lighter. **What is shown:** A distant tent, a girl running for help, rescue at last.
+1. **What is said:** I ran the Sahara, and it swallowed me. **What is shown:** A lone runner under a white-hot sun, the dunes stretching forever.
+2. **What is said:** 1994. The Marathon des Sables. 250 kilometres of Morocco. **What is shown:** A race bib half-buried in sand, a vast Moroccan dune field.
+3. **What is said:** On day four, an eight-hour sandstorm wiped out the route. I kept moving. That is how I got lost. **What is shown:** A wall of sand swallows the trail; the runner disappears into it.
+4. **What is said:** Half a bottle of water. Then nothing. **What is shown:** A single water bottle, the level dropping.
+5. **What is said:** I drank my own urine. **What is shown:** The empty bottle and a survival inventory, non-graphic.
+6. **What is said:** Two days later, I drank bats' blood in a desert shrine. **What is shown:** A ruined shrine, bats in the rafters, a knife.
+7. **What is said:** A rescue helicopter passed overhead. It did not see me. **What is shown:** A helicopter silhouette crossing the sun; the figure below is too small.
+8. **What is said:** So I cut my wrists. Nothing came out. The heat had thickened my blood. It would not drain. **What is shown:** A note, a knife, a still figure, non-graphic.
+9. **What is said:** I woke up alive. On day eight, I found an oasis. **What is shown:** Dawn light, a small pool, water cupped in shaking hands.
+10. **What is said:** A shepherd girl led me to a nomad camp in Algeria. **What is shown:** A distant tent, a girl running for help.
+11. **What is said:** 291 kilometres off course. 16 kilograms lighter. Ten days lost. One failed escape. **What is shown:** A map line snapping off course, then the final numbers.
+12. **What is said:** Follow for more survival stories. **What is shown:** The @midnightfiles end card.
 
 ## Twist
 
@@ -21,7 +25,7 @@ His suicide attempt failed only because dehydration had made his blood too thick
 
 ## CTA
 
-Follow for more epic survival stories.
+Follow for more survival stories.
 
 ## Facts and sources
 
@@ -36,7 +40,7 @@ Follow for more epic survival stories.
 
 ## Spoken script
 
-He ran the Sahara—then vanished. In 1994, Mauro Prosperi was running the Marathon des Sables, a 250-kilometre race across Morocco. On day four, an eight-hour sandstorm wiped out the route. He kept moving, and got lost with half a bottle of water. He drank his own urine to survive. Two days later, he drank bats' blood in a desert shrine. A rescue helicopter missed him. He cut his wrists—but dehydration had thickened his blood. It wouldn't drain. He woke alive, and kept going. On day eight, he found an oasis. The next day, a shepherd girl led him to a nomad camp in Algeria. He was 291 kilometres off course and 16 kilograms lighter. Ten days lost. One failed escape. And a body that refused to quit. Follow for more epic survival stories.
+I ran the Sahara, and it swallowed me. 1994. The Marathon des Sables. 250 kilometres of Morocco. On day four, an eight-hour sandstorm wiped out the route. I kept moving. That is how I got lost. Half a bottle of water. Then nothing. I drank my own urine. Two days later, I drank bats' blood in a desert shrine. A rescue helicopter passed overhead. It did not see me. So I cut my wrists. Nothing came out. The heat had thickened my blood. It would not drain. I woke up alive. On day eight, I found an oasis. A shepherd girl led me to a nomad camp in Algeria. 291 kilometres off course. 16 kilograms lighter. Ten days lost. One failed escape. Follow for more survival stories.
 
-**Word count:** 135 words
-**Estimated length:** 54.0 seconds at 2.5 words/second
+**Word count:** 127 words
+**Estimated length:** 50.8 seconds at 2.5 words/second (actual voiceover: 58.8 s)

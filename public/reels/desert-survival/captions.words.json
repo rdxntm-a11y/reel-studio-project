@@ -1,667 +1,637 @@
 [
   {
-    "word": "He",
-    "start": 0.0,
-    "end": 0.26
+    "word": "I",
+    "start": 0.32,
+    "end": 0.37
   },
   {
     "word": "ran",
-    "start": 0.26,
-    "end": 0.44
+    "start": 0.37,
+    "end": 0.52
   },
   {
     "word": "the",
-    "start": 0.44,
-    "end": 0.58
+    "start": 0.52,
+    "end": 0.68
   },
   {
-    "word": "Sahara—then",
-    "start": 0.58,
-    "end": 1.3
-  },
-  {
-    "word": "vanished.",
-    "start": 1.3,
-    "end": 1.6
-  },
-  {
-    "word": "In",
-    "start": 2.58,
-    "end": 2.7
-  },
-  {
-    "word": "1994,",
-    "start": 2.7,
-    "end": 3.34
-  },
-  {
-    "word": "Mauro",
-    "start": 3.94,
-    "end": 4.16
-  },
-  {
-    "word": "Prosperi",
-    "start": 4.16,
-    "end": 4.64
-  },
-  {
-    "word": "was",
-    "start": 4.64,
-    "end": 4.78
-  },
-  {
-    "word": "running",
-    "start": 4.78,
-    "end": 5.04
-  },
-  {
-    "word": "the",
-    "start": 5.04,
-    "end": 5.18
-  },
-  {
-    "word": "Marathon",
-    "start": 5.18,
-    "end": 5.52
-  },
-  {
-    "word": "des",
-    "start": 5.52,
-    "end": 5.67
-  },
-  {
-    "word": "Sables,",
-    "start": 5.67,
-    "end": 6.02
-  },
-  {
-    "word": "a",
-    "start": 6.02,
-    "end": 6.5
-  },
-  {
-    "word": "250-kilometre",
-    "start": 6.5,
-    "end": 7.56
-  },
-  {
-    "word": "race",
-    "start": 7.56,
-    "end": 7.88
-  },
-  {
-    "word": "across",
-    "start": 7.88,
-    "end": 8.12
-  },
-  {
-    "word": "Morocco.",
-    "start": 8.12,
-    "end": 8.6
-  },
-  {
-    "word": "On",
-    "start": 9.58,
-    "end": 9.7
-  },
-  {
-    "word": "day",
-    "start": 9.7,
-    "end": 9.88
-  },
-  {
-    "word": "four,",
-    "start": 9.88,
-    "end": 10.16
-  },
-  {
-    "word": "an",
-    "start": 10.46,
-    "end": 10.54
-  },
-  {
-    "word": "eight-hour",
-    "start": 10.54,
-    "end": 10.88
-  },
-  {
-    "word": "sandstorm",
-    "start": 10.88,
-    "end": 11.42
-  },
-  {
-    "word": "wiped",
-    "start": 11.42,
-    "end": 11.68
-  },
-  {
-    "word": "out",
-    "start": 11.68,
-    "end": 11.86
-  },
-  {
-    "word": "the",
-    "start": 11.86,
-    "end": 11.98
-  },
-  {
-    "word": "route.",
-    "start": 11.98,
-    "end": 12.2
-  },
-  {
-    "word": "He",
-    "start": 13.08,
-    "end": 13.24
-  },
-  {
-    "word": "kept",
-    "start": 13.24,
-    "end": 13.44
-  },
-  {
-    "word": "moving,",
-    "start": 13.44,
-    "end": 13.7
+    "word": "Sahara,",
+    "start": 0.68,
+    "end": 1.02
   },
   {
     "word": "and",
-    "start": 13.7,
-    "end": 14.08
+    "start": 1.32,
+    "end": 1.46
   },
   {
-    "word": "got",
-    "start": 14.08,
-    "end": 14.24
+    "word": "it",
+    "start": 1.46,
+    "end": 1.56
   },
   {
-    "word": "lost",
-    "start": 14.24,
-    "end": 14.54
+    "word": "swallowed",
+    "start": 1.56,
+    "end": 1.84
   },
   {
-    "word": "with",
-    "start": 14.54,
-    "end": 14.72
+    "word": "me.",
+    "start": 1.84,
+    "end": 2.12
   },
   {
-    "word": "half",
-    "start": 14.72,
-    "end": 15.0
-  },
-  {
-    "word": "a",
-    "start": 15.0,
-    "end": 15.031
-  },
-  {
-    "word": "bottle",
-    "start": 15.031,
-    "end": 15.22
-  },
-  {
-    "word": "of",
-    "start": 15.22,
-    "end": 15.34
-  },
-  {
-    "word": "water.",
-    "start": 15.34,
-    "end": 15.58
-  },
-  {
-    "word": "He",
-    "start": 16.42,
-    "end": 16.6
-  },
-  {
-    "word": "drank",
-    "start": 16.6,
-    "end": 16.8
-  },
-  {
-    "word": "his",
-    "start": 16.8,
-    "end": 16.98
-  },
-  {
-    "word": "own",
-    "start": 16.98,
-    "end": 17.18
-  },
-  {
-    "word": "urine",
-    "start": 17.18,
-    "end": 17.42
-  },
-  {
-    "word": "to",
-    "start": 17.42,
-    "end": 17.6
-  },
-  {
-    "word": "survive.",
-    "start": 17.6,
-    "end": 17.9
-  },
-  {
-    "word": "Two",
-    "start": 18.82,
-    "end": 19.02
-  },
-  {
-    "word": "days",
-    "start": 19.02,
-    "end": 19.22
-  },
-  {
-    "word": "later,",
-    "start": 19.22,
-    "end": 19.52
-  },
-  {
-    "word": "he",
-    "start": 19.8,
-    "end": 19.88
-  },
-  {
-    "word": "drank",
-    "start": 19.88,
-    "end": 20.12
-  },
-  {
-    "word": "bats'",
-    "start": 20.12,
-    "end": 20.44
-  },
-  {
-    "word": "blood",
-    "start": 20.44,
-    "end": 20.62
-  },
-  {
-    "word": "in",
-    "start": 20.62,
-    "end": 20.88
-  },
-  {
-    "word": "a",
-    "start": 20.88,
-    "end": 20.909
-  },
-  {
-    "word": "desert",
-    "start": 20.909,
-    "end": 21.08
-  },
-  {
-    "word": "shrine.",
-    "start": 21.08,
-    "end": 22.42
-  },
-  {
-    "word": "A",
-    "start": 22.42,
-    "end": 22.46
-  },
-  {
-    "word": "rescue",
-    "start": 22.46,
-    "end": 22.7
-  },
-  {
-    "word": "helicopter",
-    "start": 22.7,
-    "end": 23.14
-  },
-  {
-    "word": "missed",
-    "start": 23.14,
-    "end": 23.5
-  },
-  {
-    "word": "him.",
-    "start": 23.5,
-    "end": 23.7
-  },
-  {
-    "word": "He",
-    "start": 24.42,
-    "end": 24.66
-  },
-  {
-    "word": "cut",
-    "start": 24.66,
-    "end": 24.84
-  },
-  {
-    "word": "his",
-    "start": 24.84,
-    "end": 25.0
-  },
-  {
-    "word": "wrists—but",
-    "start": 25.0,
-    "end": 25.72
-  },
-  {
-    "word": "dehydration",
-    "start": 25.72,
-    "end": 26.32
-  },
-  {
-    "word": "had",
-    "start": 26.32,
-    "end": 26.54
-  },
-  {
-    "word": "thickened",
-    "start": 26.54,
-    "end": 26.86
-  },
-  {
-    "word": "his",
-    "start": 26.86,
-    "end": 26.96
-  },
-  {
-    "word": "blood.",
-    "start": 26.96,
-    "end": 27.18
-  },
-  {
-    "word": "It",
-    "start": 28.06,
-    "end": 28.2
-  },
-  {
-    "word": "wouldn't",
-    "start": 28.2,
-    "end": 28.5
-  },
-  {
-    "word": "drain.",
-    "start": 28.5,
-    "end": 28.74
-  },
-  {
-    "word": "He",
-    "start": 28.74,
-    "end": 29.72
-  },
-  {
-    "word": "woke",
-    "start": 29.72,
-    "end": 29.9
-  },
-  {
-    "word": "alive,",
-    "start": 29.9,
-    "end": 30.26
-  },
-  {
-    "word": "and",
-    "start": 30.26,
-    "end": 30.56
-  },
-  {
-    "word": "kept",
-    "start": 30.56,
-    "end": 30.78
-  },
-  {
-    "word": "going.",
-    "start": 30.78,
-    "end": 31.08
-  },
-  {
-    "word": "On",
-    "start": 31.92,
-    "end": 32.1
-  },
-  {
-    "word": "day",
-    "start": 32.1,
-    "end": 32.28
-  },
-  {
-    "word": "eight,",
-    "start": 32.28,
-    "end": 32.59
-  },
-  {
-    "word": "he",
-    "start": 32.74,
-    "end": 32.82
-  },
-  {
-    "word": "found",
-    "start": 32.82,
-    "end": 33.02
-  },
-  {
-    "word": "an",
-    "start": 33.02,
-    "end": 33.16
-  },
-  {
-    "word": "oasis.",
-    "start": 33.16,
-    "end": 33.48
+    "word": "1994.",
+    "start": 3.08,
+    "end": 3.6
   },
   {
     "word": "The",
-    "start": 34.38,
-    "end": 34.62
+    "start": 4.38,
+    "end": 4.48
   },
   {
-    "word": "next",
+    "word": "Marathon",
+    "start": 4.48,
+    "end": 4.84
+  },
+  {
+    "word": "des",
+    "start": 4.84,
+    "end": 5.032
+  },
+  {
+    "word": "Sables.",
+    "start": 5.032,
+    "end": 5.48
+  },
+  {
+    "word": "250",
+    "start": 6.48,
+    "end": 7.0
+  },
+  {
+    "word": "kilometres",
+    "start": 7.0,
+    "end": 7.68
+  },
+  {
+    "word": "of",
+    "start": 7.68,
+    "end": 8.04
+  },
+  {
+    "word": "Morocco.",
+    "start": 8.04,
+    "end": 8.4
+  },
+  {
+    "word": "On",
+    "start": 9.42,
+    "end": 9.62
+  },
+  {
+    "word": "day",
+    "start": 9.62,
+    "end": 9.82
+  },
+  {
+    "word": "four,",
+    "start": 9.82,
+    "end": 10.2
+  },
+  {
+    "word": "an",
+    "start": 10.4,
+    "end": 10.5
+  },
+  {
+    "word": "eight-hour",
+    "start": 10.5,
+    "end": 10.72
+  },
+  {
+    "word": "sandstorm",
+    "start": 10.72,
+    "end": 11.44
+  },
+  {
+    "word": "wiped",
+    "start": 11.44,
+    "end": 11.72
+  },
+  {
+    "word": "out",
+    "start": 11.72,
+    "end": 11.92
+  },
+  {
+    "word": "the",
+    "start": 11.92,
+    "end": 12.08
+  },
+  {
+    "word": "route.",
+    "start": 12.08,
+    "end": 13.38
+  },
+  {
+    "word": "I",
+    "start": 13.38,
+    "end": 13.424
+  },
+  {
+    "word": "kept",
+    "start": 13.424,
+    "end": 13.6
+  },
+  {
+    "word": "moving.",
+    "start": 13.6,
+    "end": 13.88
+  },
+  {
+    "word": "That",
+    "start": 14.84,
+    "end": 15.08
+  },
+  {
+    "word": "is",
+    "start": 15.08,
+    "end": 15.22
+  },
+  {
+    "word": "how",
+    "start": 15.22,
+    "end": 15.52
+  },
+  {
+    "word": "I",
+    "start": 15.52,
+    "end": 15.555
+  },
+  {
+    "word": "got",
+    "start": 15.555,
+    "end": 15.66
+  },
+  {
+    "word": "lost.",
+    "start": 15.66,
+    "end": 15.98
+  },
+  {
+    "word": "Half",
+    "start": 17.02,
+    "end": 17.36
+  },
+  {
+    "word": "a",
+    "start": 17.36,
+    "end": 17.389
+  },
+  {
+    "word": "bottle",
+    "start": 17.389,
+    "end": 17.56
+  },
+  {
+    "word": "of",
+    "start": 17.56,
+    "end": 17.74
+  },
+  {
+    "word": "water.",
+    "start": 17.74,
+    "end": 17.98
+  },
+  {
+    "word": "Then",
+    "start": 18.88,
+    "end": 19.14
+  },
+  {
+    "word": "nothing.",
+    "start": 19.14,
+    "end": 20.56
+  },
+  {
+    "word": "I",
+    "start": 20.56,
+    "end": 20.6
+  },
+  {
+    "word": "drank",
+    "start": 20.6,
+    "end": 20.8
+  },
+  {
+    "word": "my",
+    "start": 20.8,
+    "end": 21.08
+  },
+  {
+    "word": "own",
+    "start": 21.08,
+    "end": 21.24
+  },
+  {
+    "word": "urine.",
+    "start": 21.24,
+    "end": 21.5
+  },
+  {
+    "word": "Two",
+    "start": 22.34,
+    "end": 22.7
+  },
+  {
+    "word": "days",
+    "start": 22.7,
+    "end": 22.92
+  },
+  {
+    "word": "later,",
+    "start": 22.92,
+    "end": 23.66
+  },
+  {
+    "word": "I",
+    "start": 23.66,
+    "end": 23.707
+  },
+  {
+    "word": "drank",
+    "start": 23.707,
+    "end": 23.94
+  },
+  {
+    "word": "bats'",
+    "start": 23.94,
+    "end": 24.3
+  },
+  {
+    "word": "blood",
+    "start": 24.3,
+    "end": 24.52
+  },
+  {
+    "word": "in",
+    "start": 24.52,
+    "end": 24.82
+  },
+  {
+    "word": "a",
+    "start": 24.82,
+    "end": 24.846
+  },
+  {
+    "word": "desert",
+    "start": 24.846,
+    "end": 25.0
+  },
+  {
+    "word": "shrine.",
+    "start": 25.0,
+    "end": 26.06
+  },
+  {
+    "word": "A",
+    "start": 26.06,
+    "end": 26.166
+  },
+  {
+    "word": "rescue",
+    "start": 26.166,
+    "end": 26.8
+  },
+  {
+    "word": "helicopter",
+    "start": 26.8,
+    "end": 27.42
+  },
+  {
+    "word": "passed",
+    "start": 27.42,
+    "end": 27.76
+  },
+  {
+    "word": "overhead.",
+    "start": 27.76,
+    "end": 28.16
+  },
+  {
+    "word": "It",
+    "start": 29.16,
+    "end": 29.3
+  },
+  {
+    "word": "did",
+    "start": 29.3,
+    "end": 29.42
+  },
+  {
+    "word": "not",
+    "start": 29.42,
+    "end": 29.6
+  },
+  {
+    "word": "see",
+    "start": 29.6,
+    "end": 29.84
+  },
+  {
+    "word": "me.",
+    "start": 29.84,
+    "end": 30.04
+  },
+  {
+    "word": "So",
+    "start": 30.74,
+    "end": 31.24
+  },
+  {
+    "word": "I",
+    "start": 31.24,
+    "end": 31.285
+  },
+  {
+    "word": "cut",
+    "start": 31.285,
+    "end": 31.42
+  },
+  {
+    "word": "my",
+    "start": 31.42,
+    "end": 31.6
+  },
+  {
+    "word": "wrists.",
+    "start": 31.6,
+    "end": 31.94
+  },
+  {
+    "word": "Nothing",
+    "start": 32.8,
+    "end": 33.18
+  },
+  {
+    "word": "came",
+    "start": 33.18,
+    "end": 33.48
+  },
+  {
+    "word": "out.",
+    "start": 33.48,
+    "end": 33.76
+  },
+  {
+    "word": "The",
     "start": 34.62,
     "end": 34.8
   },
   {
-    "word": "day,",
+    "word": "heat",
     "start": 34.8,
-    "end": 35.36
+    "end": 35.06
   },
   {
-    "word": "a",
-    "start": 35.36,
-    "end": 35.38
+    "word": "had",
+    "start": 35.06,
+    "end": 35.24
   },
   {
-    "word": "shepherd",
-    "start": 35.38,
-    "end": 35.54
+    "word": "thickened",
+    "start": 35.24,
+    "end": 35.62
   },
   {
-    "word": "girl",
-    "start": 35.54,
-    "end": 35.88
+    "word": "my",
+    "start": 35.62,
+    "end": 35.7
   },
   {
-    "word": "led",
-    "start": 35.88,
-    "end": 36.06
+    "word": "blood.",
+    "start": 35.7,
+    "end": 35.94
   },
   {
-    "word": "him",
-    "start": 36.06,
-    "end": 36.2
+    "word": "It",
+    "start": 36.92,
+    "end": 37.06
   },
   {
-    "word": "to",
-    "start": 36.2,
-    "end": 36.42
-  },
-  {
-    "word": "a",
-    "start": 36.42,
-    "end": 36.47
-  },
-  {
-    "word": "nomad",
-    "start": 36.47,
-    "end": 36.72
-  },
-  {
-    "word": "camp",
-    "start": 36.72,
-    "end": 37.0
-  },
-  {
-    "word": "in",
-    "start": 37.0,
+    "word": "would",
+    "start": 37.06,
     "end": 37.18
   },
   {
-    "word": "Algeria.",
+    "word": "not",
     "start": 37.18,
-    "end": 37.76
+    "end": 37.4
   },
   {
-    "word": "He",
-    "start": 38.5,
-    "end": 38.62
+    "word": "drain.",
+    "start": 37.4,
+    "end": 38.84
   },
   {
-    "word": "was",
-    "start": 38.62,
-    "end": 38.76
+    "word": "I",
+    "start": 38.84,
+    "end": 38.872
   },
   {
-    "word": "291",
-    "start": 38.76,
-    "end": 39.66
+    "word": "woke",
+    "start": 38.872,
+    "end": 39.0
   },
   {
-    "word": "kilometres",
-    "start": 39.66,
-    "end": 39.94
+    "word": "up",
+    "start": 39.0,
+    "end": 39.2
   },
   {
-    "word": "off",
-    "start": 39.94,
-    "end": 40.4
+    "word": "alive.",
+    "start": 39.2,
+    "end": 39.52
   },
   {
-    "word": "course",
-    "start": 40.4,
-    "end": 40.68
+    "word": "On",
+    "start": 40.52,
+    "end": 40.7
   },
   {
-    "word": "and",
-    "start": 40.68,
-    "end": 40.96
+    "word": "day",
+    "start": 40.7,
+    "end": 40.92
   },
   {
-    "word": "16",
-    "start": 40.96,
-    "end": 41.36
+    "word": "eight,",
+    "start": 40.92,
+    "end": 41.64
   },
   {
-    "word": "kilograms",
-    "start": 41.36,
-    "end": 41.76
+    "word": "I",
+    "start": 41.64,
+    "end": 41.677
   },
   {
-    "word": "lighter.",
-    "start": 41.76,
-    "end": 43.24
+    "word": "found",
+    "start": 41.677,
+    "end": 41.86
   },
   {
-    "word": "Ten",
-    "start": 43.24,
-    "end": 43.26
+    "word": "an",
+    "start": 41.86,
+    "end": 42.04
   },
   {
-    "word": "days",
-    "start": 43.26,
-    "end": 43.42
+    "word": "oasis.",
+    "start": 42.04,
+    "end": 43.6
   },
   {
-    "word": "lost.",
-    "start": 43.42,
-    "end": 43.78
+    "word": "A",
+    "start": 43.6,
+    "end": 43.627
   },
   {
-    "word": "One",
-    "start": 44.7,
-    "end": 44.94
+    "word": "shepherd",
+    "start": 43.627,
+    "end": 43.84
   },
   {
-    "word": "failed",
-    "start": 44.94,
-    "end": 45.26
+    "word": "girl",
+    "start": 43.84,
+    "end": 44.18
   },
   {
-    "word": "escape.",
-    "start": 45.26,
-    "end": 45.62
+    "word": "led",
+    "start": 44.18,
+    "end": 44.4
   },
   {
-    "word": "And",
-    "start": 46.26,
-    "end": 46.76
-  },
-  {
-    "word": "a",
-    "start": 46.76,
-    "end": 46.808
-  },
-  {
-    "word": "body",
-    "start": 46.808,
-    "end": 47.0
-  },
-  {
-    "word": "that",
-    "start": 47.0,
-    "end": 47.14
-  },
-  {
-    "word": "refused",
-    "start": 47.14,
-    "end": 47.44
+    "word": "me",
+    "start": 44.4,
+    "end": 44.54
   },
   {
     "word": "to",
-    "start": 47.44,
-    "end": 47.64
+    "start": 44.54,
+    "end": 44.84
   },
   {
-    "word": "quit.",
-    "start": 47.64,
-    "end": 47.82
+    "word": "a",
+    "start": 44.84,
+    "end": 44.887
+  },
+  {
+    "word": "nomad",
+    "start": 44.887,
+    "end": 45.12
+  },
+  {
+    "word": "camp",
+    "start": 45.12,
+    "end": 45.44
+  },
+  {
+    "word": "in",
+    "start": 45.44,
+    "end": 45.64
+  },
+  {
+    "word": "Algeria.",
+    "start": 45.64,
+    "end": 46.18
+  },
+  {
+    "word": "291",
+    "start": 47.4,
+    "end": 48.0
+  },
+  {
+    "word": "kilometres",
+    "start": 48.0,
+    "end": 48.44
+  },
+  {
+    "word": "off",
+    "start": 48.44,
+    "end": 48.84
+  },
+  {
+    "word": "course.",
+    "start": 48.84,
+    "end": 49.1
+  },
+  {
+    "word": "16",
+    "start": 50.08,
+    "end": 50.58
+  },
+  {
+    "word": "kilograms",
+    "start": 50.58,
+    "end": 50.96
+  },
+  {
+    "word": "lighter.",
+    "start": 50.96,
+    "end": 52.68
+  },
+  {
+    "word": "Ten",
+    "start": 52.68,
+    "end": 52.7
+  },
+  {
+    "word": "days",
+    "start": 52.7,
+    "end": 52.9
+  },
+  {
+    "word": "lost.",
+    "start": 52.9,
+    "end": 53.36
+  },
+  {
+    "word": "One",
+    "start": 54.14,
+    "end": 54.54
+  },
+  {
+    "word": "failed",
+    "start": 54.54,
+    "end": 54.88
+  },
+  {
+    "word": "escape.",
+    "start": 54.88,
+    "end": 55.28
   },
   {
     "word": "Follow",
-    "start": 48.74,
-    "end": 49.02
+    "start": 56.04,
+    "end": 56.56
   },
   {
     "word": "for",
-    "start": 49.02,
-    "end": 49.24
+    "start": 56.56,
+    "end": 56.8
   },
   {
     "word": "more",
-    "start": 49.24,
-    "end": 49.36
-  },
-  {
-    "word": "epic",
-    "start": 49.36,
-    "end": 49.66
+    "start": 56.8,
+    "end": 56.98
   },
   {
     "word": "survival",
-    "start": 49.66,
-    "end": 49.96
+    "start": 56.98,
+    "end": 57.4
   },
   {
     "word": "stories.",
-    "start": 49.96,
-    "end": 50.44
+    "start": 57.4,
+    "end": 57.84
   }
 ]
