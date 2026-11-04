@@ -1,4 +1,3 @@
-cat > src/reels/registry.ts << 'EOF'
 // Every reel the studio and the render know about.
 import React from "react";
 import { ReelProps } from "../components";
@@ -7,6 +6,7 @@ import { PRESETS } from "../presets";
 import * as demo from "./demo/Reel";
 import * as r_habits_over_40 from "./habits-over-40/Reel";
 import * as r_juliane_koepcke from "./juliane-koepcke/Reel";
+import * as r_desert_survival from "./desert-survival/Reel";
 
 export type ReelEntry = {
   id: string;
@@ -35,9 +35,13 @@ export const REELS: ReelEntry[] = [
   { 
     id: "juliane-koepcke", 
     Component: r_juliane_koepcke.Reel, 
-    durationInFrames: 1620 
+    durationInFrames: 1700 
+  },
+  { 
+    id: "desert-survival", 
+    Component: r_desert_survival.Reel, 
+    durationInFrames: r_desert_survival.durationInFrames 
   },
 ];
 
 export type { Word };
-EOF

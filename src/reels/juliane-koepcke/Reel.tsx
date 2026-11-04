@@ -9,7 +9,7 @@ const SCENES = [
   { text: "Rescue planes flew overhead, but the canopy hid her.", start: 780, dur: 240 },
   { text: "Day 11: She finally found a hut.", start: 1020, dur: 240 },
   { text: "Her childhood at a jungle station saved her life.", start: 1260, dur: 240 },
-  { text: "Comment 'SURVIVE' for the full story.", start: 1500, dur: 120 }
+  { text: "Comment 'SURVIVE' for the full story.", start: 1500, dur: 200 }
 ];
 
 const Rain: React.FC = () => {
