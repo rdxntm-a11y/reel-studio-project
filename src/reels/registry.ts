@@ -1,3 +1,4 @@
+cat > src/reels/registry.ts << 'EOF'
 // Every reel the studio and the render know about.
 import React from "react";
 import { ReelProps } from "../components";
@@ -31,11 +32,12 @@ export const REELS: ReelEntry[] = [
     Component: r_habits_over_40.Reel, 
     durationInFrames: 1525 
   },
-  {
-    id: "juliane-koepcke",
-    Component: r_juliane_koepcke.Reel,
-    durationInFrames: r_juliane_koepcke.durationInFrames,
+  { 
+    id: "juliane-koepcke", 
+    Component: r_juliane_koepcke.Reel, 
+    durationInFrames: 1620 
   },
 ];
 
 export type { Word };
+EOF
