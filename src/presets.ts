@@ -18,6 +18,14 @@ export const boldDark: Brand = {
   handle: "@wellnessreset",
 };
 
+export const cinematicDark: Brand = {
+  colors: { bg: "#07090D", surface: "#111722", text: "#F4F1E8", accent: "#E5B85C", accent2: "#6EA4B8" },
+  font: "SpaceGrotesk",
+  radius: 18,
+  shadow: false,
+  handle: "@wellnessreset",
+};
+
 export const softPastel: Brand = {
   colors: { bg: "#FBF3EC", surface: "#FFFFFF", text: "#2A2433", accent: "#E8590C", accent2: "#7C5CFC" },
   font: "Nunito",
@@ -26,4 +34,4 @@ export const softPastel: Brand = {
   handle: "@wellnessreset",
 };
 
-export const PRESETS = { cleanLight, boldDark, softPastel };
+export const PRESETS = { cleanLight, boldDark, cinematicDark, softPastel };

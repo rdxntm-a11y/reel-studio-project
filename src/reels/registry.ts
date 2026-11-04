@@ -5,6 +5,7 @@ import { Word } from "../timing";
 import { PRESETS } from "../presets";
 import * as demo from "./demo/Reel";
 import * as r_habits_over_40 from "./habits-over-40/Reel";
+import * as r_juliane_koepcke from "./juliane-koepcke/Reel";
 
 export type ReelEntry = {
   id: string;
@@ -29,6 +30,11 @@ export const REELS: ReelEntry[] = [
     id: "habits-over-40", 
     Component: r_habits_over_40.Reel, 
     durationInFrames: 1525 
+  },
+  {
+    id: "juliane-koepcke",
+    Component: r_juliane_koepcke.Reel,
+    durationInFrames: r_juliane_koepcke.durationInFrames,
   },
 ];
 

@@ -54,3 +54,7 @@ One-time for caption sync: `npm run setup:captions` (Python 3.11+ and ffmpeg nee
 - If Remotion's browser fails to start, set `BROWSER_EXECUTABLE` (macOS: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`). The render and check scripts already retry with it.
 - Sprite sheets are 5 columns x 4 rows = 20 poses (names in `src/avatars/sheets.ts`, `POSE_NAMES`).
 - The sprite avatars are intentionally basic: you write the pose list by hand. Do not build an automatic pose engine unless asked.
+
+## TASK OBSERVER ACTIVATION
+Before starting any task, you MUST read the `task-observer` skill located at `~/.claude/skills/task-observer/SKILL.md`.
+Follow its instructions to analyze the request, select the best skills, and plan your approach.
