@@ -7,7 +7,7 @@ export const cleanLight: Brand = {
   font: "Inter",
   radius: 32,
   shadow: true,
-  handle: "@wellnessreset",
+  handle: "@midnightfiles",
 };
 
 export const boldDark: Brand = {
@@ -15,7 +15,7 @@ export const boldDark: Brand = {
   font: "SpaceGrotesk",
   radius: 12,
   shadow: false,
-  handle: "@wellnessreset",
+  handle: "@midnightfiles",
 };
 
 export const cinematicDark: Brand = {
@@ -23,7 +23,7 @@ export const cinematicDark: Brand = {
   font: "SpaceGrotesk",
   radius: 18,
   shadow: false,
-  handle: "@wellnessreset",
+  handle: "@midnightfiles",
 };
 
 export const softPastel: Brand = {
@@ -31,7 +31,7 @@ export const softPastel: Brand = {
   font: "Nunito",
   radius: 44,
   shadow: true,
-  handle: "@wellnessreset",
+  handle: "@midnightfiles",
 };
 
 export const PRESETS = { cleanLight, boldDark, cinematicDark, softPastel };

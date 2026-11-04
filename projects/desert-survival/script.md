@@ -21,7 +21,7 @@ His suicide attempt failed only because dehydration had made his blood too thick
 
 ## CTA
 
-Comment **SURVIVE** and I'll send you the full source list.
+Follow for more epic survival stories.
 
 ## Facts and sources
 
@@ -36,7 +36,7 @@ Comment **SURVIVE** and I'll send you the full source list.
 
 ## Spoken script
 
-He ran the Sahara—then vanished. In 1994, Mauro Prosperi was running the Marathon des Sables, a 250-kilometre race across Morocco. On day four, an eight-hour sandstorm wiped out the route. He kept moving, and got lost with half a bottle of water. He drank his own urine to survive. Two days later, he drank bats' blood in a desert shrine. A rescue helicopter missed him. He cut his wrists—but dehydration had thickened his blood. It wouldn't drain. He woke alive, and kept going. On day eight, he found an oasis. The next day, a shepherd girl led him to a nomad camp in Algeria. He was 291 kilometres off course and 16 kilograms lighter. Ten days lost. One failed escape. And a body that refused to quit. Comment SURVIVE and I'll send the source list.
+He ran the Sahara—then vanished. In 1994, Mauro Prosperi was running the Marathon des Sables, a 250-kilometre race across Morocco. On day four, an eight-hour sandstorm wiped out the route. He kept moving, and got lost with half a bottle of water. He drank his own urine to survive. Two days later, he drank bats' blood in a desert shrine. A rescue helicopter missed him. He cut his wrists—but dehydration had thickened his blood. It wouldn't drain. He woke alive, and kept going. On day eight, he found an oasis. The next day, a shepherd girl led him to a nomad camp in Algeria. He was 291 kilometres off course and 16 kilograms lighter. Ten days lost. One failed escape. And a body that refused to quit. Follow for more epic survival stories.
 
-**Word count:** 137 words
-**Estimated length:** 54.8 seconds at 2.5 words/second
+**Word count:** 135 words
+**Estimated length:** 54.0 seconds at 2.5 words/second

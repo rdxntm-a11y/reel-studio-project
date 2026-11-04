@@ -58,7 +58,7 @@ const Scene: React.FC<{ text: string; index: number }> = ({ text, index }) => {
       
       <div style={{ opacity, transform: `scale(${scale})`, textAlign: 'center', zIndex: 10, marginTop: -250 }}>
         <div style={{ color: '#ef4444', fontSize: 28, fontWeight: 'bold', fontFamily: 'monospace', letterSpacing: 6, marginBottom: 20 }}>
-          {index === 0 || index === 7 ? '@wellnessreset' : `SURVIVAL / DAY 0${index}`}
+          {index === 0 || index === 7 ? '@midnightfiles' : `SURVIVAL / DAY 0${index}`}
         </div>
         <div style={{ color: 'white', fontSize: 75, fontWeight: 900, fontFamily: 'system-ui', lineHeight: 1.1, textShadow: '0 10px 20px rgba(0,0,0,0.9)' }}>
           {text}

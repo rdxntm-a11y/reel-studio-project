@@ -8,21 +8,21 @@ const ACCENT = '#f59e0b';
 export const AUDIO = 'reels/desert-survival/vo.wav';
 
 const SCENES = [
-  { text: "He ran the Sahara—then vanished.", start: 0, dur: 76 },
-  { text: "1994: 250 km across Morocco.", start: 76, dur: 225 },
-  { text: "Day 4: the sandstorm hit.", start: 301, dur: 103 },
-  { text: "Lost. Half a bottle of water.", start: 404, dur: 101 },
-  { text: "He drank his own urine.", start: 505, dur: 69 },
-  { text: "Bats' blood. The helicopter missed him.", start: 574, dur: 170 },
-  { text: "His blood was too thick to drain.", start: 744, dur: 205 },
-  { text: "Day 8: an oasis.", start: 949, dur: 99 },
-  { text: "A nomad camp in Algeria.", start: 1048, dur: 99 },
-  { text: "291 km off course. 16 kg lighter.", start: 1147, dur: 150 },
-  { text: "Ten days lost. One failed escape.", start: 1297, dur: 118 },
-  { text: "Comment SURVIVE", start: 1415, dur: 97 }
+  { text: "He ran the Sahara—then vanished.", start: 0, dur: 77 },
+  { text: "1994: 250 km across Morocco.", start: 77, dur: 210 },
+  { text: "Day 4: the sandstorm hit.", start: 287, dur: 105 },
+  { text: "Lost. Half a bottle of water.", start: 392, dur: 101 },
+  { text: "He drank his own urine.", start: 493, dur: 72 },
+  { text: "Bats' blood. The helicopter missed him.", start: 565, dur: 168 },
+  { text: "His blood was too thick to drain.", start: 733, dur: 225 },
+  { text: "Day 8: an oasis.", start: 958, dur: 103 },
+  { text: "A nomad camp in Algeria.", start: 1061, dur: 94 },
+  { text: "291 km off course. 16 kg lighter.", start: 1155, dur: 142 },
+  { text: "Ten days lost. One failed escape.", start: 1297, dur: 165 },
+  { text: "Follow for more epic survival stories", start: 1462, dur: 80 }
 ];
 
-export const durationInFrames = 1512;
+export const durationInFrames = 1542;
 
 type Pose = 'sprint' | 'run' | 'brace' | 'search' | 'drink' | 'lookup' | 'fall' | 'crawl' | 'wave' | 'walk' | 'despair' | 'cheer';
 type Vec = { x: number; y: number };
@@ -71,8 +71,18 @@ const BACKGROUNDS = [
   'linear-gradient(180deg,#2f1607 0%,#a85918 55%,#341806 100%)'
 ];
 
-const KEYWORDS = new Set(['survive', 'oasis', 'helicopter', 'sandstorm']);
+const KEYWORDS = new Set(['survive', 'oasis', 'helicopter', 'sandstorm', 'follow']);
 const clean = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]/gu, '');
+const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+const easeOutBack = (t: number) => {
+  const c1 = 1.70158;
+  const c3 = c1 + 1;
+  return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+};
+const snapSwing = (phase: number) => {
+  const s = Math.sin(phase);
+  return Math.sign(s) * Math.pow(Math.abs(s), 0.82);
+};
 
 const rand = (i: number, seed: number) => {
   const x = Math.sin(i * 127.1 + seed * 311.7) * 43758.5453;
@@ -163,6 +173,56 @@ const Heatwaves: React.FC<{ frame: number; intensity: number }> = ({ frame, inte
   </svg>
 );
 
+const HeatHaze: React.FC<{ frame: number; intensity: number }> = ({ frame, intensity }) => {
+  const period = 150;
+  const phase = ((frame % period) / period) * Math.PI * 2;
+  const drift = Math.sin(phase) * 16;
+  return (
+    <AbsoluteFill style={{ pointerEvents: 'none', mixBlendMode: 'screen', opacity: 0.42 + intensity * 0.3 }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: 'absolute', inset: 0 }}>
+        <defs>
+          <filter id="desert-heat-blur" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" />
+          </filter>
+          <linearGradient id="desert-heat-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(251,191,36,0)" />
+            <stop offset="52%" stopColor="rgba(251,191,36,0.5)" />
+            <stop offset="100%" stopColor="rgba(251,191,36,0)" />
+          </linearGradient>
+        </defs>
+        {Array.from({ length: 11 }).map((_, k) => {
+          const baseY = 520 + k * 126 + drift;
+          let d = `M-40 ${baseY}`;
+          for (let x = -40; x <= 1120; x += 80) {
+            const wobble = Math.sin(phase + k * 0.82 + x / 148) * (15 + (k % 4) * 4) + Math.sin(phase * 2 + k * 1.63 + x / 61) * 6;
+            d += ` Q${x + 40} ${baseY + wobble} ${x + 80} ${baseY}`;
+          }
+          return (
+            <path
+              key={k}
+              d={d}
+              fill="none"
+              stroke="url(#desert-heat-fade)"
+              strokeWidth={3 + (k % 4) * 2}
+              strokeLinecap="round"
+              filter="url(#desert-heat-blur)"
+              opacity={0.1 + (k % 3) * 0.035}
+            />
+          );
+        })}
+      </svg>
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at 50% 82%, rgba(245,158,11,0.2) 0%, rgba(251,191,36,0.08) 32%, transparent 64%)',
+          transform: `translateY(${drift * 0.8}px) scale(${1 + Math.sin(phase) * 0.015})`,
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
 const Footprints: React.FC = () => (
   <svg viewBox="0 0 760 240" width={760} height={240} style={{ position: 'absolute', left: 150, bottom: 380 }}>
     {Array.from({ length: 18 }).map((_, i) => {
@@ -250,18 +310,22 @@ const getGeometry = (pose: Pose, frame: number) => {
 
   if (pose === 'sprint' || pose === 'run' || pose === 'walk') {
     const cfg = pose === 'sprint' ? { speed: 3, reach: 29, lean: -17, bob: 10 } : pose === 'run' ? { speed: 4.5, reach: 22, lean: -10, bob: 7 } : { speed: 7, reach: 13, lean: -3, bob: 3 };
-    const s = Math.sin(frame / cfg.speed);
+    const phase = frame / cfg.speed;
+    const s = snapSwing(phase);
+    const trail = snapSwing(phase - 0.42);
+    const armReach = trail * cfg.reach;
+    const legReach = trail * cfg.reach * 1.2;
     return {
       ...stand,
-      lean: cfg.lean,
-      bob: -Math.abs(s) * cfg.bob,
+      lean: cfg.lean + Math.sin(phase - 0.55) * 2.4,
+      bob: -Math.abs(Math.sin(phase)) * cfg.bob,
       arms: [
-        { points: [{ x: 100, y: 84 }, { x: 82 - s * cfg.reach * 0.5, y: 98 }, { x: 64 - s * cfg.reach, y: 112 }] },
-        { points: [{ x: 100, y: 84 }, { x: 118 + s * cfg.reach * 0.5, y: 98 }, { x: 136 + s * cfg.reach, y: 112 }] }
+        { points: [{ x: 100, y: 84 }, { x: 82 - s * cfg.reach * 0.5, y: 98 }, { x: 64 - armReach, y: 112 }] },
+        { points: [{ x: 100, y: 84 }, { x: 118 + s * cfg.reach * 0.5, y: 98 }, { x: 136 + armReach, y: 112 }] }
       ],
       legs: [
-        { points: [{ x: 100, y: 118 }, { x: 88 + s * cfg.reach * 0.5, y: 142 }, { x: 76 + s * cfg.reach * 1.15, y: 168 }] },
-        { points: [{ x: 100, y: 118 }, { x: 112 - s * cfg.reach * 0.5, y: 142 }, { x: 124 - s * cfg.reach * 1.15, y: 168 }] }
+        { points: [{ x: 100, y: 118 }, { x: 88 + s * cfg.reach * 0.5, y: 142 }, { x: 76 + legReach, y: 168 }] },
+        { points: [{ x: 100, y: 118 }, { x: 112 - s * cfg.reach * 0.5, y: 142 }, { x: 124 - legReach, y: 168 }] }
       ]
     };
   }
@@ -416,10 +480,16 @@ const getGeometry = (pose: Pose, frame: number) => {
 };
 
 const StickFigure: React.FC<{ pose: Pose; frame: number; left: number; opacity: number }> = ({ pose, frame, left, opacity }) => {
+  const { fps } = useVideoConfig();
   const g = getGeometry(pose, frame);
+  const settle = spring({ frame, fps, config: { damping: 9, stiffness: 125, mass: 0.85 } });
+  const breathe = Math.sin(frame / 27) * 1.4;
+  const sway = Math.sin(frame / 38) * 0.7;
+  const enterY = (1 - settle) * -26;
+  const enterScale = 0.9 + 0.1 * settle;
   return (
     <svg data-el="figure" width={340} height={340} viewBox="0 0 200 200" style={{ position: 'absolute', left, bottom: 420, opacity, filter: 'drop-shadow(0 12px 12px rgba(0,0,0,0.45))' }}>
-      <g transform={`translate(0 ${g.bob}) rotate(${g.lean} 100 118)`}>
+      <g transform={`translate(0 ${g.bob + enterY + breathe}) rotate(${g.lean + sway} 100 118) translate(100 118) scale(${enterScale}) translate(-100 -118)`}>
         {g.legs.map((limb, i) => (
           <polyline key={`leg-${i}`} points={limb.points.map((p) => `${p.x},${p.y}`).join(' ')} fill="none" stroke="white" strokeWidth={3.6} strokeLinecap="round" strokeLinejoin="round" />
         ))}
@@ -441,17 +511,24 @@ const StickFigure: React.FC<{ pose: Pose; frame: number; left: number; opacity: 
 const Word: React.FC<{ word: string; at: number; accent: boolean }> = ({ word, at, accent }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const progress = spring({ frame: Math.max(0, frame - at), fps, config: { damping: 11, stiffness: 220, mass: 0.6 } });
-  const opacity = interpolate(frame - at, [0, 3], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const local = Math.max(0, frame - at);
+  const progress = spring({ frame: local, fps, config: { damping: 8.5, stiffness: 165, mass: 0.7 } });
+  const opacity = interpolate(local, [0, 3.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const lift = (1 - progress) * 48;
+  const scale = (0.52 + 0.48 * progress) * (accent ? 1.04 : 1);
+  const tilt = (1 - progress) * -8;
+  const blur = Math.max(0, 1 - progress) * 9;
+  const settle = easeOutBack(clamp01(local / 16));
   return (
     <span
       style={{
         display: 'inline-block',
         color: accent ? ACCENT : 'white',
         opacity,
-        transform: `translateY(${(1 - progress) * 28}px) scale(${0.62 + 0.38 * progress})`,
-        transformOrigin: '50% 60%',
-        textShadow: '0 8px 24px rgba(0,0,0,0.9)'
+        transform: `translateY(${lift}px) scale(${scale}) rotate(${tilt}deg)`,
+        transformOrigin: '50% 62%',
+        filter: `blur(${blur}px)`,
+        textShadow: accent ? `0 0 ${18 + settle * 14}px rgba(245,158,11,0.55), 0 8px 24px rgba(0,0,0,0.9)` : '0 8px 24px rgba(0,0,0,0.9)'
       }}
     >
       {word}
@@ -467,19 +544,21 @@ const Scene: React.FC<{ text: string; index: number; dur: number }> = ({ text, i
   const x = interpolate(frame, [0, dur], camera.x, { extrapolateRight: 'clamp' });
   const y = interpolate(frame, [0, dur], camera.y, { extrapolateRight: 'clamp' });
   const rotate = interpolate(frame, [0, dur], camera.rotate, { extrapolateRight: 'clamp' });
-  const shakeAmp = storm * (index === 2 ? 18 : 3) * interpolate(frame, [0, 6], [0, 1], { extrapolateRight: 'clamp' });
-  const shakeX = Math.sin(frame * 2.3) * shakeAmp;
-  const shakeY = Math.cos(frame * 2.9) * shakeAmp * 0.65;
-  const shakeRotate = Math.sin(frame * 1.9) * shakeAmp * 0.12;
+  const shakeAmp = storm * (index === 2 ? 46 : 7) * interpolate(frame, [0, 5], [0.2, 1], { extrapolateRight: 'clamp' });
+  const shakeX = (Math.sin(frame * 2.6) + Math.sin(frame * 6.9) * 0.55 + Math.sin(frame * 13.1) * 0.25) * shakeAmp;
+  const shakeY = (Math.cos(frame * 3.1) + Math.cos(frame * 7.7) * 0.5 + Math.sin(frame * 11.3) * 0.22) * shakeAmp * 0.72;
+  const shakeRotate = (Math.sin(frame * 1.9) + Math.sin(frame * 5.3) * 0.45) * shakeAmp * 0.07;
+  const shakeScale = 1 + Math.abs(Math.sin(frame * 0.83)) * storm * 0.012;
   const fadeOut = index === 0 ? interpolate(frame, [dur - 24, dur], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 1;
   const words = text.split(' ');
   const headerOpacity = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: 'clamp' });
 
   return (
     <AbsoluteFill data-scene={`scene-${index}`} style={{ background: BACKGROUNDS[index], overflow: 'hidden' }}>
-      <AbsoluteFill style={{ transform: `translate(${x + shakeX}px, ${y + shakeY}px) rotate(${rotate + shakeRotate}deg) scale(${scale})`, transformOrigin: camera.origin, overflow: 'hidden' }}>
+      <AbsoluteFill style={{ transform: `translate(${x + shakeX}px, ${y + shakeY}px) rotate(${rotate + shakeRotate}deg) scale(${scale * shakeScale})`, transformOrigin: camera.origin, overflow: 'hidden' }}>
         <Dunes />
         <Sun frame={frame} intensity={SUN[index]} />
+        <HeatHaze frame={frame} intensity={0.55 + SUN[index] * 0.35} />
         <Heatwaves frame={frame} intensity={SUN[index]} />
         <Footprints />
         {index >= 1 && index <= 6 ? <WaterBottle frame={frame} level={WATER[index]} /> : null}
@@ -494,7 +573,7 @@ const Scene: React.FC<{ text: string; index: number; dur: number }> = ({ text, i
 
       <div data-el="title" data-kind="content" style={{ position: 'absolute', left: SAFE_BOX.x, top: 520, width: SAFE_BOX.width, textAlign: 'center', zIndex: 10 }}>
         <div style={{ color: ACCENT, fontSize: 28, fontWeight: 'bold', fontFamily: 'monospace', letterSpacing: 6, marginBottom: 20, opacity: headerOpacity }}>
-          {index === 0 || index === SCENES.length - 1 ? '@wellnessreset' : `SAHARA / ${String(index).padStart(2, '0')}`}
+          {index === 0 || index === SCENES.length - 1 ? '@midnightfiles' : `SAHARA / ${String(index).padStart(2, '0')}`}
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0 0.28em', color: 'white', fontSize: 70, fontWeight: 900, fontFamily: 'system-ui', lineHeight: 1.08 }}>
           {words.map((word, i) => (

@@ -4,7 +4,7 @@ He ran the Sahara—then vanished.
 
 In 1994, Mauro Prosperi got lost in a sandstorm during the Marathon des Sables. Ten days later, he was found 291 km off course in Algeria — 16 kg lighter.
 
-Comment SURVIVE and I'll send the source list.
+Follow for more epic survival stories.
 
 #survivalstories #truestory #sahara #marathondessables #desertsurvival #survival #humanspirit
 

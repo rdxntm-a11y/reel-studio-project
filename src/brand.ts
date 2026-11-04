@@ -27,5 +27,5 @@ export const brand: Brand = {
   font: "Inter",
   radius: 32,
   shadow: true,
-  handle: "@wellnessreset",
+  handle: "@midnightfiles",
 };
