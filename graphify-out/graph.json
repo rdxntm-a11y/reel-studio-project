@@ -1,0 +1,951 @@
+{
+  "nodes": [
+    {
+      "id": "file::remotion_config",
+      "label": "remotion.config.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/remotion.config.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/remotion.config.ts:1"
+    },
+    {
+      "id": "file::root",
+      "label": "Root.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/Root.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/Root.tsx:1"
+    },
+    {
+      "id": "file::avatar",
+      "label": "Avatar.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx:1"
+    },
+    {
+      "id": "Avatar::avatar",
+      "label": "Avatar",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx:17"
+    },
+    {
+      "id": "file::flatmascot",
+      "label": "FlatMascot.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx:1"
+    },
+    {
+      "id": "FlatMascot::blinkat",
+      "label": "blinkAt",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx:17"
+    },
+    {
+      "id": "file::spriteplayer",
+      "label": "SpritePlayer.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx:1"
+    },
+    {
+      "id": "SpritePlayer::keysheet",
+      "label": "keySheet",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx:29"
+    },
+    {
+      "id": "file::sheets",
+      "label": "sheets.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/sheets.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/sheets.ts:1"
+    },
+    {
+      "id": "file::usemouth",
+      "label": "useMouth.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts:1"
+    },
+    {
+      "id": "useMouth::usemouth",
+      "label": "useMouth",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts:10"
+    },
+    {
+      "id": "file::brand_context",
+      "label": "brand-context.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx:1"
+    },
+    {
+      "id": "brand-context::brandprovider",
+      "label": "BrandProvider",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx:7"
+    },
+    {
+      "id": "brand-context::usebrand",
+      "label": "useBrand",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx:12"
+    },
+    {
+      "id": "file::brand",
+      "label": "brand.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand.ts:1"
+    },
+    {
+      "id": "file::bignumber",
+      "label": "BigNumber.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/BigNumber.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/BigNumber.tsx:1"
+    },
+    {
+      "id": "file::card",
+      "label": "Card.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Card.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Card.tsx:1"
+    },
+    {
+      "id": "file::endcard",
+      "label": "EndCard.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/EndCard.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/EndCard.tsx:1"
+    },
+    {
+      "id": "file::karaoke",
+      "label": "Karaoke.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx:1"
+    },
+    {
+      "id": "Karaoke::clean",
+      "label": "clean",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx:21"
+    },
+    {
+      "id": "file::reelframe",
+      "label": "ReelFrame.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx:1"
+    },
+    {
+      "id": "ReelFrame::reelframe",
+      "label": "ReelFrame",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx:33"
+    },
+    {
+      "id": "file::safezones",
+      "label": "SafeZones.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/SafeZones.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/SafeZones.tsx:1"
+    },
+    {
+      "id": "file::sticker",
+      "label": "Sticker.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Sticker.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Sticker.tsx:1"
+    },
+    {
+      "id": "file::title",
+      "label": "Title.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Title.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Title.tsx:1"
+    },
+    {
+      "id": "file::index",
+      "label": "index.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/index.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/index.ts:1"
+    },
+    {
+      "id": "file::pop",
+      "label": "pop.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/pop.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/pop.ts:1"
+    },
+    {
+      "id": "pop::usepop",
+      "label": "usePop",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/pop.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/pop.ts:9"
+    },
+    {
+      "id": "file::probe",
+      "label": "probe.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx:1"
+    },
+    {
+      "id": "probe::measure",
+      "label": "measure",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx:30"
+    },
+    {
+      "id": "probe::layoutprobe",
+      "label": "LayoutProbe",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx:88"
+    },
+    {
+      "id": "file::placeholdersheet",
+      "label": "PlaceholderSheet.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:1"
+    },
+    {
+      "id": "PlaceholderSheet::personshapes",
+      "label": "personShapes",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:24"
+    },
+    {
+      "id": "PlaceholderSheet::segdist",
+      "label": "segDist",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:55"
+    },
+    {
+      "id": "PlaceholderSheet::signed",
+      "label": "signed",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:61"
+    },
+    {
+      "id": "placeholdersheet::if",
+      "label": "if",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:104"
+    },
+    {
+      "id": "placeholdersheet::flush",
+      "label": "flush",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:108"
+    },
+    {
+      "id": "file::fonts",
+      "label": "fonts.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/fonts.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/fonts.ts:1"
+    },
+    {
+      "id": "file::layout",
+      "label": "layout.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/layout.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/layout.ts:1"
+    },
+    {
+      "id": "file::presets",
+      "label": "presets.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/presets.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/presets.ts:1"
+    },
+    {
+      "id": "file::reel",
+      "label": "Reel.tsx",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx:1"
+    },
+    {
+      "id": "Reel::cleanword",
+      "label": "cleanWord",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/habits-over-40/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/habits-over-40/Reel.tsx:30"
+    },
+    {
+      "id": "file::registry",
+      "label": "registry.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/registry.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/registry.ts:1"
+    },
+    {
+      "id": "Reel::stickfigure",
+      "label": "StickFigure",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/juliane-koepcke/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/juliane-koepcke/Reel.tsx:30"
+    },
+    {
+      "id": "Reel::clean",
+      "label": "clean",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:191"
+    },
+    {
+      "id": "Reel::clamp01",
+      "label": "clamp01",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:192"
+    },
+    {
+      "id": "Reel::rand",
+      "label": "rand",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:193"
+    },
+    {
+      "id": "Reel::snapswing",
+      "label": "snapSwing",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:197"
+    },
+    {
+      "id": "Reel::bandcolor",
+      "label": "bandColor",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:201"
+    },
+    {
+      "id": "Reel::knifepath",
+      "label": "knifePath",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:219"
+    },
+    {
+      "id": "Reel::kniferidge",
+      "label": "knifeRidge",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:225"
+    },
+    {
+      "id": "Reel::makesky",
+      "label": "makeSky",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:231"
+    },
+    {
+      "id": "Reel::makelight",
+      "label": "makeLight",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:273"
+    },
+    {
+      "id": "Reel::makedunes",
+      "label": "makeDunes",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:315"
+    },
+    {
+      "id": "Reel::makefore",
+      "label": "makeFore",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:356"
+    },
+    {
+      "id": "Reel::knife",
+      "label": "Knife",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:403"
+    },
+    {
+      "id": "Reel::blinkopenness",
+      "label": "blinkOpenness",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:778"
+    },
+    {
+      "id": "file::timing",
+      "label": "timing.ts",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:1"
+    },
+    {
+      "id": "timing::clean",
+      "label": "clean",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:8"
+    },
+    {
+      "id": "timing::sec",
+      "label": "sec",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:11"
+    },
+    {
+      "id": "timing::timing",
+      "label": "timing",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:22"
+    },
+    {
+      "id": "Reel::reel",
+      "label": "Reel",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx:29"
+    },
+    {
+      "id": "file::align",
+      "label": "align.py",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:1"
+    },
+    {
+      "id": "align::deva_to_latin",
+      "label": "deva_to_latin",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:41"
+    },
+    {
+      "id": "align::skeleton",
+      "label": "skeleton",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:63"
+    },
+    {
+      "id": "align::similarity",
+      "label": "similarity",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:79"
+    },
+    {
+      "id": "align::align_tokens",
+      "label": "align_tokens",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:95"
+    },
+    {
+      "id": "align::load_audio",
+      "label": "load_audio",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:147"
+    },
+    {
+      "id": "align::speech_intervals",
+      "label": "speech_intervals",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:162"
+    },
+    {
+      "id": "align::spread",
+      "label": "spread",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:191"
+    },
+    {
+      "id": "align::read_captions",
+      "label": "read_captions",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:226"
+    },
+    {
+      "id": "align::main",
+      "label": "main",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:236"
+    },
+    {
+      "id": "file::words",
+      "label": "words.py",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/words.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/words.py:1"
+    },
+    {
+      "id": "words::build_parser",
+      "label": "build_parser",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/words.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/words.py:23"
+    },
+    {
+      "id": "words::main",
+      "label": "main",
+      "fileType": "code",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/words.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/words.py:45"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file::avatar",
+      "target": "Avatar::avatar",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/Avatar.tsx:17",
+      "weight": 1
+    },
+    {
+      "source": "file::flatmascot",
+      "target": "FlatMascot::blinkat",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/FlatMascot.tsx:17",
+      "weight": 1
+    },
+    {
+      "source": "file::spriteplayer",
+      "target": "SpritePlayer::keysheet",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/SpritePlayer.tsx:29",
+      "weight": 1
+    },
+    {
+      "source": "file::usemouth",
+      "target": "useMouth::usemouth",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/avatars/useMouth.ts:10",
+      "weight": 1
+    },
+    {
+      "source": "file::brand_context",
+      "target": "brand-context::brandprovider",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx:7",
+      "weight": 1
+    },
+    {
+      "source": "file::brand_context",
+      "target": "brand-context::usebrand",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/brand-context.tsx:12",
+      "weight": 1
+    },
+    {
+      "source": "file::karaoke",
+      "target": "Karaoke::clean",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/Karaoke.tsx:21",
+      "weight": 1
+    },
+    {
+      "source": "file::reelframe",
+      "target": "ReelFrame::reelframe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/ReelFrame.tsx:33",
+      "weight": 1
+    },
+    {
+      "source": "file::pop",
+      "target": "pop::usepop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/pop.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/pop.ts:9",
+      "weight": 1
+    },
+    {
+      "source": "file::probe",
+      "target": "probe::measure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx:30",
+      "weight": 1
+    },
+    {
+      "source": "file::probe",
+      "target": "probe::layoutprobe",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/components/probe.tsx:88",
+      "weight": 1
+    },
+    {
+      "source": "file::placeholdersheet",
+      "target": "PlaceholderSheet::personshapes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:24",
+      "weight": 1
+    },
+    {
+      "source": "file::placeholdersheet",
+      "target": "PlaceholderSheet::segdist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:55",
+      "weight": 1
+    },
+    {
+      "source": "file::placeholdersheet",
+      "target": "PlaceholderSheet::signed",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:61",
+      "weight": 1
+    },
+    {
+      "source": "file::placeholdersheet",
+      "target": "placeholdersheet::if",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:104",
+      "weight": 1
+    },
+    {
+      "source": "file::placeholdersheet",
+      "target": "placeholdersheet::flush",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/dev/PlaceholderSheet.tsx:108",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::cleanword",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/habits-over-40/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/habits-over-40/Reel.tsx:30",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::stickfigure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/juliane-koepcke/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/juliane-koepcke/Reel.tsx:30",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::clean",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:191",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::clamp01",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:192",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::rand",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:193",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::snapswing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:197",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::bandcolor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:201",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::knifepath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:219",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::kniferidge",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:225",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::makesky",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:231",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::makelight",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:273",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::makedunes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:315",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::makefore",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:356",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::knife",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:403",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::blinkopenness",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/reels/desert-survival/Reel.tsx:778",
+      "weight": 1
+    },
+    {
+      "source": "file::timing",
+      "target": "timing::clean",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:8",
+      "weight": 1
+    },
+    {
+      "source": "file::timing",
+      "target": "timing::sec",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:11",
+      "weight": 1
+    },
+    {
+      "source": "file::timing",
+      "target": "timing::timing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/src/timing.ts",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/src/timing.ts:22",
+      "weight": 1
+    },
+    {
+      "source": "file::reel",
+      "target": "Reel::reel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/templates/reel/Reel.tsx:29",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::deva_to_latin",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:41",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::skeleton",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:63",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::similarity",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:79",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::align_tokens",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:95",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::load_audio",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:147",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::speech_intervals",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:162",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::spread",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:191",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::read_captions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:226",
+      "weight": 1
+    },
+    {
+      "source": "file::align",
+      "target": "align::main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/align.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/align.py:236",
+      "weight": 1
+    },
+    {
+      "source": "file::words",
+      "target": "words::build_parser",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/words.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/words.py:23",
+      "weight": 1
+    },
+    {
+      "source": "file::words",
+      "target": "words::main",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "sourceFile": "/root/reel-studio/reel-studio-kit/tools/captions/words.py",
+      "sourceLocation": "/root/reel-studio/reel-studio-kit/tools/captions/words.py:45",
+      "weight": 1
+    }
+  ],
+  "metadata": {
+    "files": 221,
+    "nodes": 75,
+    "edges": 46,
+    "builtAt": "2026-11-07T18:09:40.500Z"
+  }
+}
