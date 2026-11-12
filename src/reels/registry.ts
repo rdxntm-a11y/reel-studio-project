@@ -8,6 +8,7 @@ import * as r_habits_over_40 from "./habits-over-40/Reel";
 import * as r_juliane_koepcke from "./juliane-koepcke/Reel";
 import * as r_desert_survival from "./desert-survival/Reel";
 import * as r_white_house_hack from "./white-house-hack/Reel";
+import * as r_new_story from "./new-story/Reel";
 
 export type ReelEntry = {
   id: string;
@@ -47,6 +48,11 @@ export const REELS: ReelEntry[] = [
     id: "white-house-hack", 
     Component: r_white_house_hack.Reel, 
     durationInFrames: r_white_house_hack.durationInFrames 
+  },
+  { 
+    id: "new-story", 
+    Component: r_new_story.Reel, 
+    durationInFrames: r_new_story.durationInFrames 
   },
 ];
 
