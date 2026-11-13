@@ -47,7 +47,7 @@ const measure = (frame: number) => {
     }
     for (const n of [e, ...Array.from(e.querySelectorAll<HTMLElement>("*"))]) {
       if (n.clientWidth > 0 && n.scrollWidth > n.clientWidth + 2) {
-        issues.push({ type: "overflow", el: name, detail: `text is ${n.scrollWidth}px wide in a ${n.clientWidth}px box` });
+        issues.push({ type: "overflow", el: name, detail: `text is ${n.scrollWidth}px wide in a ${n.clientWidth}px box [${n.tagName}.${n.className}] "${(n.textContent||"").trim().slice(0,60)}"` });
         break;
       }
       if (n.clientHeight > 0 && n.scrollHeight > n.clientHeight + 2 && getComputedStyle(n).overflow !== "visible") {

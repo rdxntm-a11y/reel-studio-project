@@ -54,6 +54,7 @@ One-time for caption sync: `npm run setup:captions` (Python 3.11+ and ffmpeg nee
 - If Remotion's browser fails to start, set `BROWSER_EXECUTABLE` (macOS: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`). The render and check scripts already retry with it.
 - Sprite sheets are 5 columns x 4 rows = 20 poses (names in `src/avatars/sheets.ts`, `POSE_NAMES`).
 - The sprite avatars are intentionally basic: you write the pose list by hand. Do not build an automatic pose engine unless asked.
+- Before non-trivial CSS work, search the `modern-web-guidance` skill (`npx -y modern-web-guidance@latest search "<topic>"`). In Remotion, use only modern CSS that renders deterministically in Chromium (container queries, nesting, `color-mix()`, `oklch()`, `:has()`, `clamp()`, logical properties). Animate with `useCurrentFrame`/`interpolate`/`spring`, never time-driven CSS (transitions, `@keyframes`, View Transitions, scroll-driven animations) — Remotion seeks frames instead of playing on a real clock.
 
 ## TASK OBSERVER ACTIVATION
 Before starting any task, you MUST read the `task-observer` skill located at `~/.claude/skills/task-observer/SKILL.md`.

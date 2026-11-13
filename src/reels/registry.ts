@@ -9,6 +9,7 @@ import * as r_juliane_koepcke from "./juliane-koepcke/Reel";
 import * as r_desert_survival from "./desert-survival/Reel";
 import * as r_white_house_hack from "./white-house-hack/Reel";
 import * as r_new_story from "./new-story/Reel";
+import * as r_lead_masks from "./lead-masks/Reel";
 
 export type ReelEntry = {
   id: string;
@@ -53,6 +54,11 @@ export const REELS: ReelEntry[] = [
     id: "new-story", 
     Component: r_new_story.Reel, 
     durationInFrames: r_new_story.durationInFrames 
+  },
+  {
+    id: "lead-masks",
+    Component: r_lead_masks.Reel,
+    durationInFrames: r_lead_masks.durationInFrames,
   },
 ];
 
