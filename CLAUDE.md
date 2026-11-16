@@ -41,6 +41,7 @@ One-time for caption sync: `npm run setup:captions` (Python 3.11+ and ffmpeg nee
 - `src/reels/<id>/Reel.tsx`: one reel. `src/reels/demo/Reel.tsx` is the worked example. `src/reels/registry.ts` lists them.
 - `projects/<id>/`: `script.md`, `voice.txt` (exact words spoken), `captions.txt` (exact words on screen, same order).
 - `public/reels/<id>/`: `vo.wav`, `captions.words.json`, `mouth.json` (generated).
+- `public/reels/<id>/assets/`: generated scene images (paper cut-outs, props). Use `staticFile()` in the scene; never hand-draw a complex subject in SVG.
 - `sprites/PROMPT.md`: the prompt template for making a sprite sheet of the user's own character.
 
 ## Ground rules
@@ -50,6 +51,9 @@ One-time for caption sync: `npm run setup:captions` (Python 3.11+ and ffmpeg nee
 - Facts need sources. No number or claim goes into the script without a source you actually opened; otherwise cut it or say it is an opinion.
 - Never render the final video without running the self-check (`npm run check`) and LOOKING at the contact sheet.
 - Do not restyle the brand unless asked. Use `src/brand.ts` values, do not hard-code colours inside reels.
+- **Asset-first visuals.** Never draw a complex subject (person, animal, vehicle, machine, realistic prop) as hand-built SVG shapes. Use a generated image from `public/reels/<id>/assets/`, a sprite sheet, or a simple abstract shape plus a big text label. Code-drawn SVG is only for simple geometry: arrows, frames, lines, masks, charts.
+- **Every metaphor gets a label.** If a prop or scene needs the script to explain it, put a 2-4 word label on screen when it appears. If it cannot be labelled that short, change the visual.
+- **Word-anchored motion.** Every cut, stamp, pop and label uses `t.at`/`t.atText` from `captions.words.json`, never a guessed second or a fixed frame offset. Check that no `at` falls after its scene's end frame.
 - Keep reels under 60 s. Never ask the user to install things you can check for first (`ffmpeg -version`, `node -v`).
 - If Remotion's browser fails to start, set `BROWSER_EXECUTABLE` (macOS: `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`). The render and check scripts already retry with it.
 - Sprite sheets are 5 columns x 4 rows = 20 poses (names in `src/avatars/sheets.ts`, `POSE_NAMES`).

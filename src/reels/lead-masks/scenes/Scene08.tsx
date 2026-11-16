@@ -1,71 +1,41 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  interpolate,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { useBrand } from "../../../brand-context";
 import { PaperBackground } from "../style/components/PaperBackground";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { UFO } from "../style/components/Props";
-import { StandingFigure } from "../style/components/PaperFigure";
-import { Tag } from "../style/components/ui";
+import { PropLabel, Tag } from "../style/components/ui";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
 import type { SceneProps } from "../style/types";
 
 export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
   const stampAt = t.at(106) - from;
-  const flickerAt = t.at(111) - from;
-  const glowAt = t.at(114) - from;
-  const overdoseAt = t.at(116) - from;
+  const ufoAt = t.at(111) - from;
   const tagAt = t.at(108) - from;
-  const pop = spring({ frame: frame - 2, fps, config: SPRING.pop });
-  const glow = Math.max(
-    interpolate(frame, [glowAt, glowAt + 14], [0, 0.9], clamp),
-    interpolate(frame, [overdoseAt, overdoseAt + 10], [0, 1], clamp),
-  );
-  const flicker = Math.max(0, 1 - Math.abs(frame - flickerAt) / 6);
+  const pop = spring({ frame: frame - 0, fps, config: SPRING.pop });
   const tag = spring({ frame: frame - tagAt, fps, config: SPRING.pop });
+  const scale = interpolate(frame, [0, durationInFrames], [1, 1.05], clamp);
 
   return (
     <AbsoluteFill>
-      <PaperBackground tone="paper" seed={71} />
+      <Img src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }} />
       <Headline text="THE THEORY" tone="paper" accent={[1]} size={150} delay={0} width={620} align="left" />
       <Stamp text="THEORY" delay={stampAt} rotate={-8} size={90} style={{ left: 600, top: 238 }} />
-      <div
-        data-el="hero"
-        data-kind="content"
-        style={{
-          position: "absolute",
-          left: 60,
-          top: 720,
-          width: 900,
-          height: 560,
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "center",
-          opacity: pop,
-          transform: `translateY(${interpolate(pop, [0, 1], [70, 0], clamp)}px)`,
-        }}
-      >
-        <div style={{ position: "absolute", top: 20, left: "50%", transform: "translateX(-50%)" }}>
-          <UFO beam={1} flicker={flicker} width={430} />
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 720, width: 900, height: 560, display: "flex", alignItems: "flex-end", justifyContent: "center", opacity: pop, transform: `translateY(${interpolate(pop, [0, 1], [70, 0], clamp)}px)` }}>
+        <div style={{ position: "absolute", top: 40, right: 0 }}>
+          <PropLabel text="UFO" at={ufoAt} rotate={2} />
         </div>
-        <div style={{ display: "flex", alignItems: "flex-end", gap: 34, marginBottom: 10 }}>
-          <StandingFigure tone="paper" width={150} glow={glow} />
-          <StandingFigure tone="paper" width={150} glow={glow} />
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: -8,
-            left: 0,
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            opacity: tag,
-            transform: `translateY(${interpolate(tag, [0, 1], [22, 0], clamp)}px)`,
-          }}
-        >
+        <div style={{ position: "absolute", bottom: -8, left: 0, width: "100%", display: "flex", justifyContent: "center", opacity: tag, transform: `translateY(${interpolate(tag, [0, 1], [22, 0], clamp)}px)` }}>
           <Tag text="SCIENTIFIC SPIRITUALISTS" rotate={-2} size={28} />
         </div>
       </div>
@@ -81,7 +51,7 @@ export const Scene08CTA: React.FC<SceneProps> = ({ t, from }) => {
   const { fps } = useVideoConfig();
   const { handle } = useBrand();
   const stampAt = t.at(119) - from;
-  const s = spring({ frame: frame - 2, fps, config: SPRING.pop });
+  const s = spring({ frame: frame - 0, fps, config: SPRING.pop });
   const y = interpolate(s, [0, 1], [80, 0], clamp);
 
   return (
@@ -125,7 +95,7 @@ export const Scene08CTA: React.FC<SceneProps> = ({ t, from }) => {
           <div style={{ marginTop: 20, fontFamily: FONT.body, fontWeight: 800, fontSize: 34, color: C.ink }}>
             {handle}
           </div>
-          <Stamp text="FOLLOW" delay={stampAt} rotate={-8} size={70} style={{ left: 318, top: 348 }} />
+          <Stamp text="FOLLOW" delay={stampAt} rotate={-8} size={62} bleed={false} style={{ left: 180, top: 348 }} />
         </div>
       </div>
     </AbsoluteFill>

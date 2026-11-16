@@ -32,7 +32,14 @@ export const Stamp: React.FC<StampProps> = ({
   const bleedOpacity = interpolate(frame - delay, [6, 24], [0, 0.3], clamp);
 
   return (
-    <div style={{ position: "absolute", ...style, transform: `rotate(${rotate}deg)` }}>
+    <div
+      style={{
+        position: "absolute",
+        ...style,
+        transform: `rotate(${rotate}deg) translateY(${y}px) translateX(${shake}px) scale(${scale})`,
+        opacity,
+      }}
+    >
       {bleed ? (
         <>
           <div
@@ -62,20 +69,15 @@ export const Stamp: React.FC<StampProps> = ({
       ) : null}
       <div
         style={{
-          transform: `translateY(${y}px) translateX(${shake}px) scale(${scale})`,
-          opacity,
           fontFamily: FONT.display,
           fontSize: size,
           lineHeight: 0.92,
           letterSpacing: 1,
           color: C.red,
-          border: `9px solid ${C.red}`,
           borderRadius: 8,
-          boxShadow: `inset 0 0 0 3px ${C.red}, 0 2px 0 ${alpha(C.ink, 18)}`,
-          padding: "2px 24px 0",
+          boxShadow: `inset 0 0 0 12px ${C.red}`,
+          padding: "2px 33px 0",
           whiteSpace: "nowrap",
-          width: "max-content",
-          boxSizing: "border-box",
           mixBlendMode: tone === "paper" ? "multiply" : "normal",
           textShadow: `0 1px 0 ${alpha(C.ink, 8)}`,
         }}

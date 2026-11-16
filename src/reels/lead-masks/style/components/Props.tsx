@@ -201,7 +201,7 @@ export const QuestionMark: React.FC<{ size?: number; rotate?: number; opacity?: 
       color: C.red,
       transform: `rotate(${rotate}deg)`,
       opacity,
-      minWidth: size * 0.7,
+      minWidth: size,
       textAlign: "center",
       textShadow: `0 4px 0 ${alpha(C.ink, 18)}`,
     }}
@@ -265,7 +265,7 @@ export const Clipboard: React.FC<{ width?: number }> = ({ width = 300 }) => (
       <div style={{ fontSize: 24, letterSpacing: 2, borderBottom: `3px solid ${C.ink}`, paddingBottom: 10 }}>
         AUTOPSY
       </div>
-      <div style={{ marginTop: 18, fontSize: 17, lineHeight: 1.6 }}>
+      <div style={{ marginTop: 18, fontSize: 15, lineHeight: 1.6 }}>
         <div>BODY 1: LATE</div>
         <div>BODY 2: LATE</div>
         <div>ORGANS: DECOMPOSED</div>

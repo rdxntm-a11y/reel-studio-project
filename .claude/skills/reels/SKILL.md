@@ -59,9 +59,11 @@ First time only: `npm run setup:captions`.
 
 ## Step 4: Scenes timed to words  (src/reels/<id>/Reel.tsx)
 
+**Visuals: asset-first.** Do not draw a complex subject (person, animal, vehicle, machine, realistic prop) as hand-built SVG shapes. Use a generated image from `public/reels/<id>/assets/` via `staticFile()`, a sprite sheet, or a simple abstract shape with a big text label. Code-drawn SVG is only for simple geometry (arrows, frames, lines, masks, charts). Every metaphor or prop gets a 2-4 word label on screen when it appears; if it cannot be labelled that short, change the visual.
+
 1. Read `public/reels/<id>/captions.words.json` and list each word with its index and start time. Plan scenes against **those** times.
 2. Edit `src/reels/<id>/Reel.tsx` (the scaffold shows the pattern; `src/reels/demo/Reel.tsx` is a full example):
-   - Scene cut frames from words: `t.at(index)` or `t.atText("word", fallbackSec, occurrence)`.
+   - Scene cut frames from words: `t.at(index)` or `t.atText("word", fallbackSec, occurrence)`. Never use guessed seconds or fixed frame offsets for cuts, stamps or pops; if an element has no matching word, cut it. Confirm no `at` falls after its scene's end frame.
    - Elements pop on the word they illustrate: `<Title at={t.atText(...)}>`, `<Card>` with `<Line>`, `<BigNumber>`, `<Sticker>`, and `<EndCard keyword="...">` for the CTA.
    - Hook scene starts at frame 0 with a Title. Last scene is the EndCard with the comment keyword, starting when the CTA is spoken.
    - Colours and fonts come from the brand (`src/brand.ts`). If the user named a style or colours, change `brand.ts` or pick a preset from `src/presets.ts`, not the reel.

@@ -31,11 +31,15 @@ const measure = (frame: number) => {
   const issues: Issue[] = [];
   const els = Array.from(document.querySelectorAll<HTMLElement>("[data-el]")).filter((e) => effectiveOpacity(e) > 0.5);
   const tol = 3;
-  // Measure the settled layout: switch off the pop-in transform (it overshoots) while measuring.
-  const saved = els.map((e) => e.style.transform);
-  els.forEach((e) => (e.style.transform = "none"));
+  // Measure the settled layout: switch off every pop-in transform (they overshoot, and a
+  // rotated card reports its transformed bounds as overflow). Transforms do not affect layout,
+  // so this only removes false positives; restore them before the frame is used again.
+  const transformed = Array.from(
+    new Set(els.flatMap((e) => [e, ...Array.from(e.querySelectorAll<HTMLElement>("*"))])),
+  );
+  const saved = transformed.map((e) => e.style.transform);
+  transformed.forEach((e) => (e.style.transform = "none"));
   const boxes = els.map((e) => ({ e, name: e.dataset.el || "el", r: e.getBoundingClientRect() }));
-  els.forEach((e, i) => (e.style.transform = saved[i]));
 
   for (const { e, name, r } of boxes) {
     if (r.left < SAFE.left - tol || r.right > WIDTH - SAFE.right + tol || r.top < SAFE.top - tol || r.bottom > HEIGHT - SAFE.bottom + tol) {
@@ -79,6 +83,8 @@ const measure = (frame: number) => {
     const texts = Array.from(e.querySelectorAll<HTMLElement>("*")).filter((n) => Array.from(n.childNodes).some((c) => c.nodeType === 3 && (c.textContent || "").trim()));
     if (texts.length && !texts.some((n) => effectiveOpacity(n) > 0.3)) issues.push({ type: "empty-box", el: name, detail: "box is visible but none of its text has appeared yet" });
   }
+
+  transformed.forEach((e, i) => (e.style.transform = saved[i]));
 
   const content = boxes.filter((b) => b.e.dataset.kind === "content").length;
   const scene = document.querySelector<HTMLElement>("[data-scene]")?.dataset.scene ?? "";
