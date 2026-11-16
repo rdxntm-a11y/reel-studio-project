@@ -28,7 +28,7 @@ export const Scene03Clock: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene3-clock.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE NIGHT" tone="dark" accent={[1]} size={168} delay={0} width={580} align="left" />
+        <Headline label="THE NIGHT" line1="AUGUST" line2="17TH" tone="dark" delay={0} width={580} align="left" size={160} />
         <Stamp text="17 AUGUST" center delay={augAt} rotate={-6} size={66} style={{ top: 700 }} />
         <div
           data-el="hero"
@@ -74,7 +74,7 @@ export const Scene03Receipt: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene3-receipt.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
       />
-      <Headline text="NERVOUS" tone="dark" accent={[0]} size={168} delay={0} width={620} align="left" />
+      <Headline label="THE WITNESS" line1="NERVOUS" line2="WAITING" tone="dark" delay={0} width={620} align="left" size={160} />
       <div
         data-el="hero"
         data-kind="content"

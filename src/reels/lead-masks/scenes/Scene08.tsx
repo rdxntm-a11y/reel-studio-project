@@ -35,7 +35,7 @@ export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE THEORY" tone="paper" accent={[1]} size={150} delay={0} width={620} align="left" />
+        <Headline label="THE THEORY" line1="SIGNAL OR" line2="OVERDOSE" tone="paper" delay={0} width={620} align="left" size={146} />
         <Stamp text="THEORY" center delay={theoryAt} rotate={-8} size={82} style={{ top: 682 }} />
         <Stamp text="OVERDOSE" center delay={odAt} rotate={5} size={86} style={{ top: 874 }} />
 

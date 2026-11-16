@@ -28,7 +28,7 @@ export const Scene07Autopsy: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene7-autopsy.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE AUTOPSY" tone="dark" size={150} delay={0} width={700} align="left" />
+        <Headline label="THE AUTOPSY" line1="TOO" line2="LATE" tone="dark" delay={0} width={700} align="left" size={150} />
         <Stamp text="LATE" center delay={lateAt} rotate={-4} size={92} style={{ top: 700 }} />
         <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 770, width: 900, height: 520 }}>
           <div style={{ position: "absolute", left: 0, top: 40 }}>
@@ -102,7 +102,7 @@ export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene7-unsolved.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="NO ANSWER" tone="dark" size={160} delay={0} width={600} align="left" />
+        <Headline label="THE VERDICT" line1="NO" line2="ANSWER" tone="dark" delay={0} width={600} align="left" size={160} />
         <Stamp text="UNSOLVED" center delay={nahi2At} rotate={-7} size={78} style={{ top: 700 }} />
         <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}>
           <div style={{ position: "absolute", left: 0, top: 40 }}>

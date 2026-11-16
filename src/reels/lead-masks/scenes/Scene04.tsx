@@ -36,7 +36,7 @@ export const Scene04Discovery: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene4-discovery.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE DISCOVERY" tone="paper" accent={[1]} size={142} delay={0} width={620} align="left" />
+        <Headline label="THE DISCOVERY" line1="THREE DAYS" line2="LATER" tone="paper" delay={0} width={620} align="left" size={140} />
         <Stamp text="3 DAYS LATER" center delay={baadAt} rotate={4} size={60} style={{ top: 700 }} />
 
         <div
@@ -95,7 +95,7 @@ export const Scene04Bodies: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene4-bodies.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE OUTFIT" tone="paper" accent={[1]} size={150} delay={0} width={600} align="left" />
+        <Headline label="THE SCENE" line1="THE" line2="OUTFIT" tone="paper" delay={0} width={600} align="left" size={150} />
         <Stamp text="LEAD MASK" center delay={maskAt} rotate={-6} size={72} style={{ top: 700 }} />
 
         <div

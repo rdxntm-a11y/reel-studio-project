@@ -73,7 +73,7 @@ export const Scene06Notebook: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-notebook.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <Headline text="THE NOTEBOOK" tone="paper" accent={[1]} size={140} delay={0} width={700} align="left" />
+      <Headline label="THE NOTEBOOK" line1="THE" line2="INSTRUCTIONS" tone="paper" delay={0} width={700} align="left" size={136} />
       <div
         data-el="hero"
         data-kind="content"
@@ -99,7 +99,7 @@ export const Scene06Capsules: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-capsules.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <Headline text="18:30" tone="paper" accent={[0]} size={178} delay={0} width={500} align="left" />
+      <Headline label="THE NOTEBOOK" line1="TAKE THE" line2="CAPSULES" tone="paper" delay={0} width={620} align="left" size={150} />
       <div
         data-el="hero"
         data-kind="content"
@@ -167,7 +167,7 @@ export const Scene06Metal: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-metal.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <Headline text="THE RULE" tone="paper" accent={[1]} size={154} delay={0} width={500} align="left" />
+      <Headline label="THE NOTEBOOK" line1="WAIT FOR" line2="THE SIGNAL" tone="paper" delay={0} width={620} align="left" size={144} />
       <div
         data-el="hero"
         data-kind="content"

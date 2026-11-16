@@ -1,6 +1,7 @@
-import { loadFont as loadBebas } from "@remotion/google-fonts/BebasNeue";
+import { loadFont as loadBarlowCondensed } from "@remotion/google-fonts/BarlowCondensed";
 import { loadFont as loadCaveat } from "@remotion/google-fonts/Caveat";
 import { loadFont as loadInter } from "@remotion/google-fonts/Inter";
+import { loadFont as loadPoppins } from "@remotion/google-fonts/Poppins";
 import { loadFont as loadTypewriter } from "@remotion/google-fonts/SpecialElite";
 
 export const W = 1080;
@@ -8,8 +9,9 @@ export const H = 1920;
 export const FPS = 30;
 
 export const FONT = {
-  display: loadBebas("normal", { weights: ["400"], subsets: ["latin"] }).fontFamily,
+  display: loadBarlowCondensed("normal", { weights: ["700"], subsets: ["latin"] }).fontFamily,
   body: loadInter("normal", { weights: ["400", "600", "800"], subsets: ["latin"] }).fontFamily,
+  caption: loadPoppins("normal", { weights: ["700"], subsets: ["latin"] }).fontFamily,
   hand: loadCaveat("normal", { weights: ["400", "700"], subsets: ["latin"] }).fontFamily,
   type: loadTypewriter("normal", { weights: ["400"], subsets: ["latin"] }).fontFamily,
 };
@@ -25,9 +27,12 @@ export const C = {
   inkFaint: "oklch(0.6074 0.0221 77.21)",
   red: "oklch(0.5013 0.1783 28.70)",
   redDark: "oklch(0.4065 0.1432 28.59)",
+  accent: "#E8542C",
+  highlight: "#FFC83D",
   lead: "oklch(0.6013 0.0122 256.72)",
   leadLight: "oklch(0.7423 0.0103 252.84)",
   white: "oklch(0.9593 0.0184 86.15)",
+  cream: "#F6E7C8",
 };
 
 /** Perceptual alpha mix — avoids the grey cast of rgba over dark paper. */

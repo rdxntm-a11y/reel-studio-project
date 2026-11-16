@@ -12,11 +12,7 @@ const makeChunks = (words: Word[], max = 4): Chunk[] => {
     cur.push(w);
     const stop = /[.!?,;:]$/.test(w.word) || cur.length >= max;
     if (stop || i === words.length - 1) {
-      chunks.push({
-        words: cur,
-        start: cur[0].start,
-        end: cur[cur.length - 1].end,
-      });
+      chunks.push({ words: cur, start: cur[0].start, end: cur[cur.length - 1].end });
       cur = [];
     }
   });
@@ -36,12 +32,7 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
   if (idx < 0 || t > chunks[idx].end + 0.5) return null;
 
   const chunk = chunks[idx];
-  const pop = spring({
-    frame: frame - Math.round(chunk.start * fps),
-    fps,
-    config: SPRING.pop,
-  });
-  const scale = interpolate(pop, [0, 1], [0.92, 1]);
+  const pop = spring({ frame: frame - Math.round(chunk.start * fps), fps, config: SPRING.pop });
 
   return (
     <div
@@ -57,23 +48,21 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
         justifyContent: "center",
       }}
     >
-      {/* dark, semi-transparent pill so the words stay readable over any image */}
       <div
         style={{
-          transform: `scale(${scale})`,
+          transform: `scale(${interpolate(pop, [0, 1], [0.92, 1])})`,
           maxWidth: ZONE.caption.w,
           boxSizing: "border-box",
-          padding: "16px 34px",
-          borderRadius: 22,
-          background: "rgba(0, 0, 0, 0.7)",
-          border: "1.5px solid rgba(255, 255, 255, 0.14)",
+          padding: "18px 30px",
+          borderRadius: 24,
+          background: "rgba(0, 0, 0, 0.55)",
           boxShadow: "0 10px 26px rgba(0, 0, 0, 0.45)",
           textAlign: "center",
           textWrap: "pretty",
-          fontFamily: FONT.body,
-          fontWeight: 800,
-          fontSize: "clamp(48px, 6.9cqi, 62px)",
-          lineHeight: 1.2,
+          fontFamily: FONT.caption,
+          fontWeight: 700,
+          fontSize: "clamp(46px, 6.7cqi, 60px)",
+          lineHeight: 1.35,
         }}
       >
         {chunk.words.map((w, i) => {
@@ -84,11 +73,14 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
               key={i}
               style={{
                 display: "inline-block",
-                marginRight: i < chunk.words.length - 1 ? 16 : 0,
-                color: active ? C.red : spoken ? C.white : "rgba(255, 255, 255, 0.5)",
+                marginRight: i < chunk.words.length - 1 ? 10 : 0,
+                padding: active ? "2px 14px" : "2px 4px",
+                borderRadius: 14,
+                background: active ? C.highlight : "transparent",
+                color: active ? "#111111" : spoken ? "#FFFFFF" : "rgba(255,255,255,0.3)",
                 transform: active ? "scale(1.08)" : "scale(1)",
                 transformOrigin: "center bottom",
-                transition: "none",
+                textShadow: active ? "none" : "0 2px 8px rgba(0,0,0,0.6)",
               }}
             >
               {w.word}

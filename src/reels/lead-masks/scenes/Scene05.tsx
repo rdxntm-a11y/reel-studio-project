@@ -31,7 +31,7 @@ export const Scene05: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene5.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
-        <Headline text="THE SCENE" tone="dark" accent={[1]} size={144} delay={0} width={580} align="left" />
+        <Headline label="THE CLUES" line1="NO WOUNDS" line2="NO FIGHT" tone="dark" delay={0} width={580} align="left" size={140} />
         <Stamp text="NO WOUNDS" center delay={chotAt} rotate={-5} size={72} style={{ top: 680 }} />
         <Stamp text="NO FIGHT" center delay={ladaiAt} rotate={4} size={72} style={{ top: 862 }} />
 

@@ -1,30 +1,32 @@
 import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { alpha, C, FONT, SPRING, ZONE, clamp, toneColors, type Tone } from "../theme";
+import { C, FONT, SPRING, ZONE, clamp, type Tone } from "../theme";
 
 type HeadlineProps = {
-  text: string;
+  label?: string;
+  line1: string;
+  line2?: string;
   tone?: Tone;
-  accent?: number[];
-  size?: number;
   delay?: number;
   align?: "left" | "center";
   width?: number;
+  size?: number;
 };
 
 export const Headline: React.FC<HeadlineProps> = ({
-  text,
+  label,
+  line1,
+  line2,
   tone = "paper",
-  accent = [],
-  size = 148,
   delay = 0,
   align = "center",
   width = ZONE.headline.w,
+  size = 148,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const col = toneColors(tone);
-  const words = text.split(" ");
+  const line1Color = tone === "dark" ? C.cream : C.ink;
+  const lines = [line1, line2].filter(Boolean) as string[];
 
   return (
     <div
@@ -37,42 +39,45 @@ export const Headline: React.FC<HeadlineProps> = ({
         width,
         height: ZONE.headline.h,
         display: "flex",
-        flexWrap: "wrap",
-        alignItems: "flex-start",
-        alignContent: "flex-start",
-        justifyContent: align === "center" ? "center" : "flex-start",
-        columnGap: 18,
-        rowGap: 0,
+        flexDirection: "column",
+        alignItems: align === "center" ? "center" : "flex-start",
         textAlign: align,
-        fontFamily: FONT.display,
-        fontSize: size,
-        lineHeight: 0.9,
-        letterSpacing: 1,
         textTransform: "uppercase",
       }}
     >
-      {words.map((word, i) => {
-        const s = spring({
-          frame: frame - delay - i * 2,
-          fps,
-          config: SPRING.pop,
-        });
-        const scale = interpolate(s, [0, 1], [0.72, 1], clamp);
-        const y = interpolate(s, [0, 1], [34, 0], clamp);
-        const isAccent = accent.includes(i);
+      {label ? (
+        <div
+          style={{
+            fontFamily: FONT.type,
+            fontSize: 28,
+            letterSpacing: 6,
+            color: C.accent,
+            marginBottom: 14,
+            opacity: spring({ frame: frame - delay, fps, config: SPRING.pop }),
+          }}
+        >
+          {label}
+        </div>
+      ) : null}
+      {lines.map((text, i) => {
+        const s = spring({ frame: frame - delay - (label ? 2 : 0) - i * 2, fps, config: SPRING.pop });
         return (
-          <span
-            key={`${word}-${i}`}
+          <div
+            key={i}
             style={{
-              display: "inline-block",
-              transform: `translateY(${y}px) scale(${scale})`,
+              fontFamily: FONT.display,
+              fontWeight: 700,
+              fontSize: size,
+              lineHeight: 0.88,
+              letterSpacing: 1,
+              color: i === 1 ? C.accent : line1Color,
+              transform: `translateY(${interpolate(s, [0, 1], [34, 0], clamp)}px) scale(${interpolate(s, [0, 1], [0.86, 1], clamp)})`,
               opacity: s,
-              color: isAccent ? C.red : col.fg,
-              textShadow: tone === "paper" ? `0 3px 0 ${alpha(C.ink, 10)}` : `0 4px 0 ${alpha(C.ink, 35)}`,
+              textShadow: tone === "dark" ? "0 4px 0 rgba(0,0,0,0.35)" : "0 3px 0 rgba(0,0,0,0.1)",
             }}
           >
-            {word}
-          </span>
+            {text}
+          </div>
         );
       })}
     </div>

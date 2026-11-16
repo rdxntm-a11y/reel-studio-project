@@ -32,7 +32,7 @@ export const Scene01: React.FC<SceneProps> = ({ t, from }) => {
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
 
-        <Headline text="BRAZIL 1966" tone="paper" accent={[1]} size={190} delay={0} width={680} align="left" />
+        <Headline label="THE REPORT" line1="BRAZIL" line2="1966" tone="paper" delay={0} width={680} align="left" size={170} />
         <Stamp text="1966" center delay={yearAt} rotate={-8} size={108} style={{ top: 700 }} />
 
         <div
