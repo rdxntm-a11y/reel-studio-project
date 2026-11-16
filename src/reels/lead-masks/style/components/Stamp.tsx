@@ -1,6 +1,7 @@
 import React from "react";
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { alpha, C, FONT, SPRING, clamp, type Tone } from "../theme";
+import { interpolate, useCurrentFrame } from "remotion";
+import { alpha, C, FONT, clamp, type Tone } from "../theme";
+import { slamPose } from "../motion";
 
 type StampProps = {
   text: string;
@@ -10,6 +11,8 @@ type StampProps = {
   tone?: Tone;
   style?: React.CSSProperties;
   bleed?: boolean;
+  /** centre the stamp horizontally over the main action */
+  center?: boolean;
 };
 
 export const Stamp: React.FC<StampProps> = ({
@@ -20,21 +23,20 @@ export const Stamp: React.FC<StampProps> = ({
   tone = "paper",
   style,
   bleed = true,
+  center = false,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const s = spring({ frame: frame - delay, fps, config: SPRING.slam });
-  const scale = interpolate(s, [0, 1], [2.7, 1], clamp);
-  const opacity = interpolate(frame - delay, [0, 4], [0, 1], clamp);
-  const y = interpolate(s, [0, 1], [-46, 0], clamp);
-  const land = frame - delay - 9;
-  const shake = land > 0 && land < 9 ? Math.sin(land * 2.6) * 4.5 * (1 - land / 9) : 0;
-  const bleedOpacity = interpolate(frame - delay, [6, 24], [0, 0.3], clamp);
+  const { scale, y, opacity, shake } = slamPose(frame, delay);
+  const bleedOpacity = interpolate(frame - delay, [4, 22], [0, 0.3], clamp);
+  const pos: React.CSSProperties = center
+    ? { left: 0, right: 0, width: "max-content", marginLeft: "auto", marginRight: "auto" }
+    : {};
 
   return (
     <div
       style={{
         position: "absolute",
+        ...pos,
         ...style,
         transform: `rotate(${rotate}deg) translateY(${y}px) translateX(${shake}px) scale(${scale})`,
         opacity,

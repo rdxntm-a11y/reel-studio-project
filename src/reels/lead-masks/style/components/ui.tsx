@@ -1,6 +1,31 @@
 import React from "react";
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { alpha, C, FONT, SPRING, clamp } from "../theme";
+import { slide } from "../motion";
+
+/**
+ * A slight screen shake. Wrap a whole scene in it and pass the local frames at
+ * which a stamp lands; the shake decays over ~half a second. Amplitude is kept
+ * under the self-check's 3px tolerance so it never trips the safe-zone probe.
+ */
+export const ScreenShake: React.FC<{
+  at: number[];
+  amount?: number;
+  children: React.ReactNode;
+}> = ({ at, amount = 2.4, children }) => {
+  const frame = useCurrentFrame();
+  let x = 0;
+  let y = 0;
+  at.forEach((a) => {
+    const t = frame - a;
+    if (t >= 0 && t < 16) {
+      const decay = Math.pow(1 - t / 16, 1.5);
+      x += Math.sin(t * 3.4) * amount * decay;
+      y += Math.cos(t * 4.6) * amount * 0.8 * decay;
+    }
+  });
+  return <AbsoluteFill style={{ transform: `translate(${x}px, ${y}px)` }}>{children}</AbsoluteFill>;
+};
 
 export const Floaty: React.FC<{
   children: React.ReactNode;
@@ -41,7 +66,10 @@ export const PropLabel: React.FC<{
   background?: string;
   rotate?: number;
   size?: number;
-}> = ({ text, at, color, background, rotate, size = 26 }) => {
+  /** which edge the label slides in from */
+  from?: "left" | "right" | "top" | "bottom";
+  dist?: number;
+}> = ({ text, at, color, background, rotate, size = 26, from = "bottom", dist = 26 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = spring({ frame: frame - at, fps, config: SPRING.pop });
@@ -49,7 +77,8 @@ export const PropLabel: React.FC<{
     <div
       style={{
         opacity: s,
-        transform: `translateY(${interpolate(s, [0, 1], [14, 0], clamp)}px)`,
+        transform: slide(s, from, dist),
+        willChange: "transform, opacity",
       }}
     >
       <Tag text={text} color={color} background={background} rotate={rotate} size={size} />

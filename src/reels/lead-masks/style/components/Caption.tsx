@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Word } from "../../../../timing";
-import { alpha, C, FONT, SPRING, ZONE } from "../theme";
+import { C, FONT, SPRING, ZONE } from "../theme";
 
 type Chunk = { words: Word[]; start: number; end: number };
 
@@ -41,7 +41,7 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
     fps,
     config: SPRING.pop,
   });
-  const scale = interpolate(pop, [0, 1], [0.9, 1]);
+  const scale = interpolate(pop, [0, 1], [0.92, 1]);
 
   return (
     <div
@@ -57,22 +57,23 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
         justifyContent: "center",
       }}
     >
+      {/* dark, semi-transparent pill so the words stay readable over any image */}
       <div
         style={{
           transform: `scale(${scale})`,
           maxWidth: ZONE.caption.w,
           boxSizing: "border-box",
-          padding: "14px 30px",
-          borderRadius: 18,
-          border: `2px solid ${alpha(C.white, 16)}`,
-          background: alpha(C.charcoal, 92),
-          boxShadow: `0 8px 0 ${alpha(C.ink, 18)}`,
+          padding: "16px 34px",
+          borderRadius: 22,
+          background: "rgba(0, 0, 0, 0.7)",
+          border: "1.5px solid rgba(255, 255, 255, 0.14)",
+          boxShadow: "0 10px 26px rgba(0, 0, 0, 0.45)",
           textAlign: "center",
           textWrap: "pretty",
           fontFamily: FONT.body,
           fontWeight: 800,
           fontSize: "clamp(48px, 6.9cqi, 62px)",
-          lineHeight: 1.18,
+          lineHeight: 1.2,
         }}
       >
         {chunk.words.map((w, i) => {
@@ -82,8 +83,12 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
             <span
               key={i}
               style={{
-                color: active ? C.red : spoken ? C.white : C.inkFaint,
+                display: "inline-block",
                 marginRight: i < chunk.words.length - 1 ? 16 : 0,
+                color: active ? C.red : spoken ? C.white : "rgba(255, 255, 255, 0.5)",
+                transform: active ? "scale(1.08)" : "scale(1)",
+                transformOrigin: "center bottom",
+                transition: "none",
               }}
             >
               {w.word}

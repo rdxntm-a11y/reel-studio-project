@@ -1,45 +1,61 @@
 import React from "react";
-import {
-  AbsoluteFill,
-  Img,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { useBrand } from "../../../brand-context";
 import { PaperBackground } from "../style/components/PaperBackground";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, Tag } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
+import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
 
+// "Theory: dono scientific spiritualists the. UFO ke liye mask pehne, overdose ho gaya."
+// Camera tilts up to the UFO, then the "OVERDOSE" twist slams.
 export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
-  const stampAt = t.at(106) - from;
+  const theoryAt = t.at(106) - from;
+  const spirAt = t.at(109) - from;
   const ufoAt = t.at(111) - from;
-  const tagAt = t.at(108) - from;
-  const pop = spring({ frame: frame - 0, fps, config: SPRING.pop });
-  const tag = spring({ frame: frame - tagAt, fps, config: SPRING.pop });
-  const scale = interpolate(frame, [0, durationInFrames], [1, 1.05], clamp);
+  const odAt = t.at(116) - from;
+
+  const cam = camera(frame, [
+    { at: 0, scale: 1.06, y: 40, x: 0 },
+    { at: ufoAt, scale: 1.1, y: -50, x: 0 },
+    { at: odAt, scale: 1.14, y: -104, x: 0 },
+    { at: durationInFrames, scale: 1.16, y: -116, x: 0 },
+  ]);
+
+  const believers = spring({ frame: frame - spirAt, fps, config: SPRING.pop });
 
   return (
-    <AbsoluteFill>
-      <Img src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${scale})` }} />
-      <Headline text="THE THEORY" tone="paper" accent={[1]} size={150} delay={0} width={620} align="left" />
-      <Stamp text="THEORY" delay={stampAt} rotate={-8} size={90} style={{ left: 600, top: 238 }} />
-      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 720, width: 900, height: 560, display: "flex", alignItems: "flex-end", justifyContent: "center", opacity: pop, transform: `translateY(${interpolate(pop, [0, 1], [70, 0], clamp)}px)` }}>
-        <div style={{ position: "absolute", top: 40, right: 0 }}>
-          <PropLabel text="UFO" at={ufoAt} rotate={2} />
+    <ScreenShake at={[theoryAt + 3, odAt + 3]}>
+      <AbsoluteFill>
+        <Img
+          src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")}
+          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+        />
+        <Headline text="THE THEORY" tone="paper" accent={[1]} size={150} delay={0} width={620} align="left" />
+        <Stamp text="THEORY" center delay={theoryAt} rotate={-8} size={82} style={{ top: 682 }} />
+        <Stamp text="OVERDOSE" center delay={odAt} rotate={5} size={86} style={{ top: 874 }} />
+
+        <div
+          data-el="hero"
+          data-kind="content"
+          style={{ position: "absolute", left: 60, top: 1010, width: 900, height: 290, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}
+        >
+          <PropLabel text="UFO" at={ufoAt} rotate={2} from="top" dist={90} />
+          <div
+            style={{
+              opacity: believers,
+              transform: `translateY(${interpolate(believers, [0, 1], [40, 0], clamp)}px)`,
+            }}
+          >
+            <PropLabel text="SCIENTIFIC SPIRITUALISTS" at={spirAt} rotate={-2} size={26} from="left" dist={200} />
+          </div>
         </div>
-        <div style={{ position: "absolute", bottom: -8, left: 0, width: "100%", display: "flex", justifyContent: "center", opacity: tag, transform: `translateY(${interpolate(tag, [0, 1], [22, 0], clamp)}px)` }}>
-          <Tag text="SCIENTIFIC SPIRITUALISTS" rotate={-2} size={28} />
-        </div>
-      </div>
-    </AbsoluteFill>
+      </AbsoluteFill>
+    </ScreenShake>
   );
 };
 
@@ -50,54 +66,56 @@ export const Scene08CTA: React.FC<SceneProps> = ({ t, from }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const { handle } = useBrand();
-  const stampAt = t.at(119) - from;
+  const followAt = t.at(119) - from;
   const s = spring({ frame: frame - 0, fps, config: SPRING.pop });
   const y = interpolate(s, [0, 1], [80, 0], clamp);
 
   return (
-    <AbsoluteFill>
-      <PaperBackground tone="paper" seed={72} />
-      <div
-        data-el="endcard"
-        data-kind="content"
-        style={{
-          position: "absolute",
-          left: 160,
-          top: 720,
-          width: 760,
-          height: 560,
-          containerType: "inline-size",
-          transform: `translateY(${y}px) rotate(-1deg)`,
-          opacity: s,
-        }}
-      >
+    <ScreenShake at={[followAt + 3]} amount={1.8}>
+      <AbsoluteFill>
+        <PaperBackground tone="paper" seed={72} />
         <div
+          data-el="endcard"
+          data-kind="content"
           style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-            background: C.paperLight,
-            border: `5px solid ${C.ink}`,
-            boxShadow: `0 18px 0 ${alpha(C.ink, 20)}`,
-            clipPath: torn,
-            padding: "54px 50px",
-            boxSizing: "border-box",
+            position: "absolute",
+            left: 160,
+            top: 720,
+            width: 760,
+            height: 560,
+            containerType: "inline-size",
+            transform: `translateY(${y}px) rotate(-1deg)`,
+            opacity: s,
           }}
         >
-          <div style={{ fontFamily: FONT.body, fontWeight: 800, fontSize: 28, letterSpacing: 4, color: C.inkSoft }}>
-            MORE REAL CASES
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              background: C.paperLight,
+              border: `5px solid ${C.ink}`,
+              boxShadow: `0 18px 0 ${alpha(C.ink, 20)}`,
+              clipPath: torn,
+              padding: "54px 50px",
+              boxSizing: "border-box",
+            }}
+          >
+            <div style={{ fontFamily: FONT.body, fontWeight: 800, fontSize: 28, letterSpacing: 4, color: C.inkSoft }}>
+              MORE REAL CASES
+            </div>
+            <div style={{ fontFamily: FONT.display, fontSize: "clamp(64px, 12.1cqi, 92px)", lineHeight: 0.95, color: C.ink, marginTop: 12 }}>
+              THAT KEEP YOU
+              <br />
+              UP AT NIGHT
+            </div>
+            <div style={{ marginTop: 20, fontFamily: FONT.body, fontWeight: 800, fontSize: 34, color: C.ink }}>
+              {handle}
+            </div>
+            <Stamp text="FOLLOW" center delay={followAt} rotate={-8} size={62} bleed={false} style={{ top: 348 }} />
           </div>
-          <div style={{ fontFamily: FONT.display, fontSize: "clamp(64px, 12.1cqi, 92px)", lineHeight: 0.95, color: C.ink, marginTop: 12 }}>
-            THAT KEEP YOU
-            <br />
-            UP AT NIGHT
-          </div>
-          <div style={{ marginTop: 20, fontFamily: FONT.body, fontWeight: 800, fontSize: 34, color: C.ink }}>
-            {handle}
-          </div>
-          <Stamp text="FOLLOW" delay={stampAt} rotate={-8} size={62} bleed={false} style={{ left: 180, top: 348 }} />
         </div>
-      </div>
-    </AbsoluteFill>
+      </AbsoluteFill>
+    </ScreenShake>
   );
 };
