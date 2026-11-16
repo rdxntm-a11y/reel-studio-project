@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake } from "../style/components/ui";
+import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
 import { Clock } from "../style/components/Props";
 import { C, SPRING, clamp } from "../style/theme";
 import { camera } from "../style/motion";
@@ -28,23 +28,17 @@ export const Scene03Clock: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene3-clock.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
+        <TextMasks tone="dark" />
         <Headline label="THE NIGHT" line1="AUGUST" line2="17TH" tone="dark" delay={0} width={580} align="left" size={160} />
-        <Stamp text="17 AUGUST" center delay={augAt} rotate={-6} size={66} style={{ top: 700 }} />
+        <Stamp text="17 AUGUST" delay={augAt} rotate={-8} size={60} style={{ top: 700, right: 80 }} />
         <div
           data-el="hero"
           data-kind="content"
-          style={{
-            position: "absolute",
-            left: 60,
-            top: 800,
-            width: 900,
-            height: 480,
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-          }}
+          style={{ position: "absolute", left: 60, top: 800, width: 900, height: 480 }}
         >
-          <PropLabel text="BAR IN NITERÓI" at={barAt} rotate={-1} from="left" dist={150} />
+          <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+            <PropLabel text="BAR IN NITERÓI" at={barAt} rotate={0} from="left" dist={150} />
+          </div>
         </div>
       </AbsoluteFill>
     </ScreenShake>
@@ -74,17 +68,16 @@ export const Scene03Receipt: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene3-receipt.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
       />
+      <TextMasks tone="dark" />
       <Headline label="THE WITNESS" line1="NERVOUS" line2="WAITING" tone="dark" delay={0} width={620} align="left" size={160} />
       <div
         data-el="hero"
         data-kind="content"
         style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
       >
-        <div style={{ position: "absolute", left: 0, bottom: 0 }}>
-          <PropLabel text="WAITRESS" at={waitressAt} rotate={-2} background={C.paperDeep} from="left" dist={150} />
-        </div>
-        <div style={{ position: "absolute", left: 220, bottom: 0 }}>
-          <PropLabel text="MIGUEL" at={migAt} rotate={2} from="bottom" dist={90} />
+        <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+          <PropLabel text="WAITRESS" at={waitressAt} rotate={0} background={C.paperDeep} from="left" dist={150} />
+          <PropLabel text="MIGUEL" at={migAt} rotate={0} from="left" dist={90} />
         </div>
 
         {/* the watch slides in from the right on "ghadi" and ticks */}
@@ -107,7 +100,7 @@ const WatchReveal: React.FC<{ labelAt: number }> = ({ labelAt }) => {
         position: "absolute",
         right: 0,
         top: 0,
-        width: 300,
+        width: 280,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -116,8 +109,8 @@ const WatchReveal: React.FC<{ labelAt: number }> = ({ labelAt }) => {
         transform: `translateX(${interpolate(s, [0, 1], [180, 0], clamp)}px) scale(${interpolate(s, [0, 1], [0.7, 1], clamp)})`,
       }}
     >
-      <Clock second={tick} minute={24} width={260} />
-      <PropLabel text="CHECKING WATCH" at={labelAt} rotate={-2} size={22} from="right" dist={90} />
+      <Clock second={tick} minute={24} width={240} />
+      <PropLabel text="CHECKING WATCH" at={labelAt} rotate={0} size={22} from="right" dist={90} />
     </div>
   );
 };

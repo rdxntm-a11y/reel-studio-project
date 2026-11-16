@@ -92,7 +92,7 @@ export const Tag: React.FC<{
   background?: string;
   rotate?: number;
   size?: number;
-}> = ({ text, color = C.ink, background = C.paperLight, rotate = -2, size = 34 }) => (
+}> = ({ text, color = C.ink, background = C.paperLight, rotate = 0, size = 34 }) => (
   <div
     style={{
       display: "inline-block",
@@ -106,7 +106,7 @@ export const Tag: React.FC<{
       fontSize: size,
       letterSpacing: 1,
       textTransform: "uppercase",
-      transform: `rotate(${rotate}deg)`,
+      transform: rotate ? `rotate(${rotate}deg)` : undefined,
       boxShadow: `0 5px 0 ${alpha(C.ink, 14)}`,
       whiteSpace: "nowrap",
       flexShrink: 0,
@@ -116,3 +116,33 @@ export const Tag: React.FC<{
     {text}
   </div>
 );
+
+export const TextMasks: React.FC<{ tone?: "paper" | "dark" }> = ({ tone = "paper" }) => {
+  const color = tone === "dark" ? C.charcoal : C.paper;
+  return (
+    <>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: 0,
+          height: 700,
+          background: `linear-gradient(to bottom, ${color} 0%, ${alpha(color, 96)} 48%, transparent 100%)`,
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 720,
+          background: `linear-gradient(to top, ${color} 0%, ${alpha(color, 96)} 52%, transparent 100%)`,
+          pointerEvents: "none",
+        }}
+      />
+    </>
+  );
+};

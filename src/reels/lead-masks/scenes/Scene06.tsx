@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
-import { PropLabel } from "../style/components/ui";
+import { PropLabel, TextMasks } from "../style/components/ui";
 import { Capsule } from "../style/components/Props";
 import { LeadMask as MaskGraphic } from "../style/components/PaperFigure";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
@@ -50,8 +50,8 @@ const TornNote: React.FC<{
           {text}
         </div>
         {sub ? (
-          <div style={{ marginTop: 12, fontFamily: FONT.hand, fontSize: 32, color: C.inkFaint, transform: "rotate(-1deg)" }}>
-            <PropLabel text={sub} at={subAt ?? at} rotate={-1} size={22} background={C.paperDeep} />
+          <div style={{ marginTop: 12 }}>
+            <PropLabel text={sub} at={subAt ?? at} rotate={0} size={22} background={C.paperDeep} />
           </div>
         ) : null}
       </div>
@@ -73,11 +73,12 @@ export const Scene06Notebook: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-notebook.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
+      <TextMasks tone="paper" />
       <Headline label="THE NOTEBOOK" line1="THE" line2="INSTRUCTIONS" tone="paper" delay={0} width={700} align="left" size={136} />
       <div
         data-el="hero"
         data-kind="content"
-        style={{ position: "absolute", left: 60, top: 800, width: 900, height: 480, display: "flex", alignItems: "center", justifyContent: "center" }}
+        style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500, display: "flex", alignItems: "flex-start", justifyContent: "flex-start" }}
       >
         <TornNote text="16:30 — PAHUNCHO" at={t1630At} from="left" sub="REACH THE MEETING POINT" subAt={pahunchoAt} />
       </div>
@@ -99,13 +100,14 @@ export const Scene06Capsules: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-capsules.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
+      <TextMasks tone="paper" />
       <Headline label="THE NOTEBOOK" line1="TAKE THE" line2="CAPSULES" tone="paper" delay={0} width={620} align="left" size={150} />
       <div
         data-el="hero"
         data-kind="content"
-        style={{ position: "absolute", left: 60, top: 780, width: 900, height: 520, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 26 }}
+        style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 22 }}
       >
-        <TornNote text="18:30 — CAPSULES LO" at={0} from="right" rotate={1.2} />
+        <TornNote text="18:30 — CAPSULES LO" at={0} from="left" rotate={-1.2} />
         <Sequence from={capsAt} layout="none">
           <CapsuleRow labelAt={loAt - capsAt} />
         </Sequence>
@@ -119,10 +121,10 @@ const CapsuleRow: React.FC<{ labelAt: number }> = ({ labelAt }) => {
   const { fps } = useVideoConfig();
   const s = spring({ frame, fps, config: SPRING.pop });
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 22, opacity: s, transform: slide(s, "right", 220) }}>
+    <div style={{ display: "flex", alignItems: "center", gap: 22, opacity: s, transform: slide(s, "left", 220) }}>
       <Capsule width={130} rotate={-14} />
       <Capsule width={130} rotate={6} />
-      <PropLabel text="CAPSULES" at={labelAt} rotate={-2} from="right" dist={80} />
+      <PropLabel text="CAPSULES" at={labelAt} rotate={0} from="left" dist={80} />
     </div>
   );
 };
@@ -167,20 +169,21 @@ export const Scene06Metal: React.FC<SceneProps> = ({ t, from }) => {
         src={staticFile("reels/lead-masks/assets/scene6-metal.jpg")}
         style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
       />
+      <TextMasks tone="paper" />
       <Headline label="THE NOTEBOOK" line1="WAIT FOR" line2="THE SIGNAL" tone="paper" delay={0} width={620} align="left" size={144} />
       <div
         data-el="hero"
         data-kind="content"
-        style={{ position: "absolute", left: 60, top: 770, width: 900, height: 520, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}
+        style={{ position: "absolute", left: 60, top: 770, width: 900, height: 500, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 18 }}
       >
         <TornNote text="METAL BACHÃO" at={0} from="left" size={48} />
-        <div style={{ position: "relative", opacity: mask, transform: `translateY(${interpolate(mask, [0, 1], [-140, 0], clamp)}px) scale(${interpolate(mask, [0, 1], [0.7, 1], clamp)})` }}>
+        <div style={{ position: "relative", opacity: mask, transform: `translateY(${interpolate(mask, [0, 1], [-140, 0], clamp)}px) scale(${interpolate(mask, [0, 1], [0.7, 1], clamp)})`, alignSelf: "center" }}>
           <MaskGraphic size={220} glow={1} />
           <SignalRing at={signalAt} i={0} />
           <SignalRing at={signalAt} i={1} />
           <SignalRing at={signalAt} i={2} />
         </div>
-        <TornNote text="MASK KA SIGNAL KA INTEZAAR" at={signalAt} from="bottom" size={40} rotate={-1} />
+        <TornNote text="MASK KA SIGNAL KA INTEZAAR" at={signalAt} from="left" size={40} rotate={-1} />
       </div>
     </AbsoluteFill>
   );

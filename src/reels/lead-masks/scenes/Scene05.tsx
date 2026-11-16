@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake } from "../style/components/ui";
+import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
 import { C } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -31,37 +31,29 @@ export const Scene05: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene5.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
+        <TextMasks tone="dark" />
         <Headline label="THE CLUES" line1="NO WOUNDS" line2="NO FIGHT" tone="dark" delay={0} width={580} align="left" size={140} />
-        <Stamp text="NO WOUNDS" center delay={chotAt} rotate={-5} size={72} style={{ top: 680 }} />
-        <Stamp text="NO FIGHT" center delay={ladaiAt} rotate={4} size={72} style={{ top: 862 }} />
+        <Stamp text="NO WOUNDS" delay={chotAt} rotate={-8} size={60} style={{ top: 700, right: 80 }} />
+        <Stamp text="NO FIGHT" delay={ladaiAt} rotate={-8} size={60} style={{ top: 790, right: 80 }} />
 
         <div
           data-el="hero"
           data-kind="content"
-          style={{
-            position: "absolute",
-            left: 60,
-            top: 1010,
-            width: 900,
-            height: 290,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 12,
-            flexWrap: "wrap",
-          }}
+          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
         >
-          <PropLabel text="EMPTY BOTTLE" at={bottleAt} rotate={-2} size={20} from="left" dist={170} />
-          <PropLabel
-            text="TWO WET TOWELS"
-            at={towelAt}
-            rotate={1}
-            size={20}
-            background={C.paperDeep}
-            from="bottom"
-            dist={90}
-          />
-          <PropLabel text="NOTEBOOK" at={notebookAt} rotate={-1} size={20} from="right" dist={170} />
+          <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+            <PropLabel text="EMPTY BOTTLE" at={bottleAt} rotate={0} size={22} from="left" dist={170} />
+            <PropLabel
+              text="TWO WET TOWELS"
+              at={towelAt}
+              rotate={0}
+              size={22}
+              background={C.paperDeep}
+              from="left"
+              dist={90}
+            />
+            <PropLabel text="NOTEBOOK" at={notebookAt} rotate={0} size={22} from="left" dist={170} />
+          </div>
         </div>
       </AbsoluteFill>
     </ScreenShake>

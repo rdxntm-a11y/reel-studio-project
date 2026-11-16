@@ -4,7 +4,7 @@ import { useBrand } from "../../../brand-context";
 import { PaperBackground } from "../style/components/PaperBackground";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake } from "../style/components/ui";
+import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -35,23 +35,26 @@ export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
+        <TextMasks tone="paper" />
         <Headline label="THE THEORY" line1="SIGNAL OR" line2="OVERDOSE" tone="paper" delay={0} width={620} align="left" size={146} />
-        <Stamp text="THEORY" center delay={theoryAt} rotate={-8} size={82} style={{ top: 682 }} />
-        <Stamp text="OVERDOSE" center delay={odAt} rotate={5} size={86} style={{ top: 874 }} />
+        <Stamp text="THEORY" delay={theoryAt} rotate={-8} size={72} style={{ top: 700, right: 80 }} />
+        <Stamp text="OVERDOSE" delay={odAt} rotate={-8} size={72} style={{ top: 792, right: 80 }} />
 
         <div
           data-el="hero"
           data-kind="content"
-          style={{ position: "absolute", left: 60, top: 1010, width: 900, height: 290, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18 }}
+          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
         >
-          <PropLabel text="UFO" at={ufoAt} rotate={2} from="top" dist={90} />
-          <div
-            style={{
-              opacity: believers,
-              transform: `translateY(${interpolate(believers, [0, 1], [40, 0], clamp)}px)`,
-            }}
-          >
-            <PropLabel text="SCIENTIFIC SPIRITUALISTS" at={spirAt} rotate={-2} size={26} from="left" dist={200} />
+          <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+            <PropLabel text="UFO" at={ufoAt} rotate={0} from="left" dist={90} />
+            <div
+              style={{
+                opacity: believers,
+                transform: `translateY(${interpolate(believers, [0, 1], [40, 0], clamp)}px)`,
+              }}
+            >
+              <PropLabel text="SCIENTIFIC SPIRITUALISTS" at={spirAt} rotate={0} size={26} from="left" dist={200} />
+            </div>
           </div>
         </div>
       </AbsoluteFill>
@@ -112,7 +115,7 @@ export const Scene08CTA: React.FC<SceneProps> = ({ t, from }) => {
             <div style={{ marginTop: 20, fontFamily: FONT.body, fontWeight: 800, fontSize: 34, color: C.ink }}>
               {handle}
             </div>
-            <Stamp text="FOLLOW" center delay={followAt} rotate={-8} size={62} bleed={false} style={{ top: 348 }} />
+            <Stamp text="FOLLOW" delay={followAt} rotate={-8} size={62} bleed={false} style={{ top: 320, right: 40 }} />
           </div>
         </div>
       </AbsoluteFill>

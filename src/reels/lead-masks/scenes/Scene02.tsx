@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake } from "../style/components/ui";
+import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
 import { C } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -29,23 +29,22 @@ export const Scene02: React.FC<SceneProps> = ({ t, from }) => {
           src={staticFile("reels/lead-masks/assets/scene2.jpg")}
           style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
         />
+        <TextMasks tone="paper" />
 
         <Headline label="THE SUBJECTS" line1="MANOEL +" line2="MIGUEL" tone="paper" delay={0} width={620} align="left" size={130} />
-        <Stamp text="TECHNICIANS" center delay={techAt} rotate={5} size={58} style={{ top: 700 }} />
+        <Stamp text="TECHNICIANS" delay={techAt} rotate={-8} size={52} style={{ top: 700, right: 80 }} />
 
         <div
           data-el="hero"
           data-kind="content"
           style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500 }}
         >
-          <div style={{ position: "absolute", right: 0, top: 40 }}>
-            <PropLabel text="ELECTRONICS KIT" at={elecAt} rotate={-3} from="right" dist={170} />
-          </div>
-          <div style={{ position: "absolute", left: 0, bottom: 0 }}>
+          <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+            <PropLabel text="ELECTRONICS KIT" at={elecAt} rotate={0} from="left" dist={170} />
             <PropLabel
               text="SAID: OFFICE WORK"
               at={officeAt}
-              rotate={2}
+              rotate={0}
               background={C.paperDeep}
               from="left"
               dist={200}
