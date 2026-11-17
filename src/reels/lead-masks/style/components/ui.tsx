@@ -127,8 +127,8 @@ export const TextMasks: React.FC<{ tone?: "paper" | "dark" }> = ({ tone = "paper
           left: 0,
           right: 0,
           top: 0,
-          height: 700,
-          background: `linear-gradient(to bottom, ${color} 0%, ${alpha(color, 96)} 48%, transparent 100%)`,
+          height: "15%",
+          background: `linear-gradient(to bottom, ${color} 0%, transparent 100%)`,
           pointerEvents: "none",
         }}
       />
@@ -138,8 +138,8 @@ export const TextMasks: React.FC<{ tone?: "paper" | "dark" }> = ({ tone = "paper
           left: 0,
           right: 0,
           bottom: 0,
-          height: 720,
-          background: `linear-gradient(to top, ${color} 0%, ${alpha(color, 96)} 52%, transparent 100%)`,
+          height: "20%",
+          background: `linear-gradient(to top, ${color} 0%, transparent 100%)`,
           pointerEvents: "none",
         }}
       />
