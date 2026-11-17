@@ -1,7 +1,8 @@
 import React from "react";
-import { AbsoluteFill, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
-import { PropLabel, TextMasks } from "../style/components/ui";
+import { SceneLayout } from "../style/components/SceneLayout";
+import { PropLabel } from "../style/components/ui";
 import { Capsule } from "../style/components/Props";
 import { LeadMask as MaskGraphic } from "../style/components/PaperFigure";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
@@ -68,21 +69,17 @@ export const Scene06Notebook: React.FC<SceneProps> = ({ t, from }) => {
   const push = interpolate(frame, [0, durationInFrames], [0, -18], clamp);
 
   return (
-    <AbsoluteFill>
+    <SceneLayout
+      headline={<Headline label="THE NOTEBOOK" line1="THE" line2="INSTRUCTIONS" tone="paper" delay={0} width={700} align="left" size={136} />}
+    >
       <Img
         src={staticFile("reels/lead-masks/assets/scene6-notebook.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <TextMasks tone="paper" />
-      <Headline label="THE NOTEBOOK" line1="THE" line2="INSTRUCTIONS" tone="paper" delay={0} width={700} align="left" size={136} />
-      <div
-        data-el="hero"
-        data-kind="content"
-        style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500, display: "flex", alignItems: "flex-start", justifyContent: "flex-start" }}
-      >
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", display: "flex", alignItems: "flex-start", justifyContent: "flex-start" }}>
         <TornNote text="16:30 — PAHUNCHO" at={t1630At} from="left" sub="REACH THE MEETING POINT" subAt={pahunchoAt} />
       </div>
-    </AbsoluteFill>
+    </SceneLayout>
   );
 };
 
@@ -95,24 +92,20 @@ export const Scene06Capsules: React.FC<SceneProps> = ({ t, from }) => {
   const push = interpolate(frame, [0, durationInFrames], [0, -16], clamp);
 
   return (
-    <AbsoluteFill>
+    <SceneLayout
+      headline={<Headline label="THE NOTEBOOK" line1="TAKE THE" line2="CAPSULES" tone="paper" delay={0} width={620} align="left" size={150} />}
+    >
       <Img
         src={staticFile("reels/lead-masks/assets/scene6-capsules.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <TextMasks tone="paper" />
-      <Headline label="THE NOTEBOOK" line1="TAKE THE" line2="CAPSULES" tone="paper" delay={0} width={620} align="left" size={150} />
-      <div
-        data-el="hero"
-        data-kind="content"
-        style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 22 }}
-      >
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 22 }}>
         <TornNote text="18:30 — CAPSULES LO" at={0} from="left" rotate={-1.2} />
         <Sequence from={capsAt} layout="none">
           <CapsuleRow labelAt={loAt - capsAt} />
         </Sequence>
       </div>
-    </AbsoluteFill>
+    </SceneLayout>
   );
 };
 
@@ -164,18 +157,14 @@ export const Scene06Metal: React.FC<SceneProps> = ({ t, from }) => {
   const push = interpolate(frame, [0, durationInFrames], [0, -14], clamp);
 
   return (
-    <AbsoluteFill>
+    <SceneLayout
+      headline={<Headline label="THE NOTEBOOK" line1="WAIT FOR" line2="THE SIGNAL" tone="paper" delay={0} width={620} align="left" size={144} />}
+    >
       <Img
         src={staticFile("reels/lead-masks/assets/scene6-metal.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(1.08) translateY(${push}px)` }}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transform: `scale(1.08) translateY(${push}px)` }}
       />
-      <TextMasks tone="paper" />
-      <Headline label="THE NOTEBOOK" line1="WAIT FOR" line2="THE SIGNAL" tone="paper" delay={0} width={620} align="left" size={144} />
-      <div
-        data-el="hero"
-        data-kind="content"
-        style={{ position: "absolute", left: 60, top: 770, width: 900, height: 500, display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 18 }}
-      >
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "flex-start", gap: 18 }}>
         <TornNote text="METAL BACHÃO" at={0} from="left" size={48} />
         <div style={{ position: "relative", opacity: mask, transform: `translateY(${interpolate(mask, [0, 1], [-140, 0], clamp)}px) scale(${interpolate(mask, [0, 1], [0.7, 1], clamp)})`, alignSelf: "center" }}>
           <MaskGraphic size={220} glow={1} />
@@ -185,6 +174,6 @@ export const Scene06Metal: React.FC<SceneProps> = ({ t, from }) => {
         </div>
         <TornNote text="MASK KA SIGNAL KA INTEZAAR" at={signalAt} from="left" size={40} rotate={-1} />
       </div>
-    </AbsoluteFill>
+    </SceneLayout>
   );
 };

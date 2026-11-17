@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { C } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -26,28 +27,22 @@ export const Scene01: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[yearAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE REPORT" line1="BRAZIL" line2="1966" tone="paper" delay={0} width={680} align="left" size={170} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene1.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="paper" />
-
-        <Headline label="THE REPORT" line1="BRAZIL" line2="1966" tone="paper" delay={0} width={680} align="left" size={170} />
-        <Stamp text="1966" delay={yearAt} rotate={-8} size={96} style={{ top: 700, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
-        >
+        <Stamp text="1966" delay={yearAt} rotate={-8} size={96} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="SISA KI MASK" at={maskAt} rotate={0} from="left" dist={160} />
             <PropLabel text="DO LAASHE" at={doAt} rotate={0} from="left" dist={120} />
             <PropLabel text="2 VICTIMS" at={laasheAt} rotate={0} background={C.paperDeep} from="left" dist={120} />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };

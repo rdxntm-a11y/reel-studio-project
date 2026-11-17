@@ -3,8 +3,9 @@ import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, us
 import { useBrand } from "../../../brand-context";
 import { PaperBackground } from "../style/components/PaperBackground";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { alpha, C, FONT, SPRING, clamp } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -30,21 +31,16 @@ export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[theoryAt + 3, odAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE THEORY" line1="SIGNAL OR" line2="OVERDOSE" tone="paper" delay={0} width={620} align="left" size={146} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene8-theory.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="paper" />
-        <Headline label="THE THEORY" line1="SIGNAL OR" line2="OVERDOSE" tone="paper" delay={0} width={620} align="left" size={146} />
-        <Stamp text="THEORY" delay={theoryAt} rotate={-8} size={72} style={{ top: 700, right: 80 }} />
-        <Stamp text="OVERDOSE" delay={odAt} rotate={-8} size={72} style={{ top: 792, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
-        >
+        <Stamp text="THEORY" delay={theoryAt} rotate={-8} size={72} style={{ top: 40, right: 0 }} />
+        <Stamp text="OVERDOSE" delay={odAt} rotate={-8} size={72} style={{ top: 140, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="UFO" at={ufoAt} rotate={0} from="left" dist={90} />
             <div
@@ -57,7 +53,7 @@ export const Scene08Theory: React.FC<SceneProps> = ({ t, from }) => {
             </div>
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };

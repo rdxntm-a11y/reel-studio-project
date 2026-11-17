@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { C } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -24,21 +25,15 @@ export const Scene02: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[techAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE SUBJECTS" line1="MANOEL +" line2="MIGUEL" tone="paper" delay={0} width={620} align="left" size={130} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene2.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="paper" />
-
-        <Headline label="THE SUBJECTS" line1="MANOEL +" line2="MIGUEL" tone="paper" delay={0} width={620} align="left" size={130} />
-        <Stamp text="TECHNICIANS" delay={techAt} rotate={-8} size={52} style={{ top: 700, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500 }}
-        >
+        <Stamp text="TECHNICIANS" delay={techAt} rotate={-8} size={52} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="ELECTRONICS KIT" at={elecAt} rotate={0} from="left" dist={170} />
             <PropLabel
@@ -51,7 +46,7 @@ export const Scene02: React.FC<SceneProps> = ({ t, from }) => {
             />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };

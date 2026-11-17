@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { C } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -26,21 +27,16 @@ export const Scene05: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[chotAt + 3, ladaiAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE CLUES" line1="NO WOUNDS" line2="NO FIGHT" tone="paper" delay={0} width={580} align="left" size={140} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene5.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="dark" />
-        <Headline label="THE CLUES" line1="NO WOUNDS" line2="NO FIGHT" tone="dark" delay={0} width={580} align="left" size={140} />
-        <Stamp text="NO WOUNDS" delay={chotAt} rotate={-8} size={60} style={{ top: 700, right: 80 }} />
-        <Stamp text="NO FIGHT" delay={ladaiAt} rotate={-8} size={60} style={{ top: 790, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
-        >
+        <Stamp text="NO WOUNDS" delay={chotAt} rotate={-8} size={60} style={{ top: 40, right: 0 }} />
+        <Stamp text="NO FIGHT" delay={ladaiAt} rotate={-8} size={60} style={{ top: 140, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="EMPTY BOTTLE" at={bottleAt} rotate={0} size={22} from="left" dist={170} />
             <PropLabel
@@ -55,7 +51,7 @@ export const Scene05: React.FC<SceneProps> = ({ t, from }) => {
             <PropLabel text="NOTEBOOK" at={notebookAt} rotate={0} size={22} from="left" dist={170} />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };

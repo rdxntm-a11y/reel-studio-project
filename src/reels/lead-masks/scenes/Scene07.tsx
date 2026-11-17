@@ -1,9 +1,10 @@
 import React from "react";
-import { AbsoluteFill, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
 import { QuestionMark, TestTube } from "../style/components/Props";
-import { PropLabel, ScreenShake, Tag, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake, Tag } from "../style/components/ui";
 import { SPRING, clamp } from "../style/theme";
 import { camera, slide } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -23,21 +24,21 @@ export const Scene07Autopsy: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[lateAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE AUTOPSY" line1="TOO" line2="LATE" tone="paper" delay={0} width={700} align="left" size={150} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene7-autopsy.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="dark" />
-        <Headline label="THE AUTOPSY" line1="TOO" line2="LATE" tone="dark" delay={0} width={700} align="left" size={150} />
-        <Stamp text="LATE" delay={lateAt} rotate={-8} size={80} style={{ top: 700, right: 80 }} />
-        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 770, width: 900, height: 520 }}>
+        <Stamp text="LATE" delay={lateAt} rotate={-8} size={80} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 0, display: "flex", flexDirection: "column", gap: 14 }}>
             <Tag text="AUTOPSY REPORT" rotate={0} size={24} />
             <PropLabel text="ORGANS DECOMPOSED" at={decompAt} rotate={0} from="left" dist={120} />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };
@@ -96,15 +97,15 @@ export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[nahi2At + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE VERDICT" line1="NO" line2="ANSWER" tone="paper" delay={0} width={600} align="left" size={160} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene7-unsolved.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="dark" />
-        <Headline label="THE VERDICT" line1="NO" line2="ANSWER" tone="dark" delay={0} width={600} align="left" size={160} />
-        <Stamp text="UNSOLVED" delay={nahi2At} rotate={-8} size={72} style={{ top: 700, right: 80 }} />
-        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}>
+        <Stamp text="UNSOLVED" delay={nahi2At} rotate={-8} size={72} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 0, display: "flex", flexDirection: "column", gap: 14 }}>
             <Tag text="AUTOPSY REPORT" rotate={0} size={24} />
           </div>
@@ -113,7 +114,7 @@ export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from }) => {
           </Sequence>
           <Marks frames={[zeherAt, testAt, nahiAt, paayaAt]} />
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };
@@ -123,22 +124,22 @@ const TubeReveal: React.FC<{ labelAt: number; tagAt: number }> = ({ labelAt, tag
   const { fps } = useVideoConfig();
   const s = spring({ frame, fps, config: SPRING.pop });
   return (
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            bottom: 0,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            gap: 12,
-            opacity: s,
-            transform: slide(s, "left", 200),
-          }}
-        >
-          <TestTube width={72} />
-          <PropLabel text="TEST TUBE" at={labelAt} rotate={0} from="left" dist={60} />
-          <PropLabel text="NO TOX TEST" at={tagAt} rotate={0} size={22} from="left" dist={60} />
-        </div>
+    <div
+      style={{
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        gap: 12,
+        opacity: s,
+        transform: slide(s, "left", 200),
+      }}
+    >
+      <TestTube width={72} />
+      <PropLabel text="TEST TUBE" at={labelAt} rotate={0} from="left" dist={60} />
+      <PropLabel text="NO TOX TEST" at={tagAt} rotate={0} size={22} from="left" dist={60} />
+    </div>
   );
 };

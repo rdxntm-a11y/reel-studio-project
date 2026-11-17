@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, Sequence, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake } from "../style/components/ui";
 import { Clock } from "../style/components/Props";
 import { C, SPRING, clamp } from "../style/theme";
 import { camera } from "../style/motion";
@@ -23,24 +24,20 @@ export const Scene03Clock: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[augAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE NIGHT" line1="AUGUST" line2="17TH" tone="paper" delay={0} width={580} align="left" size={160} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene3-clock.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="dark" />
-        <Headline label="THE NIGHT" line1="AUGUST" line2="17TH" tone="dark" delay={0} width={580} align="left" size={160} />
-        <Stamp text="17 AUGUST" delay={augAt} rotate={-8} size={60} style={{ top: 700, right: 80 }} />
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 800, width: 900, height: 480 }}
-        >
+        <Stamp text="17 AUGUST" delay={augAt} rotate={-8} size={60} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="BAR IN NITERÓI" at={barAt} rotate={0} from="left" dist={150} />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };
@@ -63,18 +60,14 @@ export const Scene03Receipt: React.FC<SceneProps> = ({ t, from }) => {
   ]);
 
   return (
-    <AbsoluteFill>
+    <SceneLayout
+      headline={<Headline label="THE WITNESS" line1="NERVOUS" line2="WAITING" tone="paper" delay={0} width={620} align="left" size={160} />}
+    >
       <Img
         src={staticFile("reels/lead-masks/assets/scene3-receipt.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
       />
-      <TextMasks tone="dark" />
-      <Headline label="THE WITNESS" line1="NERVOUS" line2="WAITING" tone="dark" delay={0} width={620} align="left" size={160} />
-      <div
-        data-el="hero"
-        data-kind="content"
-        style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
-      >
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
         <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
           <PropLabel text="WAITRESS" at={waitressAt} rotate={0} background={C.paperDeep} from="left" dist={150} />
           <PropLabel text="MIGUEL" at={migAt} rotate={0} from="left" dist={90} />
@@ -85,7 +78,7 @@ export const Scene03Receipt: React.FC<SceneProps> = ({ t, from }) => {
           <WatchReveal labelAt={dekhAt - ghadiAt} />
         </Sequence>
       </div>
-    </AbsoluteFill>
+    </SceneLayout>
   );
 };
 

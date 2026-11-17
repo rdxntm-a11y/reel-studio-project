@@ -33,11 +33,10 @@ export const Headline: React.FC<HeadlineProps> = ({
       data-el="headline"
       data-kind="content"
       style={{
-        position: "absolute",
-        left: ZONE.headline.x,
-        top: ZONE.headline.y,
+        position: "relative",
         width,
-        height: ZONE.headline.h,
+        maxWidth: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: align === "center" ? "center" : "flex-start",
@@ -67,7 +66,7 @@ export const Headline: React.FC<HeadlineProps> = ({
             style={{
               fontFamily: FONT.display,
               fontWeight: 700,
-              fontSize: size,
+              fontSize: Math.min(size, 96),
               lineHeight: 0.88,
               letterSpacing: 1,
               color: i === 1 ? C.accent : line1Color,

@@ -1,8 +1,9 @@
 import React from "react";
-import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Headline } from "../style/components/Headline";
+import { SceneLayout } from "../style/components/SceneLayout";
 import { Stamp } from "../style/components/Stamp";
-import { PropLabel, ScreenShake, Tag, TextMasks } from "../style/components/ui";
+import { PropLabel, ScreenShake, Tag } from "../style/components/ui";
 import { C, SPRING, clamp } from "../style/theme";
 import { camera } from "../style/motion";
 import type { SceneProps } from "../style/types";
@@ -31,20 +32,15 @@ export const Scene04Discovery: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[baadAt + 3, laasheAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE DISCOVERY" line1="THREE DAYS" line2="LATER" tone="paper" delay={0} width={620} align="left" size={140} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene4-discovery.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="paper" />
-        <Headline label="THE DISCOVERY" line1="THREE DAYS" line2="LATER" tone="paper" delay={0} width={620} align="left" size={140} />
-        <Stamp text="3 DAYS LATER" delay={baadAt} rotate={-8} size={54} style={{ top: 700, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 760, width: 900, height: 520 }}
-        >
+        <Stamp text="3 DAYS LATER" delay={baadAt} rotate={-8} size={54} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="KITE BOY" at={ladkaAt} rotate={0} background={C.paperDeep} from="left" dist={150} />
             <PropLabel text="KITE" at={patangAt} rotate={0} from="left" dist={90} />
@@ -66,7 +62,7 @@ export const Scene04Discovery: React.FC<SceneProps> = ({ t, from }) => {
             <Tag text="FOUND" rotate={0} size={24} />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };
@@ -88,20 +84,15 @@ export const Scene04Bodies: React.FC<SceneProps> = ({ t, from }) => {
 
   return (
     <ScreenShake at={[maskAt + 3]}>
-      <AbsoluteFill>
+      <SceneLayout
+        headline={<Headline label="THE SCENE" line1="THE" line2="OUTFIT" tone="paper" delay={0} width={600} align="left" size={150} />}
+      >
         <Img
           src={staticFile("reels/lead-masks/assets/scene4-bodies.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: cam }}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
         />
-        <TextMasks tone="paper" />
-        <Headline label="THE SCENE" line1="THE" line2="OUTFIT" tone="paper" delay={0} width={600} align="left" size={150} />
-        <Stamp text="LEAD MASK" delay={maskAt} rotate={-8} size={64} style={{ top: 700, right: 80 }} />
-
-        <div
-          data-el="hero"
-          data-kind="content"
-          style={{ position: "absolute", left: 60, top: 780, width: 900, height: 500 }}
-        >
+        <Stamp text="LEAD MASK" delay={maskAt} rotate={-8} size={64} style={{ top: 40, right: 0 }} />
+        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
           <div style={{ position: "absolute", left: 0, top: 20, display: "flex", flexDirection: "column", gap: 14 }}>
             <PropLabel text="THE VICTIMS" at={0} rotate={0} from="left" dist={80} />
             <PropLabel text="FORMAL SUIT" at={suitAt} rotate={0} from="left" dist={160} />
@@ -115,7 +106,7 @@ export const Scene04Bodies: React.FC<SceneProps> = ({ t, from }) => {
             />
           </div>
         </div>
-      </AbsoluteFill>
+      </SceneLayout>
     </ScreenShake>
   );
 };
