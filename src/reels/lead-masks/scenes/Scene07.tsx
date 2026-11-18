@@ -9,37 +9,34 @@ import { SPRING, clamp } from "../style/theme";
 import { camera, slide } from "../style/motion";
 import type { SceneProps } from "../style/types";
 
-// "Autopsy late hui, organs decompose ho gaye."  The "LATE" stamp slams on "late".
-export const Scene07Autopsy: React.FC<SceneProps> = ({ t, from }) => {
+// "Autopsy late hui, organs decompose ho gaye."  The "LATE" stamp lands on the word.
+export const Scene07Autopsy: React.FC<SceneProps> = ({ t, from, frames }) => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
   const lateAt = t.at(89) - from;
   const decompAt = t.at(92) - from;
 
   const cam = camera(frame, [
-    { at: 0, scale: 1.04, y: 0, x: 0 },
-    { at: lateAt, scale: 1.12, y: -10, x: 0 },
-    { at: durationInFrames, scale: 1.16, y: -16, x: 0 },
+    { at: 0, scale: 1.01, y: 6, x: 0 },
+    { at: lateAt, scale: 1.06, y: -2, x: 0 },
+    { at: frames, scale: 1.09, y: -10, x: 0 },
   ]);
 
   return (
-    <ScreenShake at={[lateAt + 3]}>
-      <SceneLayout
-        headline={<Headline label="THE AUTOPSY" line1="TOO" line2="LATE" tone="paper" delay={0} width={700} align="left" size={150} />}
-      >
-        <Img
-          src={staticFile("reels/lead-masks/assets/scene7-autopsy.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
-        />
-        <Stamp text="LATE" delay={lateAt} rotate={-8} size={80} style={{ top: 40, right: 0 }} />
-        <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, display: "flex", flexDirection: "column", gap: 14 }}>
-            <Tag text="AUTOPSY REPORT" rotate={0} size={24} />
-            <PropLabel text="ORGANS DECOMPOSED" at={decompAt} rotate={0} from="left" dist={120} />
-          </div>
+    <SceneLayout
+      headline={<Headline label="THE AUTOPSY" line1="TOO" line2="LATE" tone="paper" delay={0} width={700} align="left" size={150} variant="press" accentRule ruleLength={78} />}
+    >
+      <Img
+        src={staticFile("reels/lead-masks/assets/scene7-autopsy.jpg")}
+        style={{ width: "100%", height: "100%", objectFit: "contain", transform: cam }}
+      />
+      <Stamp text="LATE" delay={lateAt} rotate={-8} size={80} style={{ top: 40, right: 0 }} />
+      <div data-el="hero" data-kind="content" style={{ position: "absolute", left: 0, top: 0, width: "70%", height: "100%" }}>
+        <div style={{ position: "absolute", left: 0, top: 0, display: "flex", flexDirection: "column", gap: 14 }}>
+          <Tag text="AUTOPSY REPORT" rotate={0} size={24} />
+          <PropLabel text="ORGANS DECOMPOSED" at={decompAt} rotate={0} from="left" dist={120} />
         </div>
-      </SceneLayout>
-    </ScreenShake>
+      </div>
+    </SceneLayout>
   );
 };
 
@@ -48,17 +45,18 @@ const Marks: React.FC<{ frames: number[] }> = ({ frames }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const spots = [
-    { left: 520, top: 230, size: 150, rotate: -8 },
-    { left: 650, top: 290, size: 120, rotate: 8 },
-    { left: 740, top: 240, size: 136, rotate: -4 },
-    { left: 590, top: 360, size: 112, rotate: 10 },
+    { left: 610, top: 190, size: 180, rotate: -8 },
+    { left: 742, top: 322, size: 120, rotate: 8 },
+    { left: 672, top: 420, size: 100, rotate: -4 },
   ];
   return (
     <>
       {spots.map((m, i) => {
         const at = frames[Math.min(i, frames.length - 1)];
         const s = spring({ frame: frame - at, fps, config: SPRING.slam });
-        const float = Math.sin((frame + i * 20) / 24) * 6;
+        const p = Math.min(1, Math.max(0, s));
+        const float = Math.sin((frame + i * 20) / 24) * 4;
+        const drift = Math.min(6, Math.max(0, frame - at) * 0.06);
         return (
           <div
             key={i}
@@ -66,8 +64,8 @@ const Marks: React.FC<{ frames: number[] }> = ({ frames }) => {
               position: "absolute",
               left: m.left,
               top: m.top,
-              opacity: s,
-              transform: `translateY(${float}px) scale(${interpolate(s, [0, 1], [1.9, 1], clamp)})`,
+              opacity: p,
+              transform: `translateX(${-drift}px) translateY(${float}px) scale(${interpolate(s, [0, 1], [1.9, 1], clamp)})`,
             }}
           >
             <QuestionMark size={m.size} rotate={m.rotate} />
@@ -79,26 +77,24 @@ const Marks: React.FC<{ frames: number[] }> = ({ frames }) => {
 };
 
 // "Zeher ka test nahi ho paaya. Aaj tak wajah pata nahi."
-// Question marks pop one by one on the phrase, then UNSOLVED slams.
-export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from }) => {
+// Three questions settle into depth, then UNSOLVED closes the file.
+export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from, frames }) => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
   const zeherAt = t.at(95) - from;
   const testAt = t.at(97) - from;
-  const nahiAt = t.at(98) - from;
   const paayaAt = t.at(100) - from;
   const nahi2At = t.at(105) - from;
 
   const cam = camera(frame, [
-    { at: 0, scale: 1.06, y: 0, x: 0 },
-    { at: nahi2At, scale: 1.16, y: -14, x: 0 },
-    { at: durationInFrames, scale: 1.18, y: -18, x: 0 },
+    { at: 0, scale: 1.03, y: 4, x: 0 },
+    { at: nahi2At, scale: 1.08, y: -6, x: 0 },
+    { at: frames, scale: 1.1, y: -12, x: 0 },
   ]);
 
   return (
     <ScreenShake at={[nahi2At + 3]}>
       <SceneLayout
-        headline={<Headline label="THE VERDICT" line1="NO" line2="ANSWER" tone="paper" delay={0} width={600} align="left" size={160} />}
+        headline={<Headline label="THE VERDICT" line1="NO" line2="ANSWER" tone="paper" delay={0} width={600} align="left" size={160} variant="mask" accentRule ruleLength={74} />}
       >
         <Img
           src={staticFile("reels/lead-masks/assets/scene7-unsolved.jpg")}
@@ -112,7 +108,7 @@ export const Scene07Unsolved: React.FC<SceneProps> = ({ t, from }) => {
           <Sequence from={testAt} layout="none">
             <TubeReveal labelAt={0} tagAt={paayaAt - testAt} />
           </Sequence>
-          <Marks frames={[zeherAt, testAt, nahiAt, paayaAt]} />
+          <Marks frames={[zeherAt, testAt, paayaAt]} />
         </div>
       </SceneLayout>
     </ScreenShake>

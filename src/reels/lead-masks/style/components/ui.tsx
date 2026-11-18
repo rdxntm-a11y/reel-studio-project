@@ -1,7 +1,7 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { alpha, C, FONT, SPRING, clamp } from "../theme";
-import { slide } from "../motion";
+import { AbsoluteFill, Img, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { alpha, C, FONT, SPRING } from "../theme";
+import { ease, slide } from "../motion";
 
 /**
  * A slight screen shake. Wrap a whole scene in it and pass the local frames at
@@ -34,29 +34,6 @@ export const Floaty: React.FC<{
 }> = ({ children, amount = 6, speed = 18 }) => {
   const frame = useCurrentFrame();
   return <div style={{ transform: `translateY(${Math.sin(frame / speed) * amount}px)` }}>{children}</div>;
-};
-
-export const CameraDrift: React.FC<{
-  children: React.ReactNode;
-  panX?: number;
-  panY?: number;
-  zoom?: number;
-}> = ({ children, panX = 0, panY = 0, zoom = 0 }) => {
-  const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
-  const p = interpolate(frame, [0, Math.max(1, durationInFrames - 1)], [0, 1], clamp);
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        transform: `translate(${panX * p}px, ${panY * p}px) scale(${1 + zoom * p})`,
-        transformOrigin: "50% 50%",
-      }}
-    >
-      {children}
-    </div>
-  );
 };
 
 export const PropLabel: React.FC<{
@@ -144,5 +121,108 @@ export const TextMasks: React.FC<{ tone?: "paper" | "dark" }> = ({ tone = "paper
         }}
       />
     </>
+  );
+};
+
+/** A hairline that draws in on a word. Vertical rules grow from the top. */
+export const Rule: React.FC<{
+  at: number;
+  length?: number;
+  frames?: number;
+  vertical?: boolean;
+  thickness?: number;
+  color?: string;
+  style?: React.CSSProperties;
+}> = ({ at, length = 180, frames = 18, vertical = false, thickness = 2, color = C.red, style }) => {
+  const frame = useCurrentFrame();
+  const p = ease(frame, at, frames, 0, 1);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        width: vertical ? thickness : length,
+        height: vertical ? length : thickness,
+        background: color,
+        transform: vertical ? `scaleY(${p})` : `scaleX(${p})`,
+        transformOrigin: vertical ? "top" : "left",
+        ...style,
+      }}
+    />
+  );
+};
+
+/**
+ * A mounted evidence print: cream mat, ink hairline, paper shadow. The camera move
+ * happens inside the plate, so zooms crop inside the mount instead of spilling into
+ * the dossier gutters.
+ */
+export const EvidencePlate: React.FC<{
+  src: string;
+  transform?: string;
+  at?: number;
+  rotate?: number;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+}> = ({ src, transform = "none", at = 0, rotate = 0, style, children }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const s = spring({ frame: frame - at, fps, config: SPRING.pop });
+  const p = Math.min(1, Math.max(0, s));
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: "50%",
+        height: "100%",
+        aspectRatio: "832 / 1248",
+        transform: `translateX(-50%) rotate(${rotate * p}deg) scale(${0.985 + 0.015 * p})`,
+        opacity: p,
+        background: C.paperLight,
+        border: `3px solid ${C.ink}`,
+        boxShadow: `0 14px 0 ${alpha(C.ink, 16)}`,
+        padding: 11,
+        boxSizing: "border-box",
+        ...style,
+      }}
+    >
+      <div style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden", background: C.paperDeep }}>
+        <Img
+          src={src}
+          style={{ width: "100%", height: "100%", objectFit: "contain", transform, transformOrigin: "center" }}
+        />
+        {children}
+      </div>
+    </div>
+  );
+};
+
+/** A low-contrast atmospheric glow for signal / sky beats. Ambient only, never a light show. */
+export const AtmosphereGlow: React.FC<{
+  at: number;
+  top?: number;
+  width?: number;
+  height?: number;
+  strength?: number;
+}> = ({ at, top = -40, width = 680, height = 900, strength = 0.2 }) => {
+  const frame = useCurrentFrame();
+  const p = ease(frame, at, 28, 0, 1);
+  const breathe = 0.5 + 0.5 * Math.sin((frame - at) / 26);
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: "50%",
+        top,
+        width,
+        height,
+        marginLeft: -width / 2,
+        opacity: p * (strength + breathe * 0.04),
+        pointerEvents: "none",
+        background: `radial-gradient(ellipse at 50% 30% in oklab, ${alpha(C.paperLight, 70)}, ${alpha(C.paperLight, 0)} 68%)`,
+        transform: `translateY(${(1 - p) * 24}px) scale(${0.96 + 0.04 * p + breathe * 0.008})`,
+        mixBlendMode: "screen",
+      }}
+    />
   );
 };

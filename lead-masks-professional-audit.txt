@@ -1,0 +1,475 @@
+LEAD MASKS CASE - PROFESSIONAL AUDIT
+====================================
+Project: /root/reel-studio/reel-studio-kit
+Composition: "lead-masks"
+Audit type: read-only inspection and documentation
+Audit date: 2026-11-18
+Constraint honored: no existing code, component, asset, configuration or project file was modified, deleted or created. Only this TXT report is new.
+
+LEGEND
+------
+Verified  = confirmed by reading files or by running read-only inspection commands.
+Not Verified = could not be confirmed from the available data. No assumption made.
+
+======================================================================
+1. PROJECT OVERVIEW
+======================================================================
+
+Purpose (verified): A 9:16 Remotion documentary reel about the 1966 "lead masks" case in Brazil. It is registered as the "lead-masks" composition and uses a paper/collage visual system rather than the kit's default blue brand theme.
+
+Narration language (verified): Hinglish, roman script. projects/lead-masks/voice.txt and projects/lead-masks/captions.txt are byte-identical, 130 whitespace-separated words, and exactly match the concatenation of the 130 word entries in public/reels/lead-masks/captions.words.json.
+
+Runtime geometry (verified): 1080 x 1920, 30 fps, 2327 frames = 77.567 s. Derived in src/reels/lead-masks/Reel.tsx:22 as T.duration(1), where src/timing.ts:37-38 uses the last caption word end plus a 1 s tail. Last caption word ends at 76.58 s (frame 2297); video tail is about 1.0 s.
+
+Narrative structure (verified): 14 timed beats ("BEATS" in Reel.tsx:37-52) mapped from 8 scene files. The 8 files export 14 components, not 8: Scene01, Scene02, Scene03Clock/Scene03Receipt, Scene04Discovery/Scene04Bodies, Scene05, Scene06Notebook/Scene06Capsules/Scene06Metal, Scene07Autopsy/Scene07Unsolved, Scene08Theory/Scene08CTA. The user's "8 scene components" therefore maps to 8 source files / 14 rendered beats.
+
+Current design identity (verified): warm parchment paper, black ink, red "stamp" accents, typewriter labels, Barlow Condensed headlines, Poppins karaoke captions, Caveat handwriting in Scene06 only. Most visuals are one generated still image per beat with 2-D label/stamp overlays and a slow camera move.
+
+Length compliance (verified): 77.567 s exceeds the 60 s target in CLAUDE.md and triggers the "warn length" branch of tools/check.mjs:105. It is below the 90 s hard-fix threshold at tools/check.mjs:106.
+
+Not Verified: factual accuracy, source citations, or approval history of the script. projects/lead-masks/ contains no script.md; only voice.txt and captions.txt exist. Any claim that research or an approval gate occurred is Not Verified.
+
+======================================================================
+2. EXISTING FILE STRUCTURE
+======================================================================
+
+Tracked project files (verified with git ls-files):
+
+  src/reels/lead-masks/
+    Reel.tsx
+    scenes/Scene01.tsx ... Scene08.tsx (8 files, 14 exports)
+    style/theme.ts
+    style/motion.ts
+    style/types.ts
+    style/components/SceneLayout.tsx
+    style/components/ui.tsx
+    style/components/Headline.tsx
+    style/components/Stamp.tsx
+    style/components/Caption.tsx
+    style/components/PaperBackground.tsx
+    style/components/PaperFigure.tsx
+    style/components/Props.tsx
+
+  public/reels/lead-masks/
+    vo.wav
+    captions.words.json
+    mouth.json
+    assets/ (13 image files)
+
+  projects/lead-masks/
+    voice.txt
+    captions.txt
+    (script.md: absent)
+
+Supporting architecture files read (verified):
+  src/Root.tsx, src/index.ts, src/layout.ts, src/timing.ts, src/brand.ts,
+  src/brand-context.tsx, src/components/ReelFrame.tsx, src/components/index.ts,
+  src/components/probe.tsx, src/reels/registry.ts, package.json,
+  remotion.config.ts, tools/check.mjs, tools/render.mjs, tools/sync.mjs.
+
+Working tree (verified): git status --short was empty at the start and remains unmodified by this audit. npm run typecheck (tsc --noEmit) passes with no diagnostics.
+
+out/ directory (verified): absent. No rendered lead-masks MP4 and no prior check contact sheet/report exist in this checkout.
+
+======================================================================
+3. SCENE-BY-SCENE ANALYSIS
+======================================================================
+
+Shared frame model (verified)
+- Reel.tsx:29-35 wraps every beat in <Sequence from durationInFrames> and a div with data-scene for the layout probe. Caption is rendered once outside the beats at Reel.tsx:61.
+- style/components/SceneLayout.tsx:13 sets padding "220px 120px 380px 60px" and :18-20 splits the remaining 900 x 1320 area into 20% headline (264 px), 60% hero (792 px), 20% empty spacer (264 px). This matches src/layout.ts:9-14 SAFE values by hard-coded numbers, not by importing SAFE. Caption zone in theme.ts:45 is y=1310, h=190, so it sits in the lower spacer with a 34 px gap after the hero.
+- Every beat follows: Headline (spring pop) + full-size <Img objectFit="contain"> + Stamp and/or PropLabel overlays + optional ScreenShake. This template is applied 13 of 14 beats; Scene08CTA is the only structural exception.
+
+Beat inventory (verified; frames computed from captions.words.json at 30 fps)
+  name               abs frames   frames  seconds  exported component
+  s1-hook                0-184      184     6.13   Scene01
+  s2-technicians       184-379      195     6.50   Scene02
+  s3-clock             379-566      187     6.23   Scene03Clock
+  s3-receipt           566-698      132     4.40   Scene03Receipt
+  s4-discovery         698-890      192     6.40   Scene04Discovery
+  s4-bodies            890-1021     131     4.37   Scene04Bodies
+  s5-no-wounds        1021-1259     238     7.93   Scene05
+  s6-notebook         1259-1379     120     4.00   Scene06Notebook
+  s6-capsules         1379-1514     135     4.50   Scene06Capsules
+  s6-metal            1514-1632     118     3.93   Scene06Metal
+  s7-autopsy          1632-1759     127     4.23   Scene07Autopsy
+  s7-unsolved         1759-1955     196     6.53   Scene07Unsolved
+  s8-theory           1955-2185     230     7.67   Scene08Theory
+  s8-cta              2185-2327     142     4.73   Scene08CTA
+
+Scene01 / s1-hook (Scene01.tsx:13-48)
+- Headline "BRAZIL / 1966" (size prop 170), image scene1.jpg, Stamp "1966" at local frame 39 (word 1), three PropLabels at 116/142/148 (words 4/6/7), ScreenShake at 42.
+- Camera keys (Scene01.tsx:21-26): local 0 -> 58 -> 130 -> durationInFrames.
+- Issue: the last camera key uses useVideoConfig().durationInFrames = 2327 (composition length), not the 184-frame beat. At beat end the interpolation is only (184-130)/(2327-130) = 2.5% toward the intended final pose. The planned settle to scale 1.0/y -34/x 0 is effectively never reached.
+- Three sequential left-sliding labels over one still is the dominant pattern repeated throughout the reel.
+
+Scene02 / s2-technicians (Scene02.tsx:13-52)
+- Headline "MANOEL + / MIGUEL" (size 130), scene2.jpg, Stamp "TECHNICIANS" at local 74, labels "ELECTRONICS KIT" at 47 and "SAID: OFFICE WORK" at 160, shake at 77.
+- Camera 0 -> 74 -> 2327; same out-of-range final key problem.
+- The family-alibi beat is shown as a text tag, not a dramatized or diagrammed lie; weak storytelling visual.
+
+Scene03Clock / s3-clock (Scene03.tsx:13-43)
+- Headline "AUGUST / 17TH" (160), scene3-clock.jpg, Stamp "17 AUGUST" at 60, label "BAR IN NITERÓI" at 126, shake at 63. Camera 0 -> 126 -> 2327.
+- No map, no geographic pin. "Niterói" exists only as label text; Johnny-Harris-style spatial storytelling is absent.
+
+Scene03Receipt / s3-receipt (Scene03.tsx:47-109)
+- Headline "NERVOUS / WAITING", scene3-receipt.jpg, labels WAITRESS (0) and MIGUEL (31).
+- WatchReveal (Scene03.tsx:85-108) is a Sequence from local 99 (word 35 "ghadi") with a code-drawn Clock (Props.tsx:25-52) that scales/springs in; PropLabel "CHECKING WATCH" at local 9 of that sequence.
+- Watch second hand uses Math.floor(frame) % 60 (Scene03.tsx:89), i.e. one full revolution per 60 frames = 2 s, not real time and not tied to the word timestamps. Reads as a stylized tick, but it is a fixed periodic animation rather than speech-driven.
+- Props.Receipt (Props.tsx:54-89) is fully implemented but never used in this reel, even though this beat is about a bar receipt/witness.
+
+Scene04Discovery / s4-discovery (Scene04.tsx:14-68)
+- Headline "THREE DAYS / LATER", scene4-discovery.jpg, Stamp "3 DAYS LATER" at 49, labels KITE BOY (69) and KITE (81), then a bottom group with "TWO BODIES" (168) + "FOUND" tag animated by a spring.
+- Camera is the most ambitious move: y 170 -> 170 -> -60 (at 94) -> -120 (at 180) -> 2327; the final 2327 key is again unreachable (only 12/2147 = 0.6% of the last segment plays).
+- ScreenShake at 52 and 171. This is the strongest "reveal" construction in the current reel but still uses one flat plate and text tags.
+
+Scene04Bodies / s4-bodies (Scene04.tsx:72-112)
+- Headline "THE / OUTFIT", scene4-bodies.jpg, Stamp "LEAD MASK" at 116 (word 58), labels THE VICTIMS (at 0, not word-anchored), FORMAL SUIT (43), WATERPROOF COAT (80). Camera 0 -> 116 -> 2327.
+- PaperBody and StandingFigure (PaperFigure.tsx:36-121) are implemented but unused here; the mask payoff is a text stamp rather than an annotated mask close-up.
+
+Scene05 / s5-no-wounds (Scene05.tsx:13-57)
+- Longest beat (7.93 s). Headline "NO WOUNDS / NO FIGHT", scene5.jpg, two stamps at 34 and 94, three labels at 159/192/221. Camera 0 -> 221 -> 2327.
+- Three clue labels are all left-sliding tags of the same size; no evidence-grid, no prop use. Bottle, Towels and Notebook props exist (Props.tsx:109-189) but are unused. Highest risk of reading as a static slideshow.
+
+Scene06Notebook / s6-notebook (Scene06.tsx:64-84)
+- Headline "THE / INSTRUCTIONS", scene6-notebook.jpg, TornNote "16:30 PAHUNCHO" at local 63 with sub-label at 106.
+- TornNote uses Caveat hand font, torn clip-path, "writing" reveal via inset clip from 0 to 100% driven by a spring (Scene06.tsx:16-61). This is the most distinctive animation in the reel.
+- Image push is interpolate(frame, [0, durationInFrames], [0, -18]) with composition duration, so at 120 local frames the image moves only about -0.9 px instead of -18 px. Effectively static.
+
+Scene06Capsules / s6-capsules (Scene06.tsx:87-110)
+- Headline "TAKE THE / CAPSULES", scene6-capsules.jpg, TornNote at 0 (not word-anchored; word 78 "capsules" is at local 95), CapsuleRow Sequence from local 95 with two code-drawn Capsule props and label at 120.
+- The caption note appears before the narration says it; this is a synchronization mismatch in emphasis even though no `at` lands after the beat end.
+
+Scene06Metal / s6-metal (Scene06.tsx:151-179)
+- Headline "WAIT FOR / THE SIGNAL", scene6-metal.jpg, TornNote "METAL BACHÃO" at 0, LeadMask graphic drops at local 45 (word 82), three SignalRings start at local 70 (word 84), second TornNote at 70.
+- SignalRing period is 24 frames with 7-frame stagger, frame-based loop; deterministic but not audio/word driven after entry. Uses Math.sin-free CSS scale/opacity rings, acceptable but generic.
+- LeadMask is a simple hand-built SVG of a mask (PaperFigure.tsx:4-26). It is a simple graphic, but used as a stand-in for a key evidence object.
+
+Scene07Autopsy / s7-autopsy (Scene07.tsx:13-44)
+- Headline "TOO / LATE", scene7-autopsy.jpg, Stamp "LATE" at 49, static Tag "AUTOPSY REPORT", label "ORGANS DECOMPOSED" at 91, shake at 52. Camera 0 -> 49 -> 2327.
+- Clipboard prop (Props.tsx:241-289) contains exactly the report lines spoken, but is unused.
+
+Scene07Unsolved / s7-unsolved (Scene07.tsx:83-120)
+- Headline "NO / ANSWER", scene7-unsolved.jpg, Stamp "UNSOLVED" at local 154 (42 frames before beat end, so it is visible), Marks component with four red question marks at 0/49/60/76, TubeReveal Sequence from 49 with TestTube and "NO TOX TEST" at 76, shake at 157.
+- Marks float with Math.sin((frame + i*20)/24)*6 (Scene07.tsx:61). Continuous frame-based float, not word-anchored after pop-in.
+- Four identical "?" glyphs are a generic placeholder for "unknowns" rather than a documentary-style evidence board.
+
+Scene08Theory / s8-theory (Scene08.tsx:15-59)
+- Headline "SIGNAL OR / OVERDOSE", scene8-theory.jpg, Stamp "THEORY" at 0, Stamp "OVERDOSE" at 164, labels UFO (117) and SCIENTIFIC SPIRITUALISTS (48), camera 0 -> 117 -> 164 -> 2327.
+- UFO prop with beam (Props.tsx:213-239) is unused; the UFO exists only as a text label over the generated image. The headline promises a twist but the visual does not stage a claim-vs-evidence contrast.
+
+Scene08CTA / s8-cta (Scene08.tsx:64-120)
+- Only beat not using SceneLayout or an image. AbsoluteFill + PaperBackground (grain, radial light, fold lines, vignette) + torn paper end card, container-query headline "THAT KEEP YOU / UP AT NIGHT", handle from useBrand() (src/brand.ts:30 "@midnightfiles"), Stamp "FOLLOW" at 0, shake at 3 with amount 1.8.
+- Uses modern CSS deterministically (containerType: "inline-size", clamp(64px, 12.1cqi, 92px)), compliant with CLAUDE.md's Chromium-safe CSS rule.
+- This is the only scene with textured/grained background. Its paper aesthetic does not carry back into the other 13 beats.
+
+Verified timing sanity check: for every audited local anchor (yearAt, maskAt, stamps, labels, reveal starts, shake points), none falls at or after its beat end. The only out-of-range `at` values are the camera/push keys that use composition durationInFrames, described above.
+
+======================================================================
+4. VISUAL ASSETS ANALYSIS
+======================================================================
+
+Verified inventory (ffprobe and fs.statSync, 13 files, total 18,545,635 bytes = 17.69 MB):
+
+  asset file                      dimensions  codec/pix_fmt  bytes      used by
+  scene1.jpg                      832x1248    png / rgba     1,606,967   Scene01.tsx:34
+  scene2.jpg                      832x1248    png / rgba     1,249,103   Scene02.tsx:32
+  scene3-clock.jpg                832x1248    png / rgba     1,364,642   Scene03.tsx:31
+  scene3-receipt.jpg              832x1248    png / rgba     1,487,608   Scene03.tsx:67
+  scene4-discovery.jpg            832x1248    png / rgba     1,419,661   Scene04.tsx:39
+  scene4-bodies.jpg               832x1248    png / rgba     1,545,057   Scene04.tsx:91
+  scene5.jpg                      832x1248    png / rgba     1,263,811   Scene05.tsx:34
+  scene6-notebook.jpg             832x1248    png / rgba     1,904,087   Scene06.tsx:76
+  scene6-capsules.jpg             832x1248    png / rgba     1,620,625   Scene06.tsx:99
+  scene6-metal.jpg                832x1248    png / rgba     1,595,175   Scene06.tsx:164
+  scene7-autopsy.jpg              832x1248    png / rgba     1,112,697   Scene07.tsx:31
+  scene7-unsolved.jpg             832x1248    png / rgba     1,109,267   Scene07.tsx:104
+  scene8-theory.jpg               832x1248    png / rgba     1,266,935   Scene08.tsx:38
+
+Mapping result (verified): each of the 13 image files is referenced exactly once by exactly one scene component. Scene08CTA uses no image. No unused image and no missing image reference was found.
+
+Format finding (verified): every ".jpg" file is actually a PNG with RGBA pixel data. The extension/MIME label is wrong. Browsers may still sniff and decode it, but it is a production hygiene issue and may affect CDN/Remotion asset handling.
+
+Aspect-ratio finding (verified): source is 2:3 (0.667); the hero container is 900x792 (1.136). With objectFit: "contain" (used in all 13 image placements), the image is height-limited and displays at approximately 528x792 inside a 900x792 box, leaving about 186 px of empty paper on each side. Effective image width is 528 of 1080 canvas pixels (about 49% of frame width). Camera scale 1.02-1.26 enlarges the element box but does not remove the letterboxing. This is the single largest visual-quality constraint in the current build.
+
+Asset provenance (Not Verified): filenames and PNG/RGBA output are consistent with generated cut-out art, but no generation log, prompt file, or metadata was found in this checkout. Do not assume a specific generator or prompt.
+
+Visual quality of the artwork (Not Verified): this audit could not view image contents (the available model cannot accept image input). Composition, subject fidelity, stylistic consistency, and whether any asset is "low quality" aesthetically are Not Verified. Only technical metadata and placement geometry are verified.
+
+Missing visual assets (verified by reference check): none broken. Missing conceptual assets (verified by comparing implemented props to used props): no map of Brazil/Niteroi, no timeline graphic, no dossier/identity cards, no annotated mask diagram, no evidence-board connection lines, and no claim-vs-evidence comparison for the theory beat. Unused implemented props that could fill these gaps: Receipt, Clipboard, Bottle, Towels, Notebook, Kite, Suitcase, UFO, PaperBody, StandingFigure (all in Props.tsx / PaperFigure.tsx).
+
+======================================================================
+5. AUDIO AND CAPTION ANALYSIS
+======================================================================
+
+Voiceover file (verified): public/reels/lead-masks/vo.wav, referenced in Reel.tsx:21 as "reels/lead-masks/vo.wav" and mounted by src/components/ReelFrame.tsx:24 via <Audio src={staticFile(audio)} />.
+
+Audio technical data (verified with ffprobe):
+  container/format reported: mp3
+  codec: mp3, 48 kbps, 24 kHz, mono
+  duration: 77.496 s
+  size: 464,976 bytes
+  The .wav extension does not match the actual MP3 content. Functionally Remotion can still decode it, but the label is misleading. 24 kHz mono at 48 kbps is low-fidelity for a premium documentary; adequate for speech intelligibility, not for cinematic audio.
+
+Duration alignment (verified):
+  audio                77.496 s
+  captions last word   76.58 s (word 129 "night.")
+  video duration       77.567 s (2327 frames)
+  video-audio delta     +0.071 s (about 2 frames)
+  audio-caption tail    about 0.916 s after last spoken word
+No hard clip of the narration is evident from durations alone.
+
+Caption data (verified): 130 word objects in public/reels/lead-masks/captions.words.json, timestamps 0.000-76.58 s, monotonically increasing, no invalid start>end pairs. One very short word: index 126 "you" (75.86-75.88 s, 0.02 s). One noticeable pause: 1.02 s between "paani." (word 26) and "Waitress" (word 27). Word text concatenation exactly equals voice.txt/captions.txt.
+
+Caption rendering (verified): style/components/Caption.tsx:8-20 builds chunks of at most 4 words, also breaking at trailing punctuation. Caption.tsx:28-32 selects the last chunk whose start <= current time and hides it 0.5 s after chunk end. Caption.tsx:68-88 highlights the active word with C.highlight (#FFC83D), scales it 1.08, dims unspoken words to 30% white. Chunk pop-in uses SPRING.pop at chunk start. Zone from theme.ts:45: x=60, y=1310, w=900, h=190; font Poppins 700 with clamp(46px, 6.7cqi, 60px). This is a genuine word-level karaoke implementation, not a static subtitle.
+
+Word-to-animation mapping (verified): all stamps, PropLabels, torn notes, reveals and shakes in the scenes are derived from t.at(wordIndex) - from, where t comes from src/timing.ts and BEATS boundaries are word starts. Example: Stamp "LEAD MASK" at Scene04.tsx:94 uses word 58 at frame 1006, local 116 of beat s4-bodies. No audited reveal lands after its beat end.
+
+Words that are not word-anchored (verified): Scene04.tsx:97 "THE VICTIMS" at={0}; Scene06.tsx:103 TornNote at={0}; Scene06.tsx:168 TornNote at={0}; static Tag elements with no timing. These are fixed-frame offsets rather than spoken-word events and conflict with CLAUDE.md's word-anchored rule.
+
+Mouth data (verified): public/reels/lead-masks/mouth.json is an array of 2327 numeric values in [0,1], generated at the same frame count as the composition. It is not imported anywhere under src/reels/lead-masks (grep found no "mouth" reference); no avatar is rendered in this reel.
+
+sync provenance (Not Verified): tools/sync.mjs:31-41 runs Whisper with --lang auto/en and a caption hint, choosing the best match, but no run log exists here. The language/model actually used for this reel and the reported match percentage are Not Verified. Perceptual correctness of word boundaries against the real audio is Not Verified; validation requires listening or the align.py report.
+
+Music/sound design (Not Verified): ReelFrame mounts only the single narration Audio. No music bed, SFX track or level automation was found in this project. Which provider produced vo.wav is Not Verified and not inspected; credentials were not read or printed.
+
+======================================================================
+6. ANIMATION AND MOTION ANALYSIS
+======================================================================
+
+Motion primitives (verified)
+- style/motion.ts:8-9 springAt: delayed spring (defined, not used by scenes).
+- style/motion.ts:15-23 slamPose: 3-frame 2->1 scale slam, damped sine settle, 9-frame sideways shake. Used by Stamp.tsx:29.
+- style/motion.ts:30-39 camera: linear interpolate of x/y/scale across sorted keyframes, then CSS translate+scale transform. No easing curve; linear between keys.
+- style/motion.ts:42-43 ease: generic interpolate wrapper (defined, not used by scenes).
+- style/motion.ts:46-52 slide: directional translate for spring progress; used by PropLabel, TornNote, CapsuleRow, TubeReveal.
+- theme.ts:49-53 SPRING configs: slam (damping 12/stiffness 220/mass .7), pop (13/180/.6), drop (9/160/.9).
+- ui.tsx:11-28 ScreenShake: sine/cosine decay over 16 frames, default amplitude 2.4 px; applied to 9 of the 14 beats plus the CTA (10 total), with the CTA overriding amount to 1.8.
+- ui.tsx:30-37 Floaty and :39-60 CameraDrift are defined but never used.
+- PaperBackground.tsx uses static SVG feTurbulence grain plus radial light and inset vignette; only Scene08CTA uses it.
+
+Verified systemic defect: composition duration used as scene-local key.
+Scenes calling useVideoConfig().durationInFrames and passing it as a local camera/push key: Scene01:25, Scene02:23, Scene03:22 and :59, Scene04:28 and :82, Scene05:25, Scene06:69/:92/:157 (push), Scene07:22 and :95, Scene08:27. useVideoConfig() returns the composition duration (2327), not the Sequence duration. Result: the final camera pose is almost never reached and the Scene06 image push is nearly zero. Concrete example: Scene01 camera has keys at local 0/58/130/2327 but the beat ends at 184, so only 2.5% of the last segment plays. This makes the camera work read as a very subtle drift rather than the intended reveal.
+
+Animation quality assessment (verified from code)
+- Positives: deterministic frame-driven motion, word-anchored delays, three distinct spring personalities, a strong stamp slam, a handwriting reveal in Scene06, and a real karaoke caption layer. All CSS used (oklch, color-mix, container queries, cqi, clip-path) is Chromium-deterministic and appropriate for Remotion.
+- Negatives: camera interpolation is linear; repeated pop/slide/slam across nearly every beat; screen shake is used as a universal punctuation mark; question marks float on a free-running sine; signal rings are a free-running 24-frame loop; no transitions between beats (hard cuts only); no depth/parallax; no focus-pull or optical zoom language; no use of beat-synchronous cutting because no music track exists.
+
+Visual consistency (verified): high internal consistency of the paper-and-red system, but Scene06's Caveat handwriting and Scene08CTA's grain/vignette are isolated one-offs. Headlines are nominally assigned 130-170 px in every scene, yet Headline.tsx:69 clamps every one to Math.min(size, 96), so the actual headline size is uniformly 96 px. That flattens the intended type hierarchy across all 13 headline beats.
+
+======================================================================
+7. REMOTION ARCHITECTURE
+======================================================================
+
+Registration (verified)
+- src/index.ts:1-4 registerRoot(Root).
+- src/reels/registry.ts:58-62 registers id "lead-masks" with Component = r_lead_masks.Reel and durationInFrames = r_lead_masks.durationInFrames.
+- src/Root.tsx:9-12 creates a <Composition id={r.id} width={WIDTH} height={HEIGHT} fps={FPS} durationInFrames={r.durationInFrames} defaultProps={{}} />. No variants for lead-masks.
+- src/layout.ts:5-7 defines WIDTH=1080, HEIGHT=1920, FPS=30.
+- Reel.tsx:22 exports durationInFrames=2327; registry consumes it directly. No manual duration drift found.
+
+Audio path (verified): Reel.tsx:21 + ReelFrame.tsx:24 + staticFile() resolves public/reels/lead-masks/vo.wav. Correct public-directory mapping.
+
+Render configuration (verified)
+- remotion.config.ts:3-4: video image format jpeg, overwrite output enabled.
+- tools/render.mjs:18 invokes `npx remotion render <id> <out> --crf=18`, with optional browser-executable retry (lines 20-24). No codec/scale override; output is 1080x1920 at 30 fps.
+- tools/check.mjs:46-62 bundles src/index.ts with publicDir=public and renders stills at frames 0, 8, every 15th frame, and total-1 with probe + safe zones enabled; builds out/<id>/check/contact-sheet.jpg via ffmpeg tile (lines 119-128) and writes report.json (line 131). Scenes longer than 9 s warn; under 2.5 s warn; total >60 s warn; >90 s fix. No rendered output exists yet, so the contact sheet was Not Verified and no manual look was possible.
+
+Dependencies (verified from package.json): remotion / @remotion/cli / @remotion/bundler / @remotion/renderer / @remotion/google-fonts all pinned at 4.0.538; react + react-dom ^19; typescript ^5.6; @types/react ^19. No video-editor, GSAP, Lottie, three.js or image-processing library is installed. All motion is native Remotion + CSS/SVG.
+
+Font loading (verified): theme.ts:1-16 loads BarlowCondensed, Inter, Poppins, Caveat and SpecialElite through @remotion/google-fonts; latin subsets only. "Niterói" uses a latin extended character; subset coverage was Not Verified but glyph fallback is unlikely to be an issue in Chromium.
+
+Typecheck (verified): `npm run typecheck` -> tsc --noEmit, exit 0, no output.
+
+Architecture concerns (verified)
+- SAFE values are duplicated as literal numbers in SceneLayout.tsx:13 and theme.ts:42-47 instead of importing src/layout.ts; a future safe-zone change could desynchronize them.
+- A large local component library (Props.tsx 306 lines, PaperFigure.tsx 121 lines, ui.tsx 148 lines) is mostly unused by this reel; dead code obscures the actual visual vocabulary.
+- Reel.tsx hard-codes word indices (T.at(8), T.at(21), ... T.at(119)) rather than using t.atText(); a caption rewrite shifts every beat boundary.
+
+======================================================================
+8. INSTALLED SKILLS RECOMMENDATIONS
+======================================================================
+
+Evaluated only; none were executed and no skill file was modified.
+
+  Skill                     Usefulness  Potential use for this upgrade
+  motion-art-direction      HIGH        Senior-level motion language: define a consistent "investigative" tone, pacing, hierarchy and what should NOT animate; counter the current pop/slide/slam sameness.
+  shot-composition          HIGH        Rework the 2:3 letterboxed plates into intentional 9:16 frames; safe-area-aware focal placement, rule-of-thirds, foreground/background layers, better use of the 900x792 hero box.
+  animation-principles       HIGH        Replace linear camera moves with eased curves, prefer intentional overshoot/settle, stagger reveals, and fix the free-running sine/signal loops.
+  motion-background         MEDIUM      Extend the CTA's paper grain/radial light/vignette into all beats as a subtle continuous background, instead of 13 flat paper plates.
+  remotion-video            HIGH        Native implementation patterns for Sequence/Audio/spring/interpolate, determinism, and safe rendering within the existing Remotion 4.0.538 stack.
+  after-effects             LOW         Relevant only if motion is later exported to AE or an AE-style pipeline is requested; not needed for a code-only Remotion upgrade.
+  color-motion              MEDIUM-HIGH Perceptual palette work in OKLCH, grading consistency, avoiding washed-out paper, and preview/final color matching. Directly applicable to the current C.* palette.
+  kinetic-typography        HIGH        Fix the 96 px headline cap, build a MagnatesMedia-style hierarchy with staggered line/word reveals, and integrate the typewriter/hand fonts deliberately.
+  caption-animation         HIGH        Refine the existing word-level karaoke; preserve word timing while improving readability and integrating caption style with the paper aesthetic.
+  beat-sync-editing          MEDIUM      Word-anchored cut planning and pacing across 14 beats; useful for pattern interrupts. Limited by the fact that no music/BPM track was found.
+  lower-thirds              LOW-MEDIUM  Optional documentary ID cards for Manoel, Miguel, the waitress and the reporting context; should be sparing in a mystery reel.
+  short-form-video          HIGH        Hook/retention/loop grammar and the 9:16 safe-area discipline; most urgent because 77.567 s violates the project's own <60 s rule.
+  tiktok-video-skills       N/A         NOT INSTALLED. No skill by this name exists under /root/.claude/skills or this project's .agents/.claude skill directories. Only an unrelated tiktok.py fetch helper exists inside last30days. Its potential use would overlap short-form-video, but availability is Not Verified.
+
+======================================================================
+9. CURRENT PROBLEMS
+======================================================================
+
+Prioritized, verified unless marked otherwise.
+
+P0-1  Runtime length: 77.567 s vs the project's <60 s rule (CLAUDE.md, tools/check.mjs:105). The check will warn. A premium documentary cut should be 45-60 s.
+P0-2  Camera/push keys use composition durationInFrames (2327) instead of beat-local duration in 11 scenes. Intended final camera poses and Scene06 pushes are effectively unreachable; motion is much weaker than authored.
+P0-3  All 13 images are 2:3 PNGs mislabeled .jpg and are contain-letterboxed into a 900x792 hero, displaying at about 528x792. Nearly half the 1080 px frame width is empty paper on every image beat.
+
+P1-1  Headline.tsx:69 clamps all 130-170 px size props to 96 px. Verified type hierarchy is flat despite scene-level intent.
+P1-2  Hard cuts only. No dissolve, wipe, match cut or transition layer anywhere in Reel.tsx; ScreenShake is used as the sole punctuation.
+P1-3  Template repetition: 13 of 14 beats are Headline + contain Img + Stamp/PropLabel + optional shake. Multiple beats read as static slideshow plates.
+P1-4  Weak narrative visuals: no map, no timeline, no relationship diagram, no annotated mask, no claim-vs-evidence split, no use of the implemented Receipt/Clipboard/Bottle/Towels/UFO/PaperBody props.
+P1-5  Background inconsistency: SceneLayout uses flat C.paper in 13 beats; only Scene08CTA has grain, radial light and vignette from PaperBackground.tsx.
+
+P2-1  Stamp/PropLabel pattern is nearly identical across scenes (same rotation -8 for stamps, mostly left slide for labels, sizes 22-26).
+P2-2  Scene05 lasts 7.93 s with one image and three same-style tags; Scene06 splits one notebook idea across three short static beats; Scene08Theory's UFO is only a word label.
+P2-3  Caption styling uses a dark translucent bubble and Poppins, visually separate from the paper system; karaoke timing is good but style integration is weak.
+P2-4  Audio is actually MP3, 24 kHz mono, 48 kbps, named .wav. Verified technically; upgrade to a properly labeled higher-quality master if available.
+P2-5  mouth.json (2327 frames) is generated but unused; no avatar exists in this reel.
+P2-6  projects/lead-masks/ has no script.md. Source citations for claims are Not Verified, which does not satisfy the CLAUDE.md research/source rule on paper.
+P2-7  No out/lead-masks render or check artifacts exist, so the mandatory self-check contact sheet review is Not Verified.
+
+P3-1  Fixed at={0} reveals in Scene04Bodies and Scene06 are not word-anchored.
+P3-2  Watch second hand (Scene03.tsx:89) uses frame%60; signal rings (Scene06.tsx:130-131) use a 24-frame period; question-mark float (Scene07.tsx:61) uses a free-running sine. Deterministic but not narration-driven.
+P3-3  SAFE/ZONE numbers are duplicated instead of imported from src/layout.ts.
+P3-4  Word indices are hard-coded in Reel.tsx BEATS; t.atText() is unused.
+P3-5  One caption word is only 20 ms ("you", index 126); a caption chunk may flash it.
+P3-6  brand.ts is used only for the CTA handle and the underlying ReelFrame background color; the custom C.* palette replaces brand colors entirely.
+
+Not Verified / do not assume: aesthetic quality of the generated images, provenance of those images, exact sync accuracy of word timestamps to spoken audio, presence of music/SFX, factual sourcing, and whether any past approval gate occurred.
+
+======================================================================
+10. PROFESSIONAL UPGRADE RECOMMENDATIONS
+======================================================================
+
+These are recommendations only. No code was changed.
+
+A. Story and edit (highest impact)
+   1. Cut to 45-60 s. Preserve the hook, discovery, mask, no-tox-test and overdose twist; compress Scene05 and the three Scene06 beats.
+   2. Replace hard cuts with motivated transitions: dissolve for time passage ("3 DAYS LATER"), match cut on the mask shape, whip pan from bar clock to notebook clock, iris/redaction wipe into the autopsy report.
+   3. Add a single visual spine: a case-file timeline with five stations (1966 arrival, 17 Aug bar, 20 Aug discovery, scene evidence, unresolved theory). Reveal one station per beat. This gives Johnny-Harris-style continuity without new assets.
+   4. Add explicit claim vs evidence framing in the theory beat before the OVERDOSE stamp.
+
+B. Visual/art direction
+   1. Regenerate or reframe assets to true 9:16 (1080x1920 or higher), with the main subject inside SAFE_BOX and room for labels. If regeneration is impossible, crop/zoom the existing 832x1248 plates with a consistent treatment rather than contain-letterboxing.
+   2. Fix the .jpg -> .png extension mismatch (or export real JPEGs) and consider WebP/AVIF for size; 17.69 MB of PNG in a 77 s reel is heavy.
+   3. Extend PaperBackground grain/radial light/vignette to all beats so the CTA does not feel like a different film.
+   4. Apply a consistent grade: slightly desaturated paper, lifted blacks, controlled red stamps; avoid per-scene ad-hoc colors. Use color-motion guidance.
+   5. Introduce layered depth: background plate, mid-ground subject cut-out, foreground label/stamp. Use parallax tied to word-anchored camera moves.
+
+C. Typography and motion graphics
+   1. Remove or raise the 96 px Headline clamp and define a real hierarchy: 150-180 px beat title, 28-34 px kicker, 22-26 px evidence label, 46-60 px caption.
+   2. Use kinetic-typography techniques: staggered line reveals, character/word masks, a single dominant number per beat (1966, 17, 16:30, 18:30), and restrained use of Caveat handwriting only for the notebook instructions.
+   3. Use the unused props where they carry evidence: Receipt in s3-receipt, Clipboard in s7-autopsy, Bottle/Towels/Notebook in s5, UFO beam in s8-theory, PaperBody/LeadMask annotation in s4-bodies.
+   4. Replace free-running loops with narration-driven motion: tick the watch on "ghadi/dekh raha", pulse rings only on "signal", float question marks only while the uncertainty words are spoken.
+   5. Fix all durationInFrames camera/push keys to use the beat/sequence duration (or a locally passed duration prop) so authored end poses actually appear.
+
+D. Audio and captions
+   1. Replace/remaster vo.wav with a correctly named, higher-sample-rate master if available; keep duration and word timestamps in sync by re-running sync afterward.
+   2. Consider a low, non-licensed-original ambient bed and a few punctuation SFX (stamp thud, paper tear, clock tick). No key or external asset should be added without approval.
+   3. Integrate the caption capsule into the paper language while keeping the active-word highlight; verify it never covers the hero evidence.
+   4. Re-run sync and listen to the "Filled stretches" report; verify the 20 ms "you" and the 1.02 s pause are intentional.
+
+E. Verification before any render
+   1. npm run typecheck.
+   2. npm run check -- lead-masks, then LOOK at out/lead-masks/check/contact-sheet.jpg before rendering (CLAUDE.md rule).
+   3. npm run render -- lead-masks, then re-run check with the MP4 present so the freezedetect branch runs.
+   4. Confirm no findings of type safe-zone/overflow/overlap/empty/hook/pacing/frozen remain; note that a >60 s length warning is expected until the edit is shortened.
+
+======================================================================
+11. RECOMMENDED SCENE-BY-SCENE UPGRADE PLAN
+======================================================================
+
+All timings below are the currently verified beat frames; they will change if the reel is shortened.
+
+s1-hook (0-184, Scene01)
+- Open on a tight lead-mask cut-out, then snap out to a simple Brazil map with a Niteroi pin as "Brazil, 1966" is spoken.
+- Replace three stacked left-sliding tags with one evidence-board card: "SISA KI MASK / DO LAASHE".
+- Keep the 1966 stamp; give it a real impact SFX and a 6-8 frame hold.
+- Fix camera keys to local duration so the pull-back actually completes.
+
+s2-technicians (184-379, Scene02)
+- Two dossier cards for Manoel and Miguel with lower-third role labels, not one static group image.
+- Animate an annotated electronics-kit callout; show the "office work" family line as a redacted note that slides over the dossier.
+- Add a connector line between the two men to set up the shared fate.
+
+s3-clock (379-566, Scene03Clock)
+- Add a map zoom Brazil -> Niteroi -> bar on "17 August, Niteroi".
+- Use the unused Clock prop set to 22:15 (from Props.Receipt) instead of a generic date-only label.
+- Date stamp remains on "August"; add a subtle timeline station marker.
+
+s3-receipt (566-698, Scene03Receipt)
+- Use Props.Receipt with typed line items and a red "NERVOUS" annotation as the witness is mentioned.
+- Show the waitress as a simple lower-third, then pan to Miguel.
+- Tie the watch hand to the spoken "ghadi" rather than frame%60; keep CHECKING WATCH as the label.
+
+s4-discovery (698-890, Scene04Discovery)
+- Keep the vertical pan, but add a kite string that leads the eye down to the bodies (Props.Kite is unused).
+- Timeline station "3 DAYS LATER" slides in as a bar, then the TWO BODIES reveal.
+- Use a dissolve from the bar scene to establish the time jump.
+
+s4-bodies (890-1021, Scene04Bodies)
+- Crop hard to the mask and annotate it with leader lines: formal suit / waterproof coat / lead mask.
+- Replace "THE VICTIMS" at={0} with a word-anchored reveal.
+- Use PaperBody/LeadMask diagram overlays for a forensic, not decorative, read.
+
+s5-no-wounds (1021-1259, Scene05)
+- Convert the single plate into a 3-tile evidence grid using Bottle, Towels and Notebook props; reveal one tile per spoken clue.
+- Keep the two NO stamps as the beat's punctuation, but remove one of the repeated left slides.
+- Shorten this beat or split it so it does not sit for nearly 8 s on one image.
+
+s6-notebook (1259-1379, Scene06Notebook)
+- Tight crop on the notebook; the Caveat handwriting reveal is good, keep it but tie the "16:30" stroke to word 73 and "pahuncho" to word 75 (already done).
+- Add a clock face at 16:30 and a pin/meeting-point marker on a minimal map.
+- Fix the push to use beat-local duration.
+
+s6-capsules (1379-1514, Scene06Capsules)
+- Move the TornNote from at={0} to word 78 so the instruction appears when spoken.
+- Show two capsules as physical evidence with a count and chain-of-custody line; add an 18:30 clock.
+- Consider merging with s6-metal to save 4 s of runtime.
+
+s6-metal (1514-1632, Scene06Metal)
+- Keep the LeadMask drop on "mask" and the signal rings on "signal", but label each ring with "WAIT" / "SIGNAL" so the metaphor is explicit.
+- Use a simple radio-wave diagram instead of three generic expanding circles.
+- Anchor the second TornNote to word 84 (already done).
+
+s7-autopsy (1632-1759, Scene07Autopsy)
+- Use Props.Clipboard with redacted lines; reveal "ORGANS: DECOMPOSED" on word 92.
+- Add a small delay timeline: death -> discovery -> autopsy -> LATE.
+- Keep the LATE stamp; make the transition into it a redaction wipe.
+
+s7-unsolved (1759-1955, Scene07Unsolved)
+- Replace four floating question marks with an evidence board: nodes "TOX TEST", "CAUSE", "MOTIVE" connected by dashed lines to a central "?".
+- TubeReveal stays on "test"; "NO TOX TEST" lands on "paaya" (already aligned).
+- Let the UNSOLVED stamp land on word 105 as now, followed by a 1 s hold of near-silence.
+
+s8-theory (1955-2185, Scene08Theory)
+- Split frame: left "CLAIM" (spiritualists, UFO mask, signal), right "EVIDENCE" (no wounds, no tox, missing chain). Reveal row by row on words 106-116.
+- Use the unused UFO beam prop subtly on "UFO", not as a full-screen gag.
+- OverdoSE stamp remains the twist; cut to black for 4-6 frames before the CTA.
+
+s8-cta (2185-2327, Scene08CTA)
+- Keep the torn paper card and container-query typography; it is the most finished visual in the reel.
+- Add a case-file reference line and a one-line question to drive comments, plus a subtle paper/map watermark.
+- Reduce to 3-4 s if the total runtime is still above 60 s.
+
+======================================================================
+12. FINAL PRODUCTION WORKFLOW
+======================================================================
+
+Recommended order for a future upgrade (not executed in this audit):
+
+  1. Research + script approval (CLAUDE.md gate). Write projects/lead-masks/script.md with a source for every factual claim; re-confirm voice.txt/captions.txt afterward. Do not proceed without approval.
+  2. Edit the cut to 45-60 s. Freeze a new word-index map and replace hard-coded T.at(n) beat boundaries with t.atText() where practical.
+  3. Reframe or regenerate all 13 assets to 9:16, correct the .jpg/.png mismatch, and place subjects inside SAFE_BOX. Verify each asset's scene mapping again.
+  4. Implement the upgraded visuals in the existing 8 scene files / style components only where approved; do not add new components unless requested. Fix durationInFrames keys, the 96 px headline cap, transitions, and background consistency first.
+  5. Re-record or remaster narration if needed; re-run `npm run sync -- lead-masks --lang auto` with the approved model, then listen-check word boundaries.
+  6. `npm run typecheck`.
+  7. `npm run check -- lead-masks`; inspect out/lead-masks/check/contact-sheet.jpg manually (mandatory). Resolve safe-zone, overflow, overlap, empty, hook and pacing findings.
+  8. `npm run render -- lead-masks`; re-run check with the MP4 present so freezedetect executes; look at the final contact sheet again.
+  9. Only after the visual check passes, write the posting caption and hashtags.
+ 10. Final read-only verification: git status shows only intended files changed; no keys, tokens or secrets in any file or log.
+
+End of audit. No project code was modified.

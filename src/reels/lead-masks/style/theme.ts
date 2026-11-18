@@ -40,8 +40,8 @@ export const alpha = (color: string, percent: number) =>
   `color-mix(in oklab, ${color} ${percent}%, transparent)`;
 
 export const ZONE = {
-  headline: { x: 60, y: 260, w: 960, h: 400 },
-  hero: { x: 60, y: 720, w: 900, h: 520 },
+  headline: { x: 60, y: 220, w: 900, h: 264 },
+  hero: { x: 60, y: 484, w: 900, h: 792 },
   caption: { x: 60, y: 1310, w: 900, h: 190 },
   stamp: { x: 650, y: 230, w: 300, h: 140 },
 };

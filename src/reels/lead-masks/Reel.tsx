@@ -55,7 +55,7 @@ export const Reel: React.FC<ReelProps> = ({ brand = defaultBrand, debugSafeZones
   <ReelFrame brand={brand} audio={AUDIO} debugSafeZones={debugSafeZones} probe={probe}>
     {BEATS.map(({ name, from, frames, Scene }) => (
       <Beat key={name} name={name} from={from} frames={frames}>
-        <Scene t={T} from={from} />
+        <Scene t={T} from={from} frames={frames} />
       </Beat>
     ))}
     <Caption words={WORDS} />

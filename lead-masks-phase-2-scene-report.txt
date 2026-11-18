@@ -1,0 +1,158 @@
+LEAD MASKS - PHASE 2 SCENE-LEVEL VISUAL REPORT
+Date: 2026-11-18
+Composition: src/reels/lead-masks (1080x1920, 30 fps, 2327 frames)
+Contact sheet: out/lead-masks/check/contact-sheet.jpg
+Check data: out/lead-masks/check/report.json
+
+HOW TO READ THIS
+- Each beat lists: story job, headline treatment, camera, foreground annotation, and what to check on the contact sheet.
+- All delays are local frames derived from captions.words.json via `t.at(...) - from`.
+- No scene changes narration, caption wording, caption timing, scene order or runtime.
+- The automatic probe passed. This model cannot view images, so the "check" notes are the human visual pass that still needs to happen.
+
+BEAT MAP AND START TIMES
+0.00 s  s1-hook          Brazil 1966
+6.50 s  s2-technicians   Manoel + Miguel
+13.00 s s3-clock         August 17
+19.00 s s3-receipt       Nervous waiting
+23.50 s s4-discovery     Three days later
+30.00 s s4-bodies        The outfit
+34.50 s s5-no-wounds     No wounds / no fight
+42.00 s s6-notebook      The notebook
+46.00 s s6-capsules      Take the capsules
+50.50 s s6-metal         Wait for the signal
+54.50 s s7-autopsy       Too late
+59.00 s s7-unsolved      No answer
+65.50 s s8-theory        Signal or overdose
+72.84 s s8-cta           End card
+
+1. s1-hook - BRAZIL / 1966
+Story job: establish place, year and the two bodies in one held image.
+Headline: `track` with a red accent rule. The wide-tracked type reads as a case file heading, not a generic title.
+Camera: slow push from 1.02 to 1.10 with a small upward drift (y 26 -> -20). The move starts before the first word and settles across the beat.
+Foreground: SISA KI MASK, DO LAASHE, 2 VICTIMS enter in a left-hand column. The column counter-drifts by 12 px so it separates from the plate.
+Punctuation: 1966 stamp slams on the year, with one short screen shake.
+Check: the 1966 stamp should sit on the right edge without covering the mask's face; the three labels should sit in the paper margin, not on the evidence.
+
+2. s2-technicians - MANOEL + MIGUEL
+Story job: introduce the two men and the office-work lie.
+Headline: `split`. MANOEL + enters from the left, MIGUEL from the right, so the two names behave like two subjects.
+Camera: lateral drift from x -32 to x +22, scale 1.09 -> 1.04. A slight pull-back gives the two-shot air.
+Foreground: ELECTRONICS KIT from the left, SAID: OFFICE WORK from the right on a deeper paper tone.
+Punctuation: TECHNICIANS stamp on the word.
+Check: at mid-entrance the split lines temporarily extend past their resting width; confirm they do not collide with the right-edge stamp on the sampled frame.
+
+3. s3-clock - AUGUST / 17TH
+Story job: turn the date into a dated case entry.
+Headline: `dateline` with an 84 px red rule and a square timeline node. This is the only dateline beat, so the date reads as a document marker.
+Camera: slow push 1.00 -> 1.08 with a slight left drift.
+Foreground: BAR IN NITERÓI label on its word.
+Punctuation: 17 AUGUST stamp on the date.
+Check: the dateline rule and node were moved fully inside the rule box to satisfy the probe; confirm the node still reads as a deliberate timeline dot, not a clipped square.
+
+4. s3-receipt - NERVOUS / WAITING
+Story job: make the waitress's account concrete: Miguel kept checking his watch.
+Headline: `mask`, so the words wipe up into view like a statement being uncovered.
+Camera: waitress-to-Miguel pan preserved (x +40 -> -96), but the final scale is held at 1.16 so the image does not overshoot the hero.
+Foreground: WAITRESS and MIGUEL labels; then a cream witness card with a red top rule drops and rotates into the top-right corner.
+Inside the card: a ticking clock and CHECKING WATCH label on "dekh".
+Check: the witness card is the busiest new element. Confirm it covers only the right margin and does not hide Miguel's face or the waitress.
+
+5. s4-discovery - THREE DAYS / LATER
+Story job: make the time jump legible before the camera finds the bodies.
+Headline: `rise` (the only plain rise in this stretch), so the new information is the time spine, not the type.
+Camera: starts high (y 150) and pans down to y -110, scale 1.12 -> 1.00. The move follows the kite boy's sightline to the ground.
+New device: a 17 AUG -> 20 AUG time spine in the headline band. The vertical line draws on "teen din baad" and a red marker travels down it.
+Foreground: KITE BOY and KITE labels; TWO BODIES + FOUND tag enter at the bottom on the reveal.
+Punctuation: 3 DAYS LATER stamp and two short shakes (time jump, body reveal).
+Check: the time spine sits to the right of the 620 px headline. Confirm the marker does not touch the "LATER" line and that the bottom TWO BODIES block is still above the caption safe area.
+
+6. s4-bodies - THE OUTFIT
+Story job: present the clothes as evidence, not as a costume illustration.
+Headline: `press` with a 70 px rule. The type presses down from above, matching the formal-suit formality.
+Camera: small push 1.03 -> 1.12, moving inside the evidence plate.
+New device: `EvidencePlate` gives the image a cream mat, ink border and paper shadow. This beat and the capsule beat now read as mounted prints instead of floating images.
+Foreground: THE VICTIMS, FORMAL SUIT, WATERPROOF COAT labels in the left margin.
+Punctuation: LEAD MASK stamp moved to the lower-right so it no longer sits over the suit.
+Check: the plate is 528 px wide at 832:1248; confirm the mat is even on both sides and the lower-right stamp does not clip the plate border.
+
+7. s5-no-wounds - NO WOUNDS / NO FIGHT
+Story job: deliver the two negative findings, then index the three clues.
+Headline: `rise`, kept plain because the stamps carry the verdict.
+Camera: very slow push 1.01 -> 1.09 with a small upward drift.
+New device: a vertical forensic spine at the left of the clue column. It draws on "khaali bottle" and the three labels sit against it like an evidence index.
+Foreground: EMPTY BOTTLE, TWO WET TOWELS, NOTEBOOK, each on its spoken word. The column shifted right by 26 px so the spine has its own gutter.
+Punctuation: NO WOUNDS and NO FIGHT stamps on their words.
+Check: the spine should read as a single hairline behind the labels, not as a border around them. Confirm the labels do not sit on top of the line.
+
+8. s6-notebook - THE INSTRUCTIONS
+Story job: reveal the notebook as a document and land the first instruction.
+Headline: `mask`, so the instruction is uncovered rather than dropped in.
+Camera: slow push 1.06 -> 1.10.
+New device: the document is clipped open over the first ~16 frames with a thin red scan line. The reveal is a clip-path plus opacity, not a time-driven CSS animation.
+Foreground: a torn-paper note reads 16:30 - PAHUNCHO, then REACH THE MEETING POINT on the next word. This is the first torn note in the reel.
+Check: the scan line should disappear by the time the note is readable. Confirm the note covers only the lower/left part of the notebook and does not hide the handwriting that proves the instruction.
+
+9. s6-capsules - TAKE THE CAPSULES
+Story job: turn the second instruction into a physical object beat.
+Headline: `split`, so TAKE THE and CAPSULES arrive from opposite sides.
+Camera: push 1.04 -> 1.13 inside the evidence plate, drifting slightly left as the capsules appear.
+New device: the capsule photo is mounted as an evidence plate, rotated -0.6 degrees. The torn note enters from the right at 18:30.
+Foreground: two code-drawn capsules pop in with a 7-frame stagger, then the CAPSULES label lands on "capsules".
+Check: the note, capsules and label are stacked in a flex column; confirm the capsule row does not overlap the note's torn bottom edge.
+
+10. s6-metal - WAIT FOR THE SIGNAL
+Story job: the instruction becomes a waiting beat; the mask is the receiver.
+Headline: `rise` with a 72 px rule.
+Camera: push 1.03 -> 1.08, easing upward on "signal".
+New device: the mask now has a soft breathing glow and three slower signal rings (30-frame period, 8-frame offsets) instead of fast repeating rings. The rings are intentionally slower than the previous pass so the beat feels like waiting, not pinging.
+Foreground: METAL BACHÃO torn note on "dhaatu"; MASK KA SIGNAL KA INTEZAAR torn note on "signal".
+Check: the signal pulse was reduced to 208 px to stay inside the 220 px mask box. Confirm the rings still feel like they leave the mask and are not visibly clipped by the hero edge.
+
+11. s7-autopsy - TOO LATE
+Story job: the autopsy arrives after the useful window.
+Headline: `press` with a 78 px rule. No shake; the beat is cold.
+Camera: slow push 1.01 -> 1.09.
+Foreground: AUTOPSY REPORT tag, then ORGANS DECOMPOSED on its word.
+Punctuation: LATE stamp on "late".
+Check: the stamp and the headline both say the same thing; the stamp must sit on the image side, not on the headline. Confirm the label column stays clear of the stamp.
+
+12. s7-unsolved - NO ANSWER
+Story job: three unanswered questions, then the file closes unsolved.
+Headline: `mask` with a 74 px rule.
+Camera: slow push 1.03 -> 1.10, easing up on the final phrase.
+Foreground: AUTOPSY REPORT tag; TEST TUBE prop and labels NO TOX TEST on "test nahi ho paaya".
+New device: exactly three question marks, one per spoken phrase, each with a small depth drift (4 px float, 6 px drift) rather than random movement.
+Punctuation: UNSOLVED stamp on "aaj tak wajah pata nahi" with one short shake.
+Check: the three question marks are the visual signature of the beat. Confirm they read as three separate questions and do not cover the UNSOLVED stamp or the test tube.
+
+13. s8-theory - SIGNAL OR OVERDOSE
+Story job: deliver the theory and the twist without turning the ending into science fiction.
+Headline: `split`, so SIGNAL OR and OVERDOSE read as a fork in the case.
+Camera: tilt up from y +34 to y -64, scale 1.03 -> 1.10. The move follows the UFO word and leaves the witnesses below.
+New device: `AtmosphereGlow` breathes behind the UFO on "UFO ke liye". It is a low-opacity paper-light radial glow, not a coloured sci-fi effect.
+Foreground: UFO label on the UFO word; SCIENTIFIC SPIRITUALISTS on its word.
+Punctuation: THEORY stamp early, OVERDOSE stamp on the final twist, with one 1.8 px shake.
+Check: the glow should be almost subliminal on the cream paper. Confirm OVERDOSE does not cover the SCIENTIFIC SPIRITUALISTS label and the tilt does not push the witnesses out of the hero.
+
+14. s8-cta - END CARD
+Story job: end on a readable card, not a hard pop.
+Headline: no shared Headline component; the card uses its own display type.
+Motion: eased entrance over 24 frames (translateY 72 -> 0, rotate -2.6 -> -1, scale 0.98 -> 1.0), then a slow 1.2% push/hold. No fade-out.
+Text: MORE REAL CASES, THAT KEEP YOU, UP AT NIGHT and the handle stagger in over the first 22 frames. The FOLLOW stamp lands 6 frames after the spoken Follow word.
+Check: the FOLLOW stamp sits at the lower-right of the card; confirm it does not overlap the handle. Confirm the card is still fully readable at 77.5 s, because there is no exit fade.
+
+CROSS-BEAT RHYTHM
+- Headline variants in order: track, split, dateline, mask, rise, press, rise, mask, split, rise, press, mask, split, custom CTA. No two consecutive beats share the same entrance.
+- Camera grammar: push, lateral drift, push, pan, tilt-down, push-in-plate, push, push, push-in-plate, push, push, push, tilt-up, slow push/hold. The two mounted plates break up the push-heavy middle.
+- Annotation grammar: labels mostly enter from the left. The right-side exceptions are SAID: OFFICE WORK, the 18:30 note, and UFO; the 16:30 note is the one left-side torn note. That keeps the left margin as the dossier spine without making every beat identical.
+- Shake is now reserved for: the 1966 stamp, the three-days jump, the body reveal, UNSOLVED, and OVERDOSE. Everything else is clean.
+
+HUMAN VISUAL PASS TO DO
+The automatic probe checks geometry, safe zones, overlaps and blank boxes. It cannot judge whether the result looks good. Before any final render, look at the contact sheet and confirm:
+1. Every evidence image is recognisable and not cropped by its plate or camera move.
+2. No stamp sits on a face, a headline, or a caption.
+3. The torn notes remain readable over the photographs.
+4. The three question marks and the signal rings feel intentional, not decorative.
+5. The end card is readable at 73-77.5 s without an exit fade.
+6. The 77.6 s runtime is still acceptable for the target platform.

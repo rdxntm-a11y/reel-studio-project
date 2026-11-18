@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Word } from "../../../../timing";
-import { C, FONT, SPRING, ZONE } from "../theme";
+import { alpha, C, FONT, SPRING, ZONE } from "../theme";
 
 type Chunk = { words: Word[]; start: number; end: number };
 
@@ -54,8 +54,9 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
           maxWidth: ZONE.caption.w,
           boxSizing: "border-box",
           padding: "18px 30px",
-          borderRadius: 24,
-          background: "rgba(0, 0, 0, 0.55)",
+          borderRadius: 18,
+          background: alpha(C.charcoal, 94),
+          border: `2px solid ${alpha(C.paperLight, 22)}`,
           boxShadow: "0 10px 26px rgba(0, 0, 0, 0.45)",
           textAlign: "center",
           textWrap: "pretty",
@@ -77,7 +78,7 @@ export const Caption: React.FC<{ words: Word[] }> = ({ words }) => {
                 padding: active ? "2px 14px" : "2px 4px",
                 borderRadius: 14,
                 background: active ? C.highlight : "transparent",
-                color: active ? "#111111" : spoken ? "#FFFFFF" : "rgba(255,255,255,0.3)",
+                color: active ? C.ink : spoken ? C.cream : alpha(C.cream, 35),
                 transform: active ? "scale(1.08)" : "scale(1)",
                 transformOrigin: "center bottom",
                 textShadow: active ? "none" : "0 2px 8px rgba(0,0,0,0.6)",

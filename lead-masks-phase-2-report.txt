@@ -1,0 +1,124 @@
+LEAD MASKS - PHASE 2 CINEMATIC ENHANCEMENT REPORT
+Date: 2026-11-18
+Project: /root/reel-studio/reel-studio-kit
+Composition: src/reels/lead-masks (1080x1920, 30 fps, 2327 frames / 77.57 s)
+
+SCOPE
+- Targeted enhancement pass only. No redesign, no rewrite of the story, no new narration, no new assets, no new factual claims.
+- Worked inside src/reels/lead-masks and its directly related style components.
+- No dependencies were added. No final MP4 was rendered.
+- Narration, voiceover, caption text, caption timing, word sync, scene order and runtime were left intact.
+
+PROTECTED INPUTS (verified unchanged)
+c889ac36bb71c4b8820a4fa454053bfaf1a7beac65ddf931cf50d7d786bfc7f7  projects/lead-masks/voice.txt
+c889ac36bb71c4b8820a4fa454053bfaf1a7beac65ddf931cf50d7d786bfc7f7  projects/lead-masks/captions.txt
+642703b41894f0cc855d90fbbba4794be1cf769152bc0039533e5b1328bd9da3  public/reels/lead-masks/captions.words.json
+fcc57ea893feec896be00f8eb17a939d1c0d064227eb095940c53ba6145c1001  public/reels/lead-masks/vo.wav
+
+WHAT WAS ENHANCED
+
+1. Shared motion language
+- src/reels/lead-masks/style/motion.ts
+  - Added `progress()` for one-shot decelerating reveals.
+  - Extended `ease()` with an optional easing curve (default cubic-out).
+  - Added `p01()` and `parallax()` helpers.
+  - Kept all camera moves deterministic and clamped. Camera keys always end on the local beat length (`frames`), never the full composition.
+- Result: slower, controlled push-ins and lateral drifts instead of repeated generic zooms. Camera scale stays in a restrained ~1.00-1.16 range.
+
+2. Headline system
+- src/reels/lead-masks/style/components/Headline.tsx
+  - Added six distinct entrance variants: rise, mask, track, split, press, dateline.
+  - Added an optional editorial rule beside the kicker, with a timeline node for dateline beats.
+  - Preserved the existing type sizing, colour hierarchy and uppercase treatment.
+  - Consecutive beats no longer share the same headline entrance.
+
+3. New visual primitives
+- src/reels/lead-masks/style/components/ui.tsx
+  - `Rule`: a hairline that draws in from a word anchor, horizontal or vertical.
+  - `EvidencePlate`: a cream mat, ink border and paper shadow around an evidence image. The camera move happens inside the plate so zooms crop inside the mount rather than spilling into the dossier margins.
+  - `AtmosphereGlow`: a low-opacity, breathing radial glow reserved for the signal/sky beat.
+- `ScreenShake` remains available but is used only as a deliberate punctuation, not as an entrance default.
+
+4. Beat-by-beat changes
+- Scene01 (Brazil 1966): controlled establishing push-in, track headline with accent rule, foreground label parallax, staggered clue labels.
+- Scene02 (Manoel + Miguel): lateral two-shot drift, split headline, labels enter from opposite edges.
+- Scene03Clock (August 17): slow push, dateline headline with red rule and timeline node.
+- Scene03Receipt (Nervous waiting): waitress-to-Miguel pan preserved; reduced final scale to 1.16; masked headline; the watch reveal is now a cream witness card with a red top rule that drops and rotates into place.
+- Scene04Discovery (Three days later): preserved the down-tilt from the kite to the bodies; added a 17 AUG -> 20 AUG time spine in the headline band with a travelling marker.
+- Scene04Bodies (The outfit): image mounted as an evidence plate; press headline with accent rule; LEAD MASK stamp moved to the lower-right so it does not cover the suit.
+- Scene05 (No wounds / no fight): slow push, vertical forensic spine beside the three clues drawn on the first clue word, labels shifted right to sit on the spine.
+- Scene06Notebook (The notebook): document clipped open with a scan line on the first ~16 frames, then the torn-paper instruction is laid on top.
+- Scene06Capsules (Take the capsules): evidence plate entrance, slow push, split headline, torn note from the right, staggered two-capsule pop.
+- Scene06Metal (Wait for the signal): slow push, slower signal rings, soft breathing glow behind the mask, rise headline with rule, torn notes layered flat.
+- Scene07Autopsy (Too late): slow push, press headline with rule, LATE stamp on the word, decomposed-organs label on its own word. No shake.
+- Scene07Unsolved (No answer): masked headline with rule, three question marks tied to the three spoken phrases with slight depth drift, UNSOLVED stamp on the final phrase.
+- Scene08Theory (Signal or overdose): slow tilt-up camera, atmospheric glow on the UFO word, split headline, THEORY and OVERDOSE stamps on their words, one small screen shake on OVERDOSE.
+- Scene08CTA (End card): eased entrance replaces the spring pop; kicker, two title lines and handle stagger in; FOLLOW stamp lands on the spoken Follow word; slow push/hold with no fade-out.
+
+5. Safety and probe fixes
+- Dateline rule node moved inside its own box so the layout probe no longer sees a 7 px overflow.
+- Signal pulse reduced from 260 px to 208 px so it stays inside the 220 px mask box and cannot trip the hero overflow check.
+- CTA text stagger starts immediately enough that the end-card is never visible with no readable text at sampled frames.
+
+VERIFICATION
+- `npm run typecheck`: PASS.
+- `npm run check -- lead-masks`: PASS, 158 frames sampled, no blocking problems.
+- Only automatic warning: "Reel is 77.6 s. Keep it under 60 s." This is pre-existing and was not changed because shortening would require cutting narration or caption timing.
+- Scene order and beat boundaries unchanged:
+  s1-hook | s2-technicians | s3-clock | s3-receipt | s4-discovery | s4-bodies |
+  s5-no-wounds | s6-notebook | s6-capsules | s6-metal | s7-autopsy | s7-unsolved |
+  s8-theory | s8-cta
+- All word anchors were checked against their beat ranges. Every `t.at(...)` used by a scene falls inside that scene's word range.
+- Contact sheet: out/lead-masks/check/contact-sheet.jpg
+- Machine-readable check data: out/lead-masks/check/report.json
+
+LIMITATIONS / RESIDUAL RISKS
+- This environment cannot visually inspect image files here. Automated layout probe/check passed and targeted boundary/notebook/CTA probe frames showed no blocking issues after corrections, but a human must still LOOK at out/lead-masks/check/contact-sheet.jpg before any final render, as required by CLAUDE.md.
+- Runtime remains 77.57 s, above the 60 s guideline. It was left unchanged to preserve the approved narration and word-level caption timing.
+- Evidence images remain 832x1248 opaque PNGs served with a .jpg extension. `objectFit: "contain"` is still used so no story information is cropped.
+- The reel still uses the existing vo.wav (an MP3 payload with a .wav name). It was not renamed or converted because the path and audio are protected.
+- No final MP4 was rendered.
+
+FILES CHANGED (cumulative Phase 2, including this correction pass)
+src/reels/lead-masks/scenes/Scene01.tsx
+src/reels/lead-masks/scenes/Scene02.tsx
+src/reels/lead-masks/scenes/Scene03.tsx
+src/reels/lead-masks/scenes/Scene04.tsx
+src/reels/lead-masks/scenes/Scene05.tsx
+src/reels/lead-masks/scenes/Scene06.tsx
+src/reels/lead-masks/scenes/Scene07.tsx
+src/reels/lead-masks/scenes/Scene08.tsx
+src/reels/lead-masks/style/components/Headline.tsx
+src/reels/lead-masks/style/components/ui.tsx
+src/reels/lead-masks/style/motion.ts
+
+PRE-EXISTING UNCOMMITTED FILES FROM THE EARLIER PROFESSIONAL PASS
+src/reels/lead-masks/Reel.tsx
+src/reels/lead-masks/style/components/Caption.tsx
+src/reels/lead-masks/style/components/PaperBackground.tsx
+src/reels/lead-masks/style/components/SceneLayout.tsx
+src/reels/lead-masks/style/theme.ts
+src/reels/lead-masks/style/types.ts
+lead-masks-professional-audit.txt
+lead-masks-professional-upgrade-report.txt
+
+CORRECTION PASS (2026-11-18)
+Focus: notebook/instructions reveal, stamps, final CTA, scene transitions. No redesign; reveal concept preserved. Narration/audio/captions/timing/order/duration unchanged.
+
+Confirmed fixes
+- Notebook/instructions (s6-notebook, `src/reels/lead-masks/scenes/Scene06.tsx`): reveal no longer starts excessively faded/clipped. Scan/clip reveal preserved but starts from a readable baseline (`ease(frame,0,14,0.24,1)`, opacity `0.75 + 0.25*reveal`) so the document is visible immediately and becomes fully visible/readable quickly; scan line still clears; ends cleanly.
+- Transition into capsules (s6-capsules): `EvidencePlate` and opening torn note pre-settled (`at={-5}` / `at={-3}`) so the cut from notebook does not show a sudden appearing/fading plate.
+- Transition into outfit evidence (s4-bodies): `EvidencePlate` pre-settled (`at={-5}`) to avoid a cut-on opacity/scale pop.
+- Final CTA (s8-cta, `src/reels/lead-masks/scenes/Scene08.tsx`): card and key text remain readable throughout its display (no fade-out; text present from beat start with a gentle eased settle/hold). Ending transition/hold is smooth.
+- Scene 2 headline entrance (`src/reels/lead-masks/scenes/Scene02.tsx`): widened headline box to prevent split-entrance text overflow at beat start.
+
+Evidence stamps (all scenes): reviewed placements/readability in code and targeted probes — LEAD MASK kept lower-right on outfit, verdict stamps on image side away from headlines, CTA FOLLOW inside card; no confirmed covering/illegibility found requiring change, hierarchy/placement preserved.
+
+Scene transitions: boundary probes across all consecutive beats showed continuous content, no blank frames/issues reported, and no abrupt jumps beyond intended per-beat camera moves; notebook/capsule/outfit/CTA transition issues above corrected.
+
+Validation
+- `npm run typecheck`: PASS.
+- `npm run check -- lead-masks`: PASS (158 frames sampled). Findings: only `WARN length: Reel is 77.6 s. Keep it under 60 s.` (pre-existing, unchanged). No blocking problems.
+- Fresh contact sheet: `out/lead-masks/check/contact-sheet.jpg`
+- Fresh check data: `out/lead-masks/check/report.json`
+- Final MP4: not rendered.

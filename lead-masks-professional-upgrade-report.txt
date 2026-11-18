@@ -1,0 +1,82 @@
+LEAD MASKS - PROFESSIONAL UPGRADE REPORT
+Date: 2026-11-18
+Project: /root/reel-studio/reel-studio-kit
+Composition: src/reels/lead-masks (1080x1920, 30 fps, 2327 frames / 77.57 s)
+
+SCOPE
+- Worked only inside src/reels/lead-masks and its directly related style components.
+- No other reel, brand file, renderer, or shared component was changed.
+- No dependencies were added.
+- No final MP4 was rendered.
+
+WHAT WAS VERIFIED FIRST
+- npm run typecheck passed on the baseline.
+- npx remotion compositions confirmed lead-masks = 30 fps, 1080x1920, 2327 frames.
+- All 13 public/reels/lead-masks/assets/*.jpg files are actually opaque PNG images (832 px wide, RGBA). ffprobe: codec_name=png, width=832, pix_fmt=rgba. Alpha analysis showed 100% coverage, so objectFit:"cover" would crop roughly 41% of each image's height. objectFit:"contain" was kept.
+- public/reels/lead-masks/vo.wav is actually MP3 (24 kHz, mono, 77.496 s, 48 kbps, 464976 bytes). It was not renamed or converted because Reel.tsx loads it through staticFile(AUDIO) with the existing path.
+- captions.words.json: 130 words, monotonic timings, concatenated words exactly match projects/lead-masks/voice.txt and captions.txt. Last word ends at 76.58 s.
+- The audit's main findings were confirmed in source: camera keyframes ended at useVideoConfig().durationInFrames (the whole 77 s reel) instead of the local beat; Headline capped every size at 96px; ZONE values were duplicated/inaccurate; PaperBackground was only used in the CTA; ScreenShake appeared in 10 beats.
+
+CHANGES MADE
+1. Beat-local camera timing and motion
+   - src/reels/lead-masks/style/types.ts: SceneProps now includes `frames`.
+   - src/reels/lead-masks/Reel.tsx: each Beat passes its real beat length to the scene.
+   - All 8 scene files: the final camera key now uses `frames`, not the full composition duration; Scene06's push interpolations also use `frames`.
+   - src/reels/lead-masks/style/motion.ts: camera() now uses deterministic Easing.inOut(Easing.cubic) with clamped extrapolation, so every pan/zoom reaches its intended pose exactly at the beat boundary.
+   - Removed the unused, full-duration CameraDrift helper from style/components/ui.tsx.
+2. Typography and layout
+   - src/reels/lead-masks/style/theme.ts: ZONE now records the real measured zones (headline 220/264, hero 484/792, caption 1310/190).
+   - src/reels/lead-masks/style/components/SceneLayout.tsx: uses ZONE instead of duplicated padding numbers and renders the shared subtle paper background.
+   - src/reels/lead-masks/style/components/Headline.tsx: removed the flat Math.min(size, 96) cap. Font size is now computed from requested size, container width, line length, line count and the real headline height; effective sizes are roughly 105-126px. Added a 3-frame stagger between lines and kept a clear label -> headline -> caption hierarchy.
+3. Visual consistency and motion restraint
+   - src/reels/lead-masks/style/components/PaperBackground.tsx: added an optional `subtle` mode (lighter grain, folds and vignette) and a seed-derived filter id so multiple instances cannot collide.
+   - SceneLayout uses subtle paper on every story beat; the CTA keeps the stronger original treatment.
+   - ScreenShake was reduced from 10 beats to 4 deliberate punches: Scene01 (1966), Scene04Discovery (3 days later / bodies), Scene07Unsolved (UNSOLVED), Scene08Theory (OVERDOSE).
+4. Image framing
+   - Kept objectFit:"contain" because all source plates are opaque 2:3 illustrations and cropping would remove story information.
+   - The corrected camera moves now actually zoom to their authored end poses (roughly 1.10-1.26 scale), which reduces the paper gutters and makes the evidence plates fill the hero area without cropping content.
+   - Existing PropLabel/Tag/Stamp annotations remain in the side gutters, so the negative space is used as dossier margin rather than empty space.
+5. Captions
+   - src/reels/lead-masks/style/components/Caption.tsx: dark ink capsule with a paper-light hairline border, cream spoken words and the existing yellow active-word highlight. Chunking, timing, word order, font family and sizing were left unchanged.
+
+VERIFICATION
+- npm run typecheck: PASS after the final edits.
+- npm run check -- lead-masks: PASS with no blocking problems. 158 frames sampled; scenes unchanged in duration and order (s1-hook through s8-cta).
+- Automatic findings: one WARN only - "Reel is 77.6 s. Keep it under 60 s."
+- Contact sheet generated at out/lead-masks/check/contact-sheet.jpg (40 thumbnails, 0-77.5 s) and per-frame stills in out/lead-masks/check/.
+- Protected sources unchanged (sha256):
+  c889ac36bb71c4b8820a4fa454053bfaf1a7beac65ddf931cf50d7d786bfc7f7  projects/lead-masks/voice.txt
+  c889ac36bb71c4b8820a4fa454053bfaf1a7beac65ddf931cf50d7d786bfc7f7  projects/lead-masks/captions.txt
+  642703b41894f0cc855d90fbbba4794be1cf769152bc0039533e5b1328bd9da3  public/reels/lead-masks/captions.words.json
+- git status shows only the 17 intended modified files under src/reels/lead-masks plus the pre-existing untracked lead-masks-professional-audit.txt.
+
+LIMITATIONS / RESIDUAL RISKS
+- This model cannot view image files, including the generated contact sheet. Visual inspection was replaced with deterministic alpha analysis plus the automated layout probe. A human should still LOOK at out/lead-masks/check/contact-sheet.jpg before any final render, as required by CLAUDE.md.
+- Runtime remains 77.57 s, above the 60 s guideline. Shortening it was not attempted because it would require cutting narration or word-level caption timing.
+- vo.wav remains an MP3 with a .wav extension. Playback works through staticFile, but the mismatch was left untouched to avoid changing protected media.
+- The headline fit uses a conservative 0.52em-per-character estimate. The layout probe found no overflow, but final optical spacing should be confirmed on the contact sheet.
+- No music, sound effects, new imagery or new factual claims were added.
+
+FILES CHANGED
+src/reels/lead-masks/Reel.tsx
+src/reels/lead-masks/scenes/Scene01.tsx
+src/reels/lead-masks/scenes/Scene02.tsx
+src/reels/lead-masks/scenes/Scene03.tsx
+src/reels/lead-masks/scenes/Scene04.tsx
+src/reels/lead-masks/scenes/Scene05.tsx
+src/reels/lead-masks/scenes/Scene06.tsx
+src/reels/lead-masks/scenes/Scene07.tsx
+src/reels/lead-masks/scenes/Scene08.tsx
+src/reels/lead-masks/style/components/Caption.tsx
+src/reels/lead-masks/style/components/Headline.tsx
+src/reels/lead-masks/style/components/PaperBackground.tsx
+src/reels/lead-masks/style/components/SceneLayout.tsx
+src/reels/lead-masks/style/components/ui.tsx
+src/reels/lead-masks/style/motion.ts
+src/reels/lead-masks/style/theme.ts
+src/reels/lead-masks/style/types.ts
+
+### Modern Web Guidance
+- `npx -y modern-web-guidance@latest search "typography"` -> used unitless line-height, avoided fixed text-block heights, applied clamp-style fit logic and balanced line length via measured width.
+- `npx -y modern-web-guidance@latest search "fluid scaling"` -> kept container-query units in Caption and CTA and made Headline sizing respond to container width/line count rather than a flat pixel cap.
+- `npx -y modern-web-guidance@latest search "complex shapes"` -> reviewed CSS masking for a masked line reveal; not used because the mask wrapper caused probe-detected overflow, so the reveal remains transform/opacity based and deterministic under Remotion frame seeking.
