@@ -3,6 +3,8 @@ import { Composition, Folder } from "remotion";
 import { FPS, HEIGHT, WIDTH } from "./layout";
 import { PlaceholderSheet } from "./dev/PlaceholderSheet";
 import { REELS } from "./reels/registry";
+import { timelineDuration } from "./documentary/Documentary";
+import { UntoldStoryDemo, UNTOLD_STORY_DEMO } from "./documentary/compositions/UntoldStoryDemo";
 
 export const Root: React.FC = () => (
   <>
@@ -27,6 +29,17 @@ export const Root: React.FC = () => (
         ) : null}
       </React.Fragment>
     ))}
+    <Folder name="Documentary">
+      <Composition
+        id="UntoldStoryDemo"
+        component={UntoldStoryDemo}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={timelineDuration(UNTOLD_STORY_DEMO)}
+        defaultProps={{}}
+      />
+    </Folder>
     <Folder name="Dev">
       <Composition id="PlaceholderSheet-Illustrated" component={PlaceholderSheet} width={2000} height={1600} fps={1} durationInFrames={1} defaultProps={{ look: "illustrated" as const }} />
       <Composition id="PlaceholderSheet-Pixel" component={PlaceholderSheet} width={2000} height={1600} fps={1} durationInFrames={1} defaultProps={{ look: "pixel" as const }} />

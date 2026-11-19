@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e7ddc6"/>
+      <stop offset="1" stop-color="#c8bda4"/>
+    </linearGradient>
+    <filter id="rough">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="9"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.12"/></feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#paper)"/>
+  <rect x="90" y="100" width="1020" height="1300" fill="none" stroke="#4b463c" stroke-opacity="0.35" stroke-width="3"/>
+  <text x="150" y="220" font-family="monospace" font-size="46" letter-spacing="7" fill="#3c372f">STATION LOG / EXTRACT</text>
+  <line x1="150" y1="260" x2="1050" y2="260" stroke="#4b463c" stroke-opacity="0.5" stroke-width="3"/>
+  <g fill="#3c372f" opacity="0.62">
+    <rect x="150" y="340" width="760" height="18"/><rect x="150" y="400" width="880" height="18"/>
+    <rect x="150" y="460" width="620" height="18"/><rect x="150" y="520" width="830" height="18"/>
+    <rect x="150" y="610" width="420" height="18"/>
+  </g>
+  <rect x="150" y="690" width="720" height="62" fill="#28241e"/>
+  <g fill="#3c372f" opacity="0.62">
+    <rect x="150" y="810" width="790" height="18"/><rect x="150" y="870" width="660" height="18"/>
+    <rect x="150" y="930" width="850" height="18"/><rect x="150" y="990" width="540" height="18"/>
+    <rect x="150" y="1080" width="760" height="18"/><rect x="150" y="1140" width="480" height="18"/>
+  </g>
+  <g transform="translate(880 1180) rotate(-14)">
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#8d2f25" stroke-opacity="0.65" stroke-width="10"/>
+    <text x="0" y="12" text-anchor="middle" font-family="monospace" font-size="42" fill="#8d2f25" opacity="0.75">FILED</text>
+  </g>
+  <rect width="1200" height="1500" filter="url(#rough)" opacity="0.5"/>
+</svg>

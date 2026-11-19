@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b2730"/>
+      <stop offset="1" stop-color="#090f14"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#26343d"/>
+      <stop offset="1" stop-color="#101a21"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#d9bb87" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#d9bb87" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <circle cx="600" cy="520" r="440" fill="url(#halo)"/>
+  <path d="M180 1500 Q240 1040 470 970 L730 970 Q960 1040 1020 1500 Z" fill="url(#coat)"/>
+  <path d="M420 1010 L470 970 L600 1120 L730 970 L780 1010 L600 1210 Z" fill="#e3d4ba" opacity="0.12"/>
+  <path d="M430 360 Q600 250 770 360 L790 700 Q760 920 600 960 Q440 920 410 700 Z" fill="#8d7a66" opacity="0.32"/>
+  <path d="M410 430 Q600 350 790 430 L790 470 Q600 400 410 470 Z" fill="#2a1f1a" opacity="0.65"/>
+  <path d="M430 700 Q600 760 770 700 L760 740 Q600 800 440 740 Z" fill="#241b17" opacity="0.5"/>
+  <path d="M470 560 Q520 540 560 560" stroke="#d8c7a8" stroke-opacity="0.35" stroke-width="6" fill="none"/>
+  <path d="M640 560 Q680 540 730 560" stroke="#d8c7a8" stroke-opacity="0.35" stroke-width="6" fill="none"/>
+  <rect x="0" y="1420" width="1200" height="80" fill="#070c10" opacity="0.7"/>
+</svg>
