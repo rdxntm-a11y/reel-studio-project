@@ -4,7 +4,7 @@ import { getTheme } from "./theme";
 import type { DocScene, DocTimeline, SceneComponent } from "./types";
 import { AudioBed } from "./components/AudioBed";
 import { DocProbe } from "./components/DocProbe";
-import { sceneComponentFor } from "./index";
+import { sceneComponentFor, SCENE_COMPONENTS } from "./index";
 
 export type ScheduledScene = { scene: DocScene; from: number; index: number };
 
@@ -46,11 +46,12 @@ const SceneSlot: React.FC<{
   );
 };
 
-export const Documentary: React.FC<{ timeline: DocTimeline; probe?: boolean; debugSafeZones?: boolean }> = ({
-  timeline,
-  probe = false,
-  debugSafeZones = false,
-}) => {
+export const Documentary: React.FC<{
+  timeline: DocTimeline;
+  probe?: boolean;
+  debugSafeZones?: boolean;
+  sceneComponents?: Partial<typeof SCENE_COMPONENTS>;
+}> = ({ timeline, probe = false, debugSafeZones = false, sceneComponents }) => {
   const theme = getTheme(timeline.theme);
   const fps = timeline.fps ?? DOC_FPS;
   const scheduled = scheduleScenes(timeline);
@@ -69,7 +70,7 @@ export const Documentary: React.FC<{ timeline: DocTimeline; probe?: boolean; deb
           name={`${String(index + 1).padStart(2, "0")}-${scene.kind}`}
         >
           <SceneSlot
-            Component={sceneComponentFor(scene)}
+            Component={(sceneComponents?.[scene.kind] ?? sceneComponentFor(scene)) as SceneComponent}
             scene={scene}
             timeline={timeline}
             theme={theme}

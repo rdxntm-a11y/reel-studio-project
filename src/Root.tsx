@@ -5,6 +5,7 @@ import { PlaceholderSheet } from "./dev/PlaceholderSheet";
 import { REELS } from "./reels/registry";
 import { timelineDuration } from "./documentary/Documentary";
 import { UntoldStoryDemo, UNTOLD_STORY_DEMO } from "./documentary/compositions/UntoldStoryDemo";
+import { LeadMasksDocumentary, LEAD_MASKS_DOCUMENTARY } from "./documentary/compositions/LeadMasksDocumentary";
 
 export const Root: React.FC = () => (
   <>
@@ -37,6 +38,15 @@ export const Root: React.FC = () => (
         height={1080}
         fps={30}
         durationInFrames={timelineDuration(UNTOLD_STORY_DEMO)}
+        defaultProps={{}}
+      />
+      <Composition
+        id="LeadMasksDocumentary"
+        component={LeadMasksDocumentary}
+        width={1920}
+        height={1080}
+        fps={30}
+        durationInFrames={timelineDuration(LEAD_MASKS_DOCUMENTARY)}
         defaultProps={{}}
       />
     </Folder>
