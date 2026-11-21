@@ -1,7 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
-import { AbsoluteFill, Img, staticFile } from "remotion";
+import { AbsoluteFill, Img, interpolate, staticFile } from "remotion";
 import { DOC_SAFE } from "../geometry";
-import { clamp01, type CameraMove } from "../motion";
+import { CLAMP, EASE, clamp01, type CameraMove } from "../motion";
 import { alpha, type DocTheme } from "../theme";
 import type { DocWord, TransitionKind } from "../types";
 import { Atmosphere, Scrim } from "./Atmosphere";
@@ -148,6 +148,8 @@ export const SceneFrame: React.FC<SceneFrameProps> = ({
   imageBrightness = 0.66,
   scrimStrength = 0.68,
 }) => {
+  const settle = interpolate(frame, [0, Math.max(1, duration - 1)], [0, 1], { ...CLAMP, easing: EASE.camera });
+  const contentScale = 0.996 + settle * 0.004;
   const kickerStyle: CSSProperties = {
     position: "absolute",
     fontFamily: theme.font.type,
@@ -185,7 +187,9 @@ export const SceneFrame: React.FC<SceneFrameProps> = ({
           bottom: DOC_SAFE.bottom,
         }}
       >
-        {children}
+        <div style={{ position: "absolute", inset: 0, transform: `scale(${contentScale.toFixed(4)})`, transformOrigin: "50% 50%" }}>
+          {children}
+        </div>
       </div>
       <TransitionLayer theme={theme} mode={transitionIn} frame={frame} duration={duration} phase="in" />
       <TransitionLayer theme={theme} mode={transitionOut} frame={frame} duration={duration} phase="out" />
@@ -219,9 +223,9 @@ export const SceneFrame: React.FC<SceneFrameProps> = ({
             left: kickerSide === "right" ? DOC_SAFE.left : undefined,
             top: 36,
             fontFamily: theme.font.type,
-            fontSize: 20,
+            fontSize: 21,
             letterSpacing: 3,
-            color: theme.color.faint,
+            color: theme.color.muted,
           }}
         >
           {chapter}

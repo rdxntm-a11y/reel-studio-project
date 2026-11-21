@@ -13,6 +13,7 @@ type PortraitStageProps = {
   label?: string;
   move?: CameraMove;
   strength?: number;
+  tone?: "normal" | "cold";
   gid: string;
 };
 
@@ -25,10 +26,13 @@ export const PortraitStage: React.FC<PortraitStageProps> = ({
   label,
   move = "driftUp",
   strength = 0.5,
+  tone = "normal",
   gid,
 }) => {
   const pose = cameraTransform(frame, duration, move, strength);
   const edge = interpolate(frame, [0, Math.min(24, Math.max(1, duration - 1))], [0.3, 0.85], CLAMP);
+  const cold = tone === "cold";
+  const haze = ((frame / Math.max(1, duration)) * 26 - 13).toFixed(2);
 
   return (
     <div
@@ -53,7 +57,7 @@ export const PortraitStage: React.FC<PortraitStageProps> = ({
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            filter: "blur(28px) brightness(0.4) grayscale(0.35)",
+            filter: cold ? "blur(30px) brightness(0.3) grayscale(0.7)" : "blur(28px) brightness(0.4) grayscale(0.35)",
           }}
         />
       </div>
@@ -64,10 +68,32 @@ export const PortraitStage: React.FC<PortraitStageProps> = ({
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            filter: "contrast(1.08) saturate(0.9)",
+            filter: cold ? "contrast(1.16) saturate(0.42) brightness(0.76) sepia(0.14) hue-rotate(172deg)" : "contrast(1.08) saturate(0.9)",
           }}
         />
       </div>
+      {cold ? (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            background: `radial-gradient(circle at 50% 42%, ${alpha(theme.color.panel, 22)}, transparent 62%), linear-gradient(162deg, ${alpha(theme.color.void, 42)}, transparent 48%, ${alpha(theme.color.void, 62)})`,
+          }}
+        />
+      ) : null}
+      {cold ? (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            pointerEvents: "none",
+            opacity: 0.16,
+            transform: `translateY(${haze}px)`,
+            backgroundImage: "repeating-linear-gradient(180deg, transparent 0 5px, rgba(0, 0, 0, 0.5) 5px 6px)",
+          }}
+        />
+      ) : null}
       <div
         style={{
           position: "absolute",

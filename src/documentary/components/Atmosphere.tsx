@@ -23,6 +23,8 @@ export const Atmosphere: React.FC<AtmosphereProps> = ({
 }) => {
   const p = linearProgress(frame, 0, duration);
   const drift = interpolate(p, [0, 1], [-40, 40], CLAMP);
+  const sweep = interpolate(p, [0, 1], [-170, 170], CLAMP);
+  const sweepOpacity = interpolate(p, [0, 0.18, 0.82, 1], [0.08, 0.2, 0.2, 0.08], CLAMP);
   const gid = `grain-${id.replace(/[^a-zA-Z0-9]/g, "")}`;
   const paper = variant === "paper";
   const split = variant === "split";
@@ -40,6 +42,14 @@ export const Atmosphere: React.FC<AtmosphereProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: base }}>
       <AbsoluteFill style={background} />
+      <AbsoluteFill
+        style={{
+          transform: `translate3d(${sweep.toFixed(2)}px, ${(-sweep * 0.11).toFixed(2)}px, 0) scale(1.04)`,
+          opacity: paper ? 0.06 : sweepOpacity,
+          pointerEvents: "none",
+          background: `radial-gradient(ellipse 42% 30% at 44% 50%, ${alpha(theme.color.accent, 20)}, transparent 74%)`,
+        }}
+      />
       <AbsoluteFill
         style={{
           transform: `translate3d(${drift.toFixed(2)}px, ${(-drift * 0.4).toFixed(2)}px, 0)`,
